@@ -6,7 +6,7 @@ class SearchForm extends Component {
     this.state = {
       postcode: "",
       timeOption: "",
-      adviceCentres: "false"
+      adviceCentres: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleTime = this.handleTime.bind(this);
@@ -17,21 +17,21 @@ class SearchForm extends Component {
     this.setState({
       postcode: event.target.value
     });
-    console.log(this.state.postcode);
+    console.log(this.state);
   }
 
   handleTime(event) {
     this.setState({
       timeOption: event.target.value
     });
-    console.log(this.state.timeOption);
+    console.log(this.state);
   }
 
   toggleAdviceCentres(event) {
     this.setState({
       adviceCentres: !this.state.adviceCentres
     });
-    console.log(this.state.adviceCentres);
+    console.log(this.state);
   }
 
   render() {
@@ -74,7 +74,6 @@ class SearchForm extends Component {
         <input
           type="checkbox"
           name="advice-centres"
-          checked={this.state.adviceCentres === "true"}
           onChange={this.toggleAdviceCentres}
         />
       </form>
