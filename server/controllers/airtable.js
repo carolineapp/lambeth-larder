@@ -10,6 +10,29 @@ const base = Airtable.base(API_BASE);
 
 base("Times and Venues")
   .select({
+    fields: [
+      "Name",
+      "Description",
+      "Address Line 1",
+      "Address Line 2",
+      "Address Line 3",
+      "Postcode",
+      "Requires Voucher",
+      "Monday Open",
+      "Monday Close",
+      "Tuesday Open",
+      "Tuesday Close",
+      "Wednesday Open",
+      "Wednesday Close",
+      "Thursday Open",
+      "Thursday Close",
+      "Friday Open",
+      "Friday Close",
+      "Saturday Open",
+      "Saturday Close",
+      "Sunday Open",
+      "Sunday Close"
+    ],
     maxRecords: 100,
     view: "Grid view"
   })
@@ -18,7 +41,7 @@ base("Times and Venues")
       // This function (`page`) will get called for each page of records.
 
       records.forEach(function(record) {
-        console.log(record.get("Name"), record.get("Description"));
+        console.log(record);
       });
 
       // To fetch the next page of records, call `fetchNextPage`.
