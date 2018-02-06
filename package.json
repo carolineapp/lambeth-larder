@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/caralemony/lambeth-larder#readme",
   "dependencies": {
+    "airtable": "^0.5.2",
     "axios": "^0.17.1",
     "env2": "^2.2.0",
     "express": "^4.16.2",
