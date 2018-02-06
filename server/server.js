@@ -1,5 +1,12 @@
-const app = require("./app");
+const express = require("express");
 
-app.listen(app.get("port"), () => {
-  console.log(`Find the server at: http://localhost:${app.get("port")}/`); // eslint-disable-line no-console
+const app = express();
+const PORT = process.env.PORT || 3001;
+
+app.disabled("x-powered-by");
+
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
 });
+
+module.exports = { app };
