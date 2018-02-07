@@ -34,7 +34,15 @@ class SearchForm extends Component {
   checkPostcode = e => {
     e.preventDefault();
     console.log(this.state.postcode);
+    fetch(`https://api.postcodes.io/postcodes/${this.state.postcode}`)
+         .then(response => response.json()
+             )
+            .then(data => console.log(data)
+          )
+          .catch(error => console.log('error is', error))
+
   }
+
 
   render() {
     return (
