@@ -8,30 +8,32 @@ class SearchForm extends Component {
       timeOption: "",
       adviceCentres: false
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleTime = this.handleTime.bind(this);
-    this.toggleAdviceCentres = this.toggleAdviceCentres.bind(this);
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({
       postcode: event.target.value
     });
     console.log(this.state);
   }
 
-  handleTime(event) {
+  handleTime = (event) => {
     this.setState({
       timeOption: event.target.value
     });
     console.log(this.state);
   }
 
-  toggleAdviceCentres(event) {
+  toggleAdviceCentres = (event) => {
     this.setState({
       adviceCentres: !this.state.adviceCentres
     });
     console.log(this.state);
+  }
+
+  checkPostcode = e => {
+    e.preventDefault();
+    console.log(this.state.postcode);
   }
 
   render() {
@@ -75,7 +77,8 @@ class SearchForm extends Component {
           type="checkbox"
           name="advice-centres"
           onChange={this.toggleAdviceCentres}
-        />
+        /><br />
+        <button type="submit" onClick={ this.checkPostcode }>Go</button>
       </form>
     );
   }
