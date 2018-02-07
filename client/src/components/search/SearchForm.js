@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import MapWindow from '../map/MapWindow';
 
 class SearchForm extends Component {
   constructor(props) {
@@ -36,6 +37,10 @@ class SearchForm extends Component {
 
   render() {
     return (
+      <div>
+        <div>
+        <MapWindow />
+        </div>
       <form>
         <input
           type="text"
@@ -45,7 +50,7 @@ class SearchForm extends Component {
           onChange={this.handleChange}
         />
         <p>When do you need food?</p>
-        <label for="time">Today</label>
+        <label htmlFor="time">Today</label>
         <input
           type="radio"
           name="time"
@@ -53,7 +58,7 @@ class SearchForm extends Component {
           checked={this.state.timeOption === "today"}
           onChange={this.handleTime}
         />
-        <label for="time">Tomorrow</label>
+        <label htmlFor="time">Tomorrow</label>
         <input
           type="radio"
           name="time"
@@ -61,7 +66,7 @@ class SearchForm extends Component {
           checked={this.state.timeOption === "tomorrow"}
           onChange={this.handleTime}
         />
-        <label for="time">Later</label>
+        <label htmlFor="time">Later</label>
         <input
           type="radio"
           name="time"
@@ -70,13 +75,14 @@ class SearchForm extends Component {
           onChange={this.handleTime}
         />
         <br />
-        <label for="advice-centres">See advice centres</label>
+        <label htmlFor="advice-centres">See advice centres</label>
         <input
           type="checkbox"
           name="advice-centres"
           onChange={this.toggleAdviceCentres}
         />
       </form>
+      </div>
     );
   }
 }
