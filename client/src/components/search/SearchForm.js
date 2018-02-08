@@ -1,7 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
+import MapWindow from '../map/MapWindow';
 
 const SearchForm = props => {
     return (
+      <div>
+        <div>
+        <MapWindow />
+        </div>
       <form>
         <input
           type="text"
@@ -11,7 +16,7 @@ const SearchForm = props => {
           onChange={props.handleChange}
         />
         <p>When do you need food?</p>
-        <label for="time">Today</label>
+        <label htmlFor="time">Today</label>
         <input
           type="radio"
           name="time"
@@ -19,7 +24,7 @@ const SearchForm = props => {
           checked={props.timeOption === "today"}
           onChange={props.handleTime}
         />
-        <label for="time">Tomorrow</label>
+        <label htmlFor="time">Tomorrow</label>
         <input
           type="radio"
           name="time"
@@ -27,7 +32,7 @@ const SearchForm = props => {
           checked={props.timeOption === "tomorrow"}
           onChange={props.handleTime}
         />
-        <label for="time">Later</label>
+        <label htmlFor="time">Later</label>
         <input
           type="radio"
           name="time"
@@ -36,7 +41,7 @@ const SearchForm = props => {
           onChange={props.handleTime}
         />
         <br />
-        <label for="advice-centres">See advice centres</label>
+        <label htmlFor="advice-centres">See advice centres</label>
         <input
           type="checkbox"
           name="advice-centres"
@@ -44,6 +49,7 @@ const SearchForm = props => {
         /><br />
         <button type="submit" onClick={ props.checkPostcode }>Go</button>
       </form>
+      </div>
     );
 }
 
