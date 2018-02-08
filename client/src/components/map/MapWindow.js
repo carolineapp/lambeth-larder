@@ -3,7 +3,9 @@ import { render } from "react-dom";
 import { Map, TileLayer } from "react-leaflet";
 import Control from "react-leaflet-control";
 import MarkersList from "./MarkersList";
+
 const mapboxToken = require ("../../config.js");
+
 
 const mapCenter = [51.45628, -0.10546];
 

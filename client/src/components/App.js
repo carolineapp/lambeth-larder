@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import SearchForm from "./search/SearchForm";
+import Voucher from "./Voucher";
+import MapWindow from "../components/map/MapWindow";
+import DetailedResult from "../components/detailedResult/DetailedResult";
+import Navbar from "./Navbar";
 
 class App extends Component {
   constructor(props) {
@@ -47,21 +51,29 @@ class App extends Component {
     return (
       <div className="App">
         <BrowserRouter>
-
           <Switch>
             <Route
               exact
               path="/"
               render={props => (
-                <SearchForm
-                  {...props}
-                  handleChange={this.handleChange}
-                  handleTime={this.handleTime}
-                  toggleAdviceCentres={this.toggleAdviceCentres}
-                  checkPostcode={this.checkPostcode}
-                />
+                <div>
+                  <div className="homepage__container">
+                    <Navbar />
+                    <MapWindow />
+                    <SearchForm
+                      {...props}
+                      handleChange={this.handleChange}
+                      handleTime={this.handleTime}
+                      toggleAdviceCentres={this.toggleAdviceCentres}
+                      checkPostcode={this.checkPostcode}
+                    />
+                  </div>
+                </div>
               )}
             />
+
+            <Route exact path="/voucher" component={Voucher} />
+            <Route exact path="/results/:name" component={DetailedResult} />
             {/* <Route exact path="/voucher" component={} />
           <Route exact path="/detail" componetn={} /> */}
           </Switch>
