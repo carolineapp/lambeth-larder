@@ -58,3 +58,5 @@ typings/
 *.env
 config.js
 *package-lock.json
+
+config.js
