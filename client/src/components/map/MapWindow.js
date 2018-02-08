@@ -63,8 +63,6 @@ class MapWindow extends Component {
 
   render() {
  
-   
-    // console.log(`The token is ${token}`)
 
     const url = `https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=${mapboxToken.key}`;
 
