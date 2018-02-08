@@ -57,28 +57,23 @@ class App extends Component {
               path="/"
               render={props => (
                 <div>
-                  <div className = "homepage__container">
-          
-                  <Navbar />
-                  <MapWindow />
-                  <SearchForm
-                    {...props}
-                    handleChange={this.handleChange}
-                    handleTime={this.handleTime}
-                    toggleAdviceCentres={this.toggleAdviceCentres}
-                    checkPostcode={this.checkPostcode}
-                  />
+                  <div className="homepage__container">
+                    <Navbar />
+                    <MapWindow />
+                    <SearchForm
+                      {...props}
+                      handleChange={this.handleChange}
+                      handleTime={this.handleTime}
+                      toggleAdviceCentres={this.toggleAdviceCentres}
+                      checkPostcode={this.checkPostcode}
+                    />
                   </div>
                 </div>
               )}
             />
 
             <Route exact path="/voucher" component={Voucher} />
-            <Route
-              exact
-              path="/results/:name"
-              component= {DetailedResult}
-            />
+            <Route exact path="/results/:name" component={DetailedResult} />
             {/* <Route exact path="/voucher" component={} />
           <Route exact path="/detail" componetn={} /> */}
           </Switch>
