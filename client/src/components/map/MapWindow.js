@@ -8,14 +8,6 @@ const mapCenter = [51.45628, -0.10546];
 
 const zoomLevel = 13;
 
-// foodBanksArray.map((place)=> {
-//   var latlongArr = place.lat_long.split(",");
-//   latlongArr[0] = (latlongArr[0] * 1);
-//   latlongArr[1] = (latlongArr[1] * 1);
-//   var marker = L.marker(latlongArr).addTo(mymap);
-//   marker.bindPopup(`<a href="/place/${place.name}">${place.name}</a>` + ", " + place.address)
-// });
-
 class MapWindow extends Component {
   constructor(props) {
     super(props);
@@ -75,8 +67,6 @@ class MapWindow extends Component {
     const attr =
       'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>';
 
-    // const position = [this.state.lat, this.state.lng];
-
     const markers = [
       {
         key: "Brixton Soup Kitchen",
@@ -112,12 +102,6 @@ class MapWindow extends Component {
           <TileLayer attribution={attr} url={url} id="mapbox.streets" />
 
           <MarkersList markers={markers} />
-          {/* <Popup>
-              <span>
-                Brixton Advice Centre <br /> 165-167 Railton Rd
-              </span>
-            </Popup>
-          </MarkersList> */}
 
           <Control position="topright">
             <div
