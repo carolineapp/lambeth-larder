@@ -3,10 +3,12 @@ import { render } from "react-dom";
 import { Map, TileLayer } from "react-leaflet";
 import Control from "react-leaflet-control";
 import MarkersList from "./MarkersList";
+const mapboxToken = require ("../../config.js");
 
 const mapCenter = [51.45628, -0.10546];
 
 const zoomLevel = 13;
+
 
 class MapWindow extends Component {
   constructor(props) {
@@ -58,11 +60,13 @@ class MapWindow extends Component {
     window.console.log("Panning down");
   }
 
-  render() {
-    const token =
-      "sk.eyJ1IjoiZGV2Z3JycmwiLCJhIjoiY2pkYzdzODFsMDU5djJ4cW02bGk2ODBrNSJ9.Rk18YavdSoe-uJCyJxCFnQ";
 
-    const url = `https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=${token}`;
+  render() {
+ 
+   
+    // console.log(`The token is ${token}`)
+
+    const url = `https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=${mapboxToken.key}`;
 
     const attr =
       'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>';
