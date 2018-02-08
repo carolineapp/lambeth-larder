@@ -1,7 +1,19 @@
-import React from "react";
+
+import React, { Component } from "react";
+import axios from "axios";
+class SearchForm extends Component {
+  constructor(props) {
+    super(props);
+  }
 import MapWindow from '../map/MapWindow';
 
-const SearchForm = props => {
+  componentDidMount() {
+    axios.get("/airtable").then(res => {
+      console.log(res);
+    });
+  }
+
+  render() {
     return (
       <div>
         <div>
@@ -12,8 +24,8 @@ const SearchForm = props => {
           type="text"
           name="postcode"
           placeholder="Enter your postcode"
-          value={props.postcode}
-          onChange={props.handleChange}
+          value={this.props.postcode}
+          onChange={this.props.handleChange}
         />
         <p>When do you need food?</p>
         <label htmlFor="time">Today</label>
@@ -21,36 +33,37 @@ const SearchForm = props => {
           type="radio"
           name="time"
           value="today"
-          checked={props.timeOption === "today"}
-          onChange={props.handleTime}
+          onChange={this.props.handleTime}
         />
         <label htmlFor="time">Tomorrow</label>
         <input
           type="radio"
           name="time"
           value="tomorrow"
-          checked={props.timeOption === "tomorrow"}
-          onChange={props.handleTime}
+          onChange={this.props.handleTime}
         />
         <label htmlFor="time">Later</label>
         <input
           type="radio"
           name="time"
           value="later"
-          checked={props.timeOption === "later"}
-          onChange={props.handleTime}
+          onChange={this.props.handleTime}
         />
         <br />
         <label htmlFor="advice-centres">See advice centres</label>
         <input
           type="checkbox"
           name="advice-centres"
-          onChange={props.toggleAdviceCentres}
-        /><br />
-        <button type="submit" onClick={ props.checkPostcode }>Go</button>
+          onChange={this.props.toggleAdviceCentres}
+        />
+        <br />
+        <button type="submit" onClick={this.props.checkPostcode}>
+          Go
+        </button>
       </form>
       </div>
     );
+  }
 }
 
 export default SearchForm;
