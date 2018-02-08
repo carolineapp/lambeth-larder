@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import SearchForm from "./search/SearchForm";
+import Voucher from "./Voucher";
 
 class App extends Component {
   constructor(props) {
@@ -47,7 +48,6 @@ class App extends Component {
     return (
       <div className="App">
         <BrowserRouter>
-
           <Switch>
             <Route
               exact
@@ -62,6 +62,8 @@ class App extends Component {
                 />
               )}
             />
+
+            <Route exact path="/voucher" render= {()=><Voucher />} />
             {/* <Route exact path="/voucher" component={} />
           <Route exact path="/detail" componetn={} /> */}
           </Switch>
