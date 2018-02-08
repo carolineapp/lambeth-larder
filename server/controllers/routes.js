@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const getData = require("./airtable");
 
-// set routes
-router.get("/airtable", getData());
+router.get("/airtable", (req, res) => {
+  getData(res);
+});
 
 module.exports = router;
