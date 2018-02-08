@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import SearchForm from "./search/SearchForm";
 
 class App extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -13,55 +12,60 @@ class App extends Component {
     };
   }
 
-  handleChange = (event) => {
+  handleChange = event => {
     this.setState({
       postcode: event.target.value
     });
     console.log(this.state);
-  }
+  };
 
-  handleTime = (event) => {
+  handleTime = event => {
     this.setState({
       timeOption: event.target.value
     });
     console.log(this.state);
-  }
+  };
 
-  toggleAdviceCentres = (event) => {
+  toggleAdviceCentres = event => {
     this.setState({
       adviceCentres: !this.state.adviceCentres
     });
     console.log(this.state);
-  }
+  };
 
   checkPostcode = e => {
     e.preventDefault();
     console.log(this.state.postcode);
     fetch(`https://api.postcodes.io/postcodes/${this.state.postcode}`)
-         .then(response => response.json()
-             )
-            .then(data => console.log(data)
-          )
-          .catch(error => console.log('error is', error))
-
-  }
-// handleChange={this.handleChange} handleTime={this.handleTime} toggleAdviceCentres={this.toggleAdviceCentres} checkPostcode={this.checkPostcode}
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.log("error is", error));
+  };
+  // handleChange={this.handleChange} handleTime={this.handleTime} toggleAdviceCentres={this.toggleAdviceCentres} checkPostcode={this.checkPostcode}
 
   render() {
     return (
       <div className="App">
         <BrowserRouter>
           <Switch>
-          <Route exact path="/"
-          render={(props) =>
-            <SearchForm{...props} />
-          } />
+            <Route
+              exact
+              path="/"
+              render={props => (
+                <SearchForm
+                  {...props}
+                  handleChange={this.handleChange}
+                  handleTime={this.handleTime}
+                  toggleAdviceCentres={this.toggleAdviceCentres}
+                  checkPostcode={this.checkPostcode}
+                />
+              )}
+            />
 
-          {/* <Route exact path="/voucher" component={} />
+            {/* <Route exact path="/voucher" component={} />
           <Route exact path="/detail" componetn={} /> */}
-        </Switch>
+          </Switch>
         </BrowserRouter>
-
       </div>
     );
   }
