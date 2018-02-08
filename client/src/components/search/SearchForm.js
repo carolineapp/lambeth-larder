@@ -1,12 +1,9 @@
 import React from "react";
-import MapWindow from '../map/MapWindow';
+
 
 const SearchForm = props => {
     return (
-      <div>
-        <div>
-        <MapWindow />
-        </div>
+
       <form>
         <input
           type="text"
@@ -49,7 +46,7 @@ const SearchForm = props => {
         /><br />
         <button type="submit" onClick={ props.checkPostcode }>Go</button>
       </form>
-      </div>
+     
     );
 }
 

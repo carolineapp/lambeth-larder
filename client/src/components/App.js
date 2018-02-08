@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import SearchForm from "./search/SearchForm";
 import Voucher from "./Voucher";
+import MapWindow from '../components/map/MapWindow';
 
 class App extends Component {
   constructor(props) {
@@ -53,6 +54,8 @@ class App extends Component {
               exact
               path="/"
               render={props => (
+                <div>
+                <MapWindow />
                 <SearchForm
                   {...props}
                   handleChange={this.handleChange}
@@ -60,6 +63,7 @@ class App extends Component {
                   toggleAdviceCentres={this.toggleAdviceCentres}
                   checkPostcode={this.checkPostcode}
                 />
+                </div>
               )}
             />
 
