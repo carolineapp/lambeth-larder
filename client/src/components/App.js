@@ -4,6 +4,7 @@ import SearchForm from "./search/SearchForm";
 import Voucher from "./Voucher";
 import MapWindow from "../components/map/MapWindow";
 import DetailedResult from "../components/detailedResult/DetailedResult";
+import Navbar from "./Navbar";
 
 class App extends Component {
   constructor(props) {
@@ -56,6 +57,9 @@ class App extends Component {
               path="/"
               render={props => (
                 <div>
+                  <div className = "homepage__container">
+          
+                  <Navbar />
                   <MapWindow />
                   <SearchForm
                     {...props}
@@ -64,6 +68,7 @@ class App extends Component {
                     toggleAdviceCentres={this.toggleAdviceCentres}
                     checkPostcode={this.checkPostcode}
                   />
+                  </div>
                 </div>
               )}
             />
