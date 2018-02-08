@@ -47,6 +47,7 @@ class App extends Component {
     return (
       <div className="App">
         <BrowserRouter>
+
           <Switch>
             <Route
               exact
@@ -61,7 +62,6 @@ class App extends Component {
                 />
               )}
             />
-
             {/* <Route exact path="/voucher" component={} />
           <Route exact path="/detail" componetn={} /> */}
           </Switch>
