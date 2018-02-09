@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import SearchForm from "./search/SearchForm";
-import Voucher from "./Voucher";
-import MapWindow from "../components/map/MapWindow";
-import DetailedResult from "../components/detailedResult/DetailedResult";
+// import SearchForm from "./search/SearchForm";
+import Voucher from "./voucher/Voucher";
+// import MapWindow from "../components/map/MapWindow";
+import DetailedResult from "./detailedResult/DetailedResult";
 import Navbar from "./Navbar";
+import axios from "axios";
+import Home from "./homepage/Home.js";
 
 class App extends Component {
   constructor(props) {
@@ -14,6 +16,16 @@ class App extends Component {
       timeOption: "",
       adviceCentres: false
     };
+  }
+
+  componentDidMount() {
+    axios.get("/airtable").then(res => {
+      const data = res.data;
+      data.map(item => {
+        const nameArr = item.fields.Name;
+        console.log(nameArr);
+      });
+    });
   }
 
   handleChange = event => {
@@ -45,7 +57,6 @@ class App extends Component {
       .then(data => console.log(data))
       .catch(error => console.log("error is", error));
   };
-  // handleChange={this.handleChange} handleTime={this.handleTime} toggleAdviceCentres={this.toggleAdviceCentres} checkPostcode={this.checkPostcode}
 
   render() {
     return (
@@ -58,9 +69,7 @@ class App extends Component {
               render={props => (
                 <div>
                   <div className="homepage__container">
-                    <Navbar />
-                    <MapWindow />
-                    <SearchForm
+                    <Home
                       {...props}
                       handleChange={this.handleChange}
                       handleTime={this.handleTime}
@@ -74,8 +83,6 @@ class App extends Component {
 
             <Route exact path="/voucher" component={Voucher} />
             <Route exact path="/results/:name" component={DetailedResult} />
-            {/* <Route exact path="/voucher" component={} />
-          <Route exact path="/detail" componetn={} /> */}
           </Switch>
         </BrowserRouter>
       </div>
