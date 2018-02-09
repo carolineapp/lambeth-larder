@@ -1,25 +1,12 @@
-
-
 import React, { Component } from "react";
-import axios from "axios";
-import MapWindow from '../map/MapWindow';
-
 
 class SearchForm extends Component {
   constructor(props) {
     super(props);
   }
 
-
-  componentDidMount() {
-    axios.get("/airtable").then(res => {
-      console.log(res);
-    });
-  }
-
   render() {
     return (
-
       <form>
         <input
           type="text"
@@ -62,7 +49,6 @@ class SearchForm extends Component {
           Go
         </button>
       </form>
-     
     );
   }
 }
