@@ -23,7 +23,7 @@ class App extends Component {
       const data = res.data;
       data.map(item => {
         const nameArr = item.fields.Name;
-        console.log(nameArr);
+        // console.log(nameArr);
       });
     });
   }
