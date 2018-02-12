@@ -9,11 +9,12 @@ const options = {
 
 const geocoder = NodeGeocoder(options);
 
-const getCoords = pc => {
+const getCoords = (pc, cb) => {
   geocoder
     .geocode(pc)
     .then(function(res) {
       const latLong = [res[0].latitude, res[0].longitude];
+      cb(latLong);
       console.log(latLong);
     })
     .catch(function(err) {
