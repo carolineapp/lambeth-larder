@@ -15,7 +15,7 @@ class App extends Component {
       postcode: "",
       timeOption: "",
       adviceCentres: false,
-      results: []
+      results: null
     };
   }
 
