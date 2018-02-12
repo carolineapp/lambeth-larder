@@ -4,6 +4,7 @@ import Voucher from "./voucher/Voucher";
 import DetailedResult from "./detailedResult/DetailedResult";
 import axios from "axios";
 import Home from "./homepage/Home.js";
+import getCoords from "../helpers/getLatLong";
 
 class App extends Component {
   constructor(props) {
@@ -22,6 +23,13 @@ class App extends Component {
       res.data.map(a => {
         data.push(a.fields);
       });
+
+      // const playing = [];
+      // // data.map(a => {
+      // //   playing.push(getCoords(a.Postcode));
+      // // });
+      // console.log(getCoords("SW16 6AP"));
+
       this.setState({
         results: data
       });
