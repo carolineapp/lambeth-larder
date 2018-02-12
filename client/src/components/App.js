@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Voucher from "./voucher/Voucher";
 // import MapWindow from "../components/map/MapWindow";
 import DetailedResult from "./detailedResult/DetailedResult";
-import Navbar from "./Navbar";
 import axios from "axios";
 import Home from "./homepage/Home.js";
 
