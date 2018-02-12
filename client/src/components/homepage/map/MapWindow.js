@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { render } from "react-dom";
 import { Map, TileLayer } from "react-leaflet";
 import Control from "react-leaflet-control";
 import MarkersList from "./MarkersList";
@@ -18,10 +17,6 @@ class MapWindow extends Component {
       lat: 51.45628,
       lng: -0.10546
     };
-    this.handleUpPanClick = this.handleUpPanClick.bind(this);
-    this.handleRightPanClick = this.handleRightPanClick.bind(this);
-    this.handleLeftPanClick = this.handleLeftPanClick.bind(this);
-    this.handleDownPanClick = this.handleDownPanClick.bind(this);
   }
 
   componentDidMount() {
@@ -38,27 +33,6 @@ class MapWindow extends Component {
     this.setState({ currentZoomLevel: newZoomLevel });
   }
 
-  handleUpPanClick() {
-    const leafletMap = this.leafletMap.leafletElement;
-    leafletMap.panBy([0, -100]);
-    window.console.log("Panning up");
-  }
-
-  handleRightPanClick() {
-    const leafletMap = this.leafletMap.leafletElement;
-    leafletMap.panBy([100, 0]);
-    window.console.log("Panning right");
-  }
-  handleLeftPanClick() {
-    const leafletMap = this.leafletMap.leafletElement;
-    leafletMap.panBy([-100, 0]);
-    window.console.log("Panning left");
-  }
-  handleDownPanClick() {
-    const leafletMap = this.leafletMap.leafletElement;
-    leafletMap.panBy([0, 100]);
-    window.console.log("Panning down");
-  }
 
   render() {
     const url = `https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=${
@@ -90,6 +64,8 @@ class MapWindow extends Component {
         text: "Naybur's Pantry"
       }
     ];
+
+    
 
     return (
       <div>
