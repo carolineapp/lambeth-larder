@@ -1,11 +1,22 @@
 const NodeGeocoder = require("node-geocoder");
+const API_KEY = require("../../config.js");
 
 const options = {
-  provider: "google"
+  provider: "google",
+  Key: API_KEY,
+  formatter: null
 };
 
 const geocoder = NodeGeocoder(options);
 
-geocoder.geocode("n10 2rr", function(err, res) {
-  console.log(res);
-});
+const getCoords = pc => {
+  geocoder
+    .geocode(pc)
+    .then(function(res) {
+      const latLong = [res[0].latitude, res[0].longitude];
+      console.log(latLong);
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
+};
