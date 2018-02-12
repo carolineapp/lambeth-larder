@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-// import SearchForm from "./search/SearchForm";
 import Voucher from "./voucher/Voucher";
-// import MapWindow from "../components/map/MapWindow";
 import DetailedResult from "./detailedResult/DetailedResult";
-import Navbar from "./Navbar";
 import axios from "axios";
 import Home from "./homepage/Home.js";
 
@@ -14,16 +11,16 @@ class App extends Component {
     this.state = {
       postcode: "",
       timeOption: "",
-      adviceCentres: false
+      adviceCentres: false,
+      results: null
     };
   }
 
   componentDidMount() {
     axios.get("/airtable").then(res => {
       const data = res.data;
-      data.map(item => {
-        const nameArr = item.fields.Name;
-        // console.log(nameArr);
+      this.setState({
+        results: data
       });
     });
   }
@@ -32,21 +29,18 @@ class App extends Component {
     this.setState({
       postcode: event.target.value
     });
-    console.log(this.state);
   };
 
   handleTime = event => {
     this.setState({
       timeOption: event.target.value
     });
-    console.log(this.state);
   };
 
   toggleAdviceCentres = event => {
     this.setState({
       adviceCentres: !this.state.adviceCentres
     });
-    console.log(this.state);
   };
 
   checkPostcode = e => {
@@ -67,22 +61,29 @@ class App extends Component {
               exact
               path="/"
               render={props => (
-                <div>
-                  <div className="homepage__container">
-                    <Home
-                      {...props}
-                      handleChange={this.handleChange}
-                      handleTime={this.handleTime}
-                      toggleAdviceCentres={this.toggleAdviceCentres}
-                      checkPostcode={this.checkPostcode}
-                    />
-                  </div>
+                <div className="homepage__container">
+                  <Home
+                    {...props}
+                    handleChange={this.handleChange}
+                    handleTime={this.handleTime}
+                    toggleAdviceCentres={this.toggleAdviceCentres}
+                    checkPostcode={this.checkPostcode}
+                    results={this.state.results}
+                  />
                 </div>
               )}
             />
 
             <Route exact path="/voucher" component={Voucher} />
-            <Route exact path="/results/:name" component={DetailedResult} />
+            <Route
+              exact
+              path="/results/:name"
+              render={props => (
+                <div>
+                  <DetailedResult {...props} results={this.state.results} />
+                </div>
+              )}
+            />
           </Switch>
         </BrowserRouter>
       </div>

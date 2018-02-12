@@ -3,7 +3,7 @@ const API_KEY = process.env.API_KEY;
 const API_BASE = process.env.API_BASE;
 const Airtable = require("airtable");
 
-const getData = res => {
+const getAirtableData = (req, res) => {
   Airtable.configure({
     endpointUrl: "https://api.airtable.com",
     apiKey: API_KEY
@@ -42,4 +42,4 @@ const getData = res => {
     });
 };
 
-module.exports = getData;
+module.exports = getAirtableData;
