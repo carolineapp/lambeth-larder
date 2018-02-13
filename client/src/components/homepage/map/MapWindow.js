@@ -27,12 +27,9 @@ class MapWindow extends Component {
     });
   }
 
-  //these control the pan (left/right/up/down) buttons
-
   handleZoomLevelChange(newZoomLevel) {
     this.setState({ currentZoomLevel: newZoomLevel });
   }
-
 
   render() {
     const url = `https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=${
@@ -64,9 +61,6 @@ class MapWindow extends Component {
         text: "Naybur's Pantry"
       }
     ];
-
-    
-
     return (
       <div>
         <Map
@@ -79,25 +73,6 @@ class MapWindow extends Component {
           <TileLayer attribution={attr} url={url} id="mapbox.streets" />
 
           <MarkersList markers={markers} />
-
-          <Control position="topright">
-            <div
-              style={{
-                padding: "5px"
-              }}
-            >
-              <div style={{ marginLeft: "37px" }}>
-                <button onClick={this.handleUpPanClick}>Pan up</button>
-              </div>
-              <div>
-                <button onClick={this.handleLeftPanClick}>Pan left</button>
-                <button onClick={this.handleRightPanClick}>Pan right</button>
-              </div>
-              <div style={{ marginLeft: "30px" }}>
-                <button onClick={this.handleDownPanClick}>Pan down</button>
-              </div>
-            </div>
-          </Control>
         </Map>
       </div>
     );
