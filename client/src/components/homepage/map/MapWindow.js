@@ -62,6 +62,7 @@ class MapWindow extends Component {
           zoom={zoomLevel}
         >
           <TileLayer attribution={attr} url={url} id="mapbox.streets" />
+
          
           {flatten.length>0 &&
           <MarkersList flatten={flatten}/>
