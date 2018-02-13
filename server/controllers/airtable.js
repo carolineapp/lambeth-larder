@@ -33,7 +33,11 @@ const getAirtableData = (req, res) => {
         "Saturday_Open",
         "Saturday_Close",
         "Sunday_Open",
-        "Sunday_Close"
+        "Sunday_Close",
+        "FoodCentre",
+        "Postcode",
+        "Lat",
+        "Long"
       ],
       maxRecords: 100
     })

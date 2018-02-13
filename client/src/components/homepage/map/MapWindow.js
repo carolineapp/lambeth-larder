@@ -62,8 +62,6 @@ class MapWindow extends Component {
       }
     ];
 
-    // let flatten = [];
-
     return (
       <div>
         <Map
