@@ -6,10 +6,16 @@ const ResultItems = ({ ...props }) => {
     "! No emergency food venues are open in Lambeth now. Try searching for later this week or alternatively call One Lambeth Advice on 0800 254 0298.";
 
   const d = new Date();
-  const day = d.getDay();
+  const day = d.getDay(); // returns the current day as a value between 0-6 where Sunday = 0
   const hours = d.getHours();
   const minutes = d.getMinutes();
   const time = `${hours}:${minutes}`;
+
+  console.log("this is state ", this.state);
+
+  // mapTime object gives the current day from getDay as the key and returns the corresponding value. ie. today is Tuesday which = 2 so mapTime[2] returns a.Tuesday_Open which gives either "Closed" or it's opening time.
+
+  //The closing time is found by getting the day+7 ie. 2: Tuesday_Open, 9: Tuesday_Close
 
   const mapTime = {
     0: "Sunday_Open",
@@ -34,6 +40,7 @@ const ResultItems = ({ ...props }) => {
     <ul className="results">
       {props.result ? (
         props.result.map(a => {
+          console.log(this.state);
           return (
             <li key={a.Name}>
               {a.Name}
@@ -42,7 +49,7 @@ const ResultItems = ({ ...props }) => {
               <br />
               {a.Address_Line_3}
               <br />
-              {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
+              {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]] // if current time is less than closing time
                 ? `Closes today at ${a[mapTime[day + 7]]}`
                 : "Closed Today"}
             </li>
