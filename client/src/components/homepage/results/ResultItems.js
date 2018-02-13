@@ -12,8 +12,6 @@ const ResultItems = ({ ...props }) => {
   const minutes = d.getMinutes();
   const time = `${hours}:${minutes}`;
 
-  console.log("this is state ", this.state);
-
   // mapTime object gives the current day from getDay as the key and returns the corresponding value. ie. today is Tuesday which = 2 so mapTime[2] returns a.Tuesday_Open which gives either "Closed" or it's opening time.
 
   //The closing time is found by getting the day+7 ie. 2: Tuesday_Open, 9: Tuesday_Close
@@ -56,7 +54,6 @@ const ResultItems = ({ ...props }) => {
     <ul className="results">
       {props.result ? (
         props.result.map(a => {
-          console.log(this.state);
           return (
             <li key={a.Name + a.Description}>
               {a.Name}
@@ -75,6 +72,7 @@ const ResultItems = ({ ...props }) => {
                 console.log("no result")
               )}
               <br />
+              {props.timeOption ? "time chosen" : "no time chosen"}
             </li>
           );
         })
