@@ -3,13 +3,19 @@ import SearchForm from "./search/SearchForm";
 import MapWindow from "./map/MapWindow";
 import Navbar from "../Navbar";
 import ResultItems from "./results/ResultItems";
+import styled from "styled-components";
 
 const Home = ({ ...props }) => {
-
+  const Title = styled.h2`
+    font-size: 20px;
+    padding-left: 12vw;
+    color: rgba(0, 0, 0, 0.5);
+  `;
 
   return (
     <div>
       <Navbar />
+      <Title>Emergency Food</Title>
       <MapWindow result={props.results} />
       <SearchForm
         handleChange={props.handleChange}

@@ -18,6 +18,7 @@ const PostcodeSearchBar = styled.input`
   display: flex;
   align-self: center;
   padding: 1%;
+  margin: 2%;
   width: 75vw;
   height: 6vh;
   background-color: #e71242;
