@@ -7,6 +7,7 @@ const ResultItems = ({ ...props }) => {
 
   const d = new Date();
   const day = d.getDay();
+  const time = d.getHours();
 
   const mapTime = {
     1: "Sunday_Open",
@@ -18,9 +19,13 @@ const ResultItems = ({ ...props }) => {
     7: "Saturday_Open"
   };
 
-  console.log(mapTime[day]);
+  console.log(time);
+  //
 
   // props.result ? console.log(props.result[0].Name) : { noResult };
+
+  // Current time check only checks if current time is before the opening time - if centre is already open now it will show as closed. Need to store time as one piece of data ie. 13.30-17.00 for below to work
+
   return (
     <ul className="results">
       {props.result ? (
@@ -33,9 +38,9 @@ const ResultItems = ({ ...props }) => {
               <br />
               {a.Address_Line_3}
               <br />
-              {a[mapTime[day]] == "Closed"
-                ? "Closed today"
-                : `Open today from ${a[mapTime[day]]}`}
+              {a[mapTime[day]] !== "Closed" && time < parseInt(a[mapTime[day]])
+                ? `Open today from ${a[mapTime[day]]}`
+                : "Closed Today"}
             </li>
           );
         })
