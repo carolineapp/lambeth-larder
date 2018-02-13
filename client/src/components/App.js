@@ -63,6 +63,7 @@ class App extends Component {
     });
   };
 
+  //if lat long is already set, don't check post code
   checkPostcode = e => {
     e.preventDefault();
     fetch(`https://api.postcodes.io/postcodes/${this.state.postcode}`)
