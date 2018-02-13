@@ -5,10 +5,12 @@ import Navbar from "../Navbar";
 import ResultItems from "./results/ResultItems";
 
 const Home = ({ ...props }) => {
+
+
   return (
     <div>
       <Navbar />
-      <MapWindow results={props.results} />
+      <MapWindow result={props.results} />
       <SearchForm
         handleChange={props.handleChange}
         handleTime={props.handleTime}
