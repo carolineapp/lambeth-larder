@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
-<<<<<<< HEAD
 import styled from "styled-components";
-=======
 const geolib = require("geolib");
->>>>>>> master
 
 const ResultItems = ({ ...props }) => {
   const noResult =
