@@ -72,7 +72,7 @@ const ResultItems = ({ ...props }) => {
                 console.log("no result")
               )}
               <br />
-              {props.timeOption ? "time chosen" : "no time chosen"}
+              <span>Status:{props.timeOption}</span>
             </li>
           );
         })

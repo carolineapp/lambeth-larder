@@ -15,7 +15,12 @@ const Home = ({ ...props }) => {
         toggleAdviceCentres={props.toggleAdviceCentres}
         checkPostcode={props.checkPostcode}
       />
-      <ResultItems result={props.results} lat={props.lat} long={props.long} />
+      <ResultItems
+        result={props.results}
+        lat={props.lat}
+        long={props.long}
+        timeOption={props.timeOption}
+      />
     </div>
   );
 };
