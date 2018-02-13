@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 function openNav() {
   document.getElementById("mySidenav").style.width = "250px";
@@ -9,10 +10,16 @@ function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
   document.getElementById("main").style.marginLeft = "0";
 }
+
+const Nav = styled.nav`
+  height: 10%;
+  width: 100%;
+`;
+
 const Navbar = () => {
   return (
     <div>
-      <nav>
+      <Nav>
         <div id="menuToggle">
           <input type="checkbox" />
 
@@ -44,7 +51,7 @@ const Navbar = () => {
             </a>
           </ul>
         </div>
-      </nav>
+      </Nav>
     </div>
   );
 };
