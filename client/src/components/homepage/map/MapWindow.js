@@ -61,9 +61,6 @@ class MapWindow extends Component {
         text: "Naybur's Pantry"
       }
     ];
-
-    // let flatten = [];
-
     return (
       <div>
         <Map
