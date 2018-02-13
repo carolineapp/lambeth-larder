@@ -4,7 +4,6 @@ import Voucher from "./voucher/Voucher";
 import DetailedResult from "./detailedResult/DetailedResult";
 import axios from "axios";
 import Home from "./homepage/Home.js";
-import getCoords from "../helpers/getLatLong";
 
 class App extends Component {
   constructor(props) {
@@ -13,7 +12,9 @@ class App extends Component {
       postcode: "",
       timeOption: "",
       adviceCentres: false,
-      results: null
+      results: null,
+      lat: "",
+      long: ""
     };
   }
 
@@ -23,13 +24,6 @@ class App extends Component {
       res.data.map(a => {
         data.push(a.fields);
       });
-
-      // const playing = [];
-      // // data.map(a => {
-      // //   playing.push(getCoords(a.Postcode));
-      // // });
-      // console.log(getCoords("SW16 6AP"));
-
       this.setState({
         results: data
       });
@@ -56,11 +50,14 @@ class App extends Component {
 
   checkPostcode = e => {
     e.preventDefault();
-    console.log(this.state.postcode);
     fetch(`https://api.postcodes.io/postcodes/${this.state.postcode}`)
       .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.log("error is", error));
+      .then(data => {
+        this.setState({
+          lat: data.result.latitude,
+          long: data.result.longitude
+        });
+      });
   };
 
   render() {
@@ -80,6 +77,8 @@ class App extends Component {
                     toggleAdviceCentres={this.toggleAdviceCentres}
                     checkPostcode={this.checkPostcode}
                     results={this.state.results}
+                    lat={this.state.lat}
+                    long={this.state.long}
                   />
                 </div>
               )}
