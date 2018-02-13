@@ -2,14 +2,16 @@ import React from "react";
 import Navbar from "../Navbar";
 import styled from "styled-components";
 
-
 const Wrapper = styled.section`
   height: 100vh;
   background: #e71242;
   ${"" /* padding: 0;
   margin: 0; */};
 `;
-
+const Div = styled.div`
+  height: 100vh;
+  background: #e71242;
+`;
 const Nav = styled.nav`
   height: 10%;
   width: 100%;
