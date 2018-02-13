@@ -2,12 +2,20 @@ import React from "react";
 import Navbar from "../Navbar";
 import styled from "styled-components";
 
-const Div = styled.div`
-  height: 100vh;
-  background: #e71242;
-`;
 
 const Wrapper = styled.section`
+  height: 100vh;
+  background: #e71242;
+  ${"" /* padding: 0;
+  margin: 0; */};
+`;
+
+const Nav = styled.nav`
+  height: 10%;
+  width: 100%;
+`;
+
+const WrapperContainer = styled.section`
   height: 85%;
   width: 90%;
   background: white;
