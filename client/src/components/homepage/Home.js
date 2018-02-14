@@ -6,9 +6,12 @@ import ResultItems from "./results/ResultItems";
 import styled from "styled-components";
 
 const Home = ({ ...props }) => {
-  const Title = styled.h2`
+  const Title = styled.div`
     font-size: 20px;
-    padding-left: 12vw;
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    padding-left: 5vw;
     color: rgba(0, 0, 0, 0.5);
   `;
 
@@ -17,7 +20,7 @@ const Home = ({ ...props }) => {
       <Navbar />
       <Title>Emergency Food</Title>
       <MapWindow result={props.results} />
-      <SearchForm 
+      <SearchForm
         // getLocation={props.getLocation}
         handleClick={props.handleClick}
         handleChange={props.handleChange}
