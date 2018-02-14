@@ -90,28 +90,25 @@ const ResultItems = ({ ...props }) => {
     <ul className="results">
       {props.result ? (
         sortedItems.map(a => {
-          if (res.name)
-            return (
-              <li key={a.Name + a.Description}>
-                {a.Name}
-                <br />
-                {a.Description}
-                <br />
-                {a.Address_Line_3}
-                <br />
-                {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
-                  ? `Closes today at ${a[mapTime[day + 7]]}`
-                  : "Closed Today"}
-                <br />
-                {props.lat ? (
-                  <span>
-                    Distance:{distanceFinder(a, props.lat, props.long)}
-                  </span>
-                ) : (
-                  console.log("no result")
-                )}
-              </li>
-            );
+          return (
+            <li key={a.Name + a.Description}>
+              {a.Name}
+              <br />
+              {a.Description}
+              <br />
+              {a.Address_Line_3}
+              <br />
+              {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
+                ? `Closes today at ${a[mapTime[day + 7]]}`
+                : "Closed Today"}
+              <br />
+              {props.lat ? (
+                <span>Distance:{distanceFinder(a, props.lat, props.long)}</span>
+              ) : (
+                console.log("no result")
+              )}
+            </li>
+          );
         })
       ) : (
         <div>{noResult}</div>
