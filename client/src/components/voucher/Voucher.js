@@ -4,9 +4,9 @@ import styled from "styled-components";
 
 const Wrapper = styled.section`
   height: 100vh;
-  background: #e71242;
-  ${"" /* padding: 0;
-  margin: 0; */};
+  background: white;
+  width: 90%;
+  margin: auto;
 `;
 const Div = styled.div`
   height: 100vh;

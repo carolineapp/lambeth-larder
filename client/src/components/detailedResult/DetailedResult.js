@@ -1,9 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import Navbar from "../Navbar";
+import Address from "./Address";
+import Description from "./Description";
+import Contact from "./Contact";
+import Hours from "./Hours";
 
 const Div = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   background: #e71242;
 `;
 
@@ -25,7 +29,6 @@ const TextWrapper = styled.article`
   justify-content: space-between;
   padding: 5%;
 `;
-
 const Button = styled.button`
   width: 20%;
   padding: 2%;
@@ -36,15 +39,19 @@ const Button = styled.button`
   border: 2px solid #e71242;
 `;
 
-const DetailedResult = ({ match }) => {
-  //get details from airtable using match.params.name
-  //populate the div below with the results
+const DetailedResult = ({ match, results }) => {
   return (
     <Div className="detailedResult__container">
       <Navbar />
       <Wrapper>
         <Header>{match.params.name}</Header>
-        <p>Info about detailed result</p>
+        <Address results={results} name={match.params.name} />
+        <Description results={results} name={match.params.name} />
+        <Contact results={results} name={match.params.name} />
+        <Hours results={results} name={match.params.name} />
+        <a href="/">
+          <Button>Back</Button>
+        </a>
       </Wrapper>
     </Div>
   );
