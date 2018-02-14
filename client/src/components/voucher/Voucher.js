@@ -52,6 +52,11 @@ const Button = styled.button`
 `;
 
 const Voucher = props => {
+  // if (!props) {
+  //   return <div>Loading...</div>;
+  // }
+
+console.log(props)
   return (
     <Div className="voucher__body">
       <Navbar />

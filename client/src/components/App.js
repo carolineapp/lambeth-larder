@@ -30,17 +30,19 @@ class App extends Component {
         results: data
       });
     });
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        this.setState({
-          lat: position.coords.latitude,
-          long: position.coords.longitude
-        });
-      }
+    // navigator.geolocation.getCurrentPosition(
+    //   position => {
+    //     this.setState({
+    //       lat: position.coords.latitude,
+    //       long: position.coords.longitude
+    //     });
+    //   }
+  
+    // );
+  }
+
       // error => this.setState({ error: error.message }),
       // { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-    );
-  }
 
   handleChange = event => {
     this.setState({

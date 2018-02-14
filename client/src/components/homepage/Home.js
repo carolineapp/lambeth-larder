@@ -23,7 +23,7 @@ const Home = ({ ...props }) => {
       {!props.fullScreen ? (
         <div>
       <MapWindow result={props.results} />
-      <button onClick = {props.toggleMap}>Expand</button>
+      <button onClick = {props.toggleMap}>Open Map</button>
       <SearchForm
         handleClick={props.handleClick}
         handleChange={props.handleChange}
@@ -41,7 +41,7 @@ const Home = ({ ...props }) => {
       />
       </div>
       ) : ( <div><LargeMap  toggleMap ={props.toggleMap} result={props.results} lat={props.lat} long={props.long} />
-        <button onClick = {props.toggleMap}>Contract</button></div>)
+        <button onClick = {props.toggleMap}>Minimise</button></div>)
     }
     </div>
   )

@@ -11,15 +11,21 @@ const image = new Leaflet.Icon({
   popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
-const styles = {
-  padding: "1%"
+const pstyle = {
+  // padding: "1%"
+  textDecoration:"underline"
 };
+
+const style = {
+  width: "30%"
+};
+
 
 const MyPopupMarker = ({ map, position, text }) => (
   <Marker map={map} position={position} icon={image}>
-    <Popup>
+    <Popup style={style}>
       <a href={"/results/" + text}>
-        <p style={styles}>{text}</p>
+        <p style={pstyle}>{text}</p>
       </a>
     </Popup>
   </Marker>
