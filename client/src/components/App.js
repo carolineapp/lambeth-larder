@@ -71,11 +71,17 @@ class App extends Component {
       fetch(`https://api.postcodes.io/postcodes/${this.state.postcode}`)
         .then(response => response.json())
         .then(data => {
-          this.setState({
-            lat: data.result.latitude,
-            long: data.result.longitude,
-            postcodeErrorMsg: ""
-          });
+          if (data.status > 200) {
+            this.setState({
+              postcodeErrorMsg: data.error
+            });
+          } else {
+            this.setState({
+              lat: data.result.latitude,
+              long: data.result.longitude,
+              postcodeErrorMsg: ""
+            });
+          }
         });
     }
   };
