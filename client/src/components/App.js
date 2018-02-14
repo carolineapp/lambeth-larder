@@ -42,7 +42,6 @@ class App extends Component {
   }
 
   handleChange = event => {
-    event.preventDefault();
     this.setState({
       postcode: event.target.value,
       postcodeErrorMsg: ""
@@ -50,14 +49,12 @@ class App extends Component {
   };
 
   handleTime = event => {
-    event.preventDefault();
     this.setState({
       timeOption: event.target.value
     });
   };
 
   toggleAdviceCentres = event => {
-    event.preventDefault();
     this.setState({
       adviceCentres: !this.state.adviceCentres
     });
