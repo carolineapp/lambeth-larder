@@ -18,10 +18,6 @@ class App extends Component {
     };
   }
 
-
-
-
-
   componentDidMount() {
     axios.get("/airtable").then(res => {
       const data = [];
@@ -33,34 +29,31 @@ class App extends Component {
       });
     });
     navigator.geolocation.getCurrentPosition(
-      (position) => {
+      position => {
         this.setState({
           lat: position.coords.latitude,
           long: position.coords.longitude,
-          error: null,
+          error: null
         });
       },
-      (error) => this.setState({ error: error.message }),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+      error => this.setState({ error: error.message }),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     );
   }
 
   handleChange = event => {
-    event.preventDefault();
     this.setState({
       postcode: event.target.value
     });
   };
 
   handleTime = event => {
-    event.preventDefault();
     this.setState({
       timeOption: event.target.value
     });
   };
 
   toggleAdviceCentres = event => {
-    event.preventDefault();
     this.setState({
       adviceCentres: !this.state.adviceCentres
     });
@@ -79,9 +72,7 @@ class App extends Component {
       });
   };
 
-
   render() {
-
     return (
       <div className="App">
         <BrowserRouter>
