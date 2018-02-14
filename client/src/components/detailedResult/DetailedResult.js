@@ -1,10 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Navbar from "../Navbar";
-import Address from "./Address";
-import Description from "./Description";
-import Contact from "./Contact";
-import Hours from "./Hours";
+import clock from "../../assets/clock.png";
 
 const Div = styled.div`
   min-height: 100vh;
@@ -40,10 +37,15 @@ const Button = styled.button`
   background: white;
   border: 2px solid #e71242;
 `;
-// props.results &&
-//   props.results.map(result => {
-//     if (result.Name === props.name){
-
+const OpeningHours = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: #e71242;
+`;
 const DetailedResult = ({ match, results }) => {
   return (
     <Div className="detailedResult__container">
@@ -65,7 +67,9 @@ const DetailedResult = ({ match, results }) => {
                       <br />
                       {result.Postcode}
                     </div>
-
+                    <div>
+                      <Button>Get Directions</Button>
+                    </div>
                     <div>
                       {result.Phone}
                       <br />
@@ -79,53 +83,60 @@ const DetailedResult = ({ match, results }) => {
                     ) : (
                       <a href="/voucher">Voucher Required (click here)</a>
                     )}
-                    <div>
-                      Opening Hours:
-                      <p>
-                        Monday:
-                        {result.Monday_Open === "Closed"
-                          ? "Closed"
-                          : result.Monday_Open + "-" + result.Monday_Close}
-                      </p>
-                      <p>
-                        Tuesday:
-                        {result.Tuesday_Open === "Closed"
-                          ? "Closed"
-                          : result.Tuesday_Open + "-" + result.Tuesday_Close}
-                      </p>
-                      <p>
-                        Wednesday:
-                        {result.Wednesday_Open === "Closed"
-                          ? "Closed"
-                          : result.Wednesday_Open +
-                            "-" +
-                            result.Wednesday_Close}
-                      </p>
-                      <p>
-                        Thursday:
-                        {result.Thursday_Open === "Closed"
-                          ? "Closed"
-                          : result.Thursday_Open + "-" + result.Thursday_Close}
-                      </p>
-                      <p>
-                        Friday:
-                        {result.Friday_Open === "Closed"
-                          ? "Closed"
-                          : result.Friday_Open + "-" + result.Friday_Close}
-                      </p>
-                      <p>
-                        Saturday:
-                        {result.Saturday_Open === "Closed"
-                          ? "Closed"
-                          : result.Saturday_Open + "-" + result.Saturday_Close}
-                      </p>
-                      <p>
-                        Sunday:
-                        {result.Sunday_Open === "Closed"
-                          ? "Closed"
-                          : result.Sunday_Open + "-" + result.Sunday_Close}
-                      </p>
-                    </div>
+                    <OpeningHours>
+                      <img src={clock} height={30} width={30} />
+                      <Column>
+                        Opening Hours:
+                        <p>
+                          Monday:
+                          {result.Monday_Open === "Closed"
+                            ? "Closed"
+                            : result.Monday_Open + "-" + result.Monday_Close}
+                        </p>
+                        <p>
+                          Tuesday:
+                          {result.Tuesday_Open === "Closed"
+                            ? "Closed"
+                            : result.Tuesday_Open + "-" + result.Tuesday_Close}
+                        </p>
+                        <p>
+                          Wednesday:
+                          {result.Wednesday_Open === "Closed"
+                            ? "Closed"
+                            : result.Wednesday_Open +
+                              "-" +
+                              result.Wednesday_Close}
+                        </p>
+                        <p>
+                          Thursday:
+                          {result.Thursday_Open === "Closed"
+                            ? "Closed"
+                            : result.Thursday_Open +
+                              "-" +
+                              result.Thursday_Close}
+                        </p>
+                        <p>
+                          Friday:
+                          {result.Friday_Open === "Closed"
+                            ? "Closed"
+                            : result.Friday_Open + "-" + result.Friday_Close}
+                        </p>
+                        <p>
+                          Saturday:
+                          {result.Saturday_Open === "Closed"
+                            ? "Closed"
+                            : result.Saturday_Open +
+                              "-" +
+                              result.Saturday_Close}
+                        </p>
+                        <p>
+                          Sunday:
+                          {result.Sunday_Open === "Closed"
+                            ? "Closed"
+                            : result.Sunday_Open + "-" + result.Sunday_Close}
+                        </p>
+                      </Column>
+                    </OpeningHours>
                     <a href="/">
                       <Button>Back</Button>
                     </a>
