@@ -14,13 +14,10 @@ class App extends Component {
       adviceCentres: false,
       results: null,
       lat: "",
-      long: ""
+      long: "",
+      postcodeErrorMsg: ""
     };
   }
-
-
-
-
 
   componentDidMount() {
     axios.get("/airtable").then(res => {
@@ -33,21 +30,21 @@ class App extends Component {
       });
     });
     navigator.geolocation.getCurrentPosition(
-      (position) => {
+      position => {
         this.setState({
           lat: position.coords.latitude,
-          long: position.coords.longitude,
-          error: null,
+          long: position.coords.longitude
         });
-      },
-      (error) => this.setState({ error: error.message }),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+      }
+      // error => this.setState({ error: error.message }),
+      // { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     );
   }
 
   handleChange = event => {
     this.setState({
-      postcode: event.target.value
+      postcode: event.target.value,
+      postcodeErrorMsg: ""
     });
   };
 
@@ -66,19 +63,24 @@ class App extends Component {
   //if lat long is already set, don't check post code
   checkPostcode = e => {
     e.preventDefault();
-    fetch(`https://api.postcodes.io/postcodes/${this.state.postcode}`)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          lat: data.result.latitude,
-          long: data.result.longitude
-        });
+    if (this.state.lat > 0 && !this.state.postcode) {
+      this.setState({
+        postcodeErrorMsg: "No postcode entered"
       });
+    } else {
+      fetch(`https://api.postcodes.io/postcodes/${this.state.postcode}`)
+        .then(response => response.json())
+        .then(data => {
+          this.setState({
+            lat: data.result.latitude,
+            long: data.result.longitude,
+            postcodeErrorMsg: ""
+          });
+        });
+    }
   };
 
-
   render() {
-
     return (
       <div className="App">
         <BrowserRouter>
@@ -97,6 +99,7 @@ class App extends Component {
                     results={this.state.results}
                     lat={this.state.lat}
                     long={this.state.long}
+                    postcodeErrorMsg={this.state.postcodeErrorMsg}
                   />
                 </div>
               )}

@@ -27,6 +27,7 @@ const Home = ({ ...props }) => {
         handleTime={props.handleTime}
         toggleAdviceCentres={props.toggleAdviceCentres}
         checkPostcode={props.checkPostcode}
+        postcodeErrorMsg={props.postcodeErrorMsg}
       />
       <ResultItems result={props.results} lat={props.lat} long={props.long} />
     </div>

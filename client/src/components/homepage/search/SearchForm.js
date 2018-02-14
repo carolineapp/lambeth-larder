@@ -78,6 +78,7 @@ const SearchForm = ({ ...props }) => {
           Enter
         </Submit>
       </FlexRow>
+      {props.postcodeErrorMsg ? <p>{props.postcodeErrorMsg}</p> : ""}
       <Question>When do you need food?</Question>
       <FlexRow>
         <FakeRadio htmlFor="time">Today</FakeRadio>
