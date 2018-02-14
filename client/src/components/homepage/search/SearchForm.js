@@ -14,6 +14,7 @@ const FlexRow = styled.div`
   display: inherit;
   flex-direction: row;
   margin-top: 3vh;
+  justify-content: space-around;
 `;
 const PostcodeSearchBar = styled.input`
   display: flex;
@@ -32,23 +33,27 @@ const PostcodeSearchBar = styled.input`
   }
 `;
 const Radio = styled.input`
-  width: 20vw;
-  height: 4vh;
-  border-radius: none;
+  display: none;
 `;
 const FakeRadio = styled.label`
+  display: flex;
   width: 20vw;
   height: 4vh;
   padding: 2%;
   color: white;
   background: #e71242;
   border: 2px solid white;
-  &::checked {
-    color: #e71242;
-    background: white;
-    border: 2px solid #e71242;
-  }
 `;
+const FakeRadioOn = styled.label`
+  display: flex;
+  width: 20vw;
+  height: 4vh;
+  padding: 2%;
+  color: #e71242;
+  background: white;
+  border: 2px solid #e71242;
+`;
+
 const Submit = styled.button`
   display: flex;
   color: white;
@@ -60,6 +65,9 @@ const Question = styled.p`
 `;
 const LabelSmall = styled.label`
   font-size: 14px;
+`;
+const Padding = styled.div`
+  margin: 5%;
 `;
 
 const SearchForm = ({ ...props }) => {
@@ -81,36 +89,52 @@ const SearchForm = ({ ...props }) => {
       {props.postcodeErrorMsg ? <p>{props.postcodeErrorMsg}</p> : ""}
       <Question>When do you need food?</Question>
       <FlexRow>
-        <FakeRadio htmlFor="time">Today</FakeRadio>
+        {props.timeOption == "today" ? (
+          <FakeRadioOn htmlFor="today">Today</FakeRadioOn>
+        ) : (
+          <FakeRadio htmlFor="today">Today</FakeRadio>
+        )}
         <Radio
+          id="today"
           type="radio"
           name="time"
           value="today"
           onChange={props.handleTime}
         />
-        <FakeRadio htmlFor="time">Tomorrow</FakeRadio>
+        {props.timeOption == "tomorrow" ? (
+          <FakeRadioOn htmlFor="tomorrow">Tomorrow</FakeRadioOn>
+        ) : (
+          <FakeRadio htmlFor="tomorrow">Tomorrow</FakeRadio>
+        )}
         <Radio
+          id="tomorrow"
           type="radio"
           name="time"
           value="tomorrow"
           onChange={props.handleTime}
         />
-        <FakeRadio htmlFor="time">Later</FakeRadio>
+        {props.timeOption == "later" ? (
+          <FakeRadioOn htmlFor="later">Later</FakeRadioOn>
+        ) : (
+          <FakeRadio htmlFor="later">Later</FakeRadio>
+        )}
         <Radio
+          id="later"
           type="radio"
           name="time"
           value="later"
           onChange={props.handleTime}
         />
       </FlexRow>
-      <FlexRow>
+      <Padding>
         <LabelSmall htmlFor="advice-centres">See advice centres</LabelSmall>
         <input
+          id="advice-centres"
           type="checkbox"
           name="advice-centres"
           onChange={props.toggleAdviceCentres}
         />
-      </FlexRow>
+      </Padding>
     </FormStyle>
   );
 };
