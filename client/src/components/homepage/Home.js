@@ -19,9 +19,8 @@ const Home = ({ ...props }) => {
     <div>
       <Navbar />
       <Title>Emergency Food</Title>
-      <MapWindow result={props.results} />
+      <MapWindow result={props.results} lat={props.lat} long={props.long} />
       <SearchForm
-        // getLocation={props.getLocation}
         handleClick={props.handleClick}
         handleChange={props.handleChange}
         handleTime={props.handleTime}

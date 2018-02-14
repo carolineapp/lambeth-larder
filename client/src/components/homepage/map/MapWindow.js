@@ -4,17 +4,13 @@ import MarkersList from "./MarkersList";
 
 const mapboxToken = require("../../../config.js");
 
-const mapCenter = [51.45628, -0.10546];
-
 const zoomLevel = 13;
 
 class MapWindow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentZoomLevel: zoomLevel,
-      lat: 51.45628,
-      lng: -0.10546
+      currentZoomLevel: zoomLevel
     };
   }
 
@@ -59,7 +55,7 @@ class MapWindow extends Component {
           ref={m => {
             this.leafletMap = m;
           }}
-          center={mapCenter}
+          center={[this.props.lat, this.props.long]}
           zoom={zoomLevel}
         >
           <TileLayer attribution={attr} url={url} id="mapbox.streets" />
