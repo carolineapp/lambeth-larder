@@ -29,7 +29,12 @@ const Home = ({ ...props }) => {
         checkPostcode={props.checkPostcode}
         postcodeErrorMsg={props.postcodeErrorMsg}
       />
-      <ResultItems result={props.results} lat={props.lat} long={props.long} />
+      <ResultItems
+        result={props.results}
+        lat={props.lat}
+        long={props.long}
+        timeOption={props.timeOption}
+      />
     </div>
   );
 };
