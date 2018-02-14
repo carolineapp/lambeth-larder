@@ -49,36 +49,70 @@ const ResultItems = ({ ...props }) => {
     return distance;
   };
 
-  // props.result ? console.log(props.result[0].Name) : { noResult };
+  let today = [];
+  let tomorrow = [];
+  let later = [];
+  let sortedItems = [];
+
+  const sortByTime = () => {
+    if (props.result) {
+      props.result.map(a => {
+        if (a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]) {
+          today.push(a);
+        } else if (a[mapTime[day + 1]] !== "Closed") {
+          tomorrow.push(a);
+        } else {
+          later.push(a);
+        }
+      });
+      console.log("today is ", today);
+      console.log("tomorrow is ", tomorrow);
+      console.log("later is ", later);
+    }
+  };
+
+const getTimeOptionArr = () => {
+  if (props.timeOption == "today") {
+    sortedItems = today;
+  } else if (props.timeOption == "tomorrow") {
+    sortedItems = tomorrow;
+  } else {
+  sortedItems = later;
+}
+}
+
+  sortByTime();
+  getTimeOptionArr();
+  console.log(sortedItems);
+
 
   return (
     <ul className="results">
-      {props.result ? (
-        props.result.map(a => {
-          return (
-            <li key={a.Name + a.Description}>
-              {a.Name}
-              <br />
-              {a.Description}
-              <br />
-              {a.Address_Line_3}
-              <br />
-              {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
-                ? `Closes today at ${a[mapTime[day + 7]]}`
-                : "Closed Today"}
-              <br />
-              {props.lat ? (
-                <span>Distance:{distanceFinder(a, props.lat, props.long)}</span>
-              ) : (
-                console.log("no result")
-              )}
-              <br />
-              <span>Status:{props.timeOption}</span>
-            </li>
-          );
-        })
-      ) : (
-        <div>{noResult}</div>
+      {props.result ?
+        sortedItems.map(a => {
+        return (
+          <li key={a.Name + a.Description}>
+            {a.Name}
+            <br />
+            {a.Description}
+            <br />
+            {a.Address_Line_3}
+            <br />
+            {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
+              ? `Closes today at ${a[mapTime[day + 7]]}`
+              : "Closed Today"}
+            <br />
+            {props.lat ? (
+              <span>Distance:{distanceFinder(a, props.lat, props.long)}</span>
+            ) : (
+              console.log("no result")
+            )}
+          </li>
+        );
+      )}
+    ) :
+        (
+          <div>{noResult}</div>
       )}
     </ul>
   );
