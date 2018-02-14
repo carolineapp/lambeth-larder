@@ -43,12 +43,17 @@ const FakeRadio = styled.label`
   color: white;
   background: #e71242;
   border: 2px solid white;
-  &::checked {
-    color: #e71242;
-    background: white;
-    border: 2px solid #e71242;
-  }
 `;
+const FakeRadioOn = styled.label`
+  display: flex;
+  width: 20vw;
+  height: 4vh;
+  padding: 2%;
+  color: #e71242;
+  background: white;
+  border: 2px solid #e71242;
+`;
+
 const Submit = styled.button`
   display: flex;
   color: white;
@@ -60,6 +65,9 @@ const Question = styled.p`
 `;
 const LabelSmall = styled.label`
   font-size: 14px;
+`;
+const Padding = styled.div`
+  margin: 5%;
 `;
 
 const SearchForm = ({ ...props }) => {
@@ -81,7 +89,11 @@ const SearchForm = ({ ...props }) => {
       {props.postcodeErrorMsg ? <p>{props.postcodeErrorMsg}</p> : ""}
       <Question>When do you need food?</Question>
       <FlexRow>
-        <FakeRadio htmlFor="today">Today</FakeRadio>
+        {props.timeOption == "today" ? (
+          <FakeRadioOn htmlFor="today">Today</FakeRadioOn>
+        ) : (
+          <FakeRadio htmlFor="today">Today</FakeRadio>
+        )}
         <Radio
           id="today"
           type="radio"
@@ -89,7 +101,11 @@ const SearchForm = ({ ...props }) => {
           value="today"
           onChange={props.handleTime}
         />
-        <FakeRadio htmlFor="tomorrow">Tomorrow</FakeRadio>
+        {props.timeOption == "tomorrow" ? (
+          <FakeRadioOn htmlFor="tomorrow">Tomorrow</FakeRadioOn>
+        ) : (
+          <FakeRadio htmlFor="tomorrow">Tomorrow</FakeRadio>
+        )}
         <Radio
           id="tomorrow"
           type="radio"
@@ -97,7 +113,11 @@ const SearchForm = ({ ...props }) => {
           value="tomorrow"
           onChange={props.handleTime}
         />
-        <FakeRadio htmlFor="later">Later</FakeRadio>
+        {props.timeOption == "later" ? (
+          <FakeRadioOn htmlFor="later">Later</FakeRadioOn>
+        ) : (
+          <FakeRadio htmlFor="later">Later</FakeRadio>
+        )}
         <Radio
           id="later"
           type="radio"
@@ -106,7 +126,7 @@ const SearchForm = ({ ...props }) => {
           onChange={props.handleTime}
         />
       </FlexRow>
-      <FlexRow>
+      <Padding>
         <LabelSmall htmlFor="advice-centres">See advice centres</LabelSmall>
         <input
           id="advice-centres"
@@ -114,7 +134,7 @@ const SearchForm = ({ ...props }) => {
           name="advice-centres"
           onChange={props.toggleAdviceCentres}
         />
-      </FlexRow>
+      </Padding>
     </FormStyle>
   );
 };

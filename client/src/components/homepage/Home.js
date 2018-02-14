@@ -21,13 +21,13 @@ const Home = ({ ...props }) => {
       <Title>Emergency Food</Title>
       <MapWindow result={props.results} />
       <SearchForm
-        // getLocation={props.getLocation}
         handleClick={props.handleClick}
         handleChange={props.handleChange}
         handleTime={props.handleTime}
         toggleAdviceCentres={props.toggleAdviceCentres}
         checkPostcode={props.checkPostcode}
         postcodeErrorMsg={props.postcodeErrorMsg}
+        timeOption={props.timeOption}
       />
       <ResultItems
         result={props.results}
