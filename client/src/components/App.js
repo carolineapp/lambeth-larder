@@ -46,18 +46,21 @@ class App extends Component {
   }
 
   handleChange = event => {
+    event.preventDefault();
     this.setState({
       postcode: event.target.value
     });
   };
 
   handleTime = event => {
+    event.preventDefault();
     this.setState({
       timeOption: event.target.value
     });
   };
 
   toggleAdviceCentres = event => {
+    event.preventDefault();
     this.setState({
       adviceCentres: !this.state.adviceCentres
     });
@@ -97,6 +100,7 @@ class App extends Component {
                     results={this.state.results}
                     lat={this.state.lat}
                     long={this.state.long}
+                    timeOption={this.state.timeOption}
                   />
                 </div>
               )}
