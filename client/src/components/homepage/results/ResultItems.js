@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import styled from "styled-components";
+// import { sortByTime, getTimeOptionArr } from "../../../helpers/getStatus";
 const geolib = require("geolib");
 
 const ResultItems = ({ ...props }) => {
@@ -49,12 +50,46 @@ const ResultItems = ({ ...props }) => {
     return distance;
   };
 
-  // props.result ? console.log(props.result[0].Name) : { noResult };
+  let today = [];
+  let tomorrow = [];
+  let later = [];
+  let sortedItems = [];
+
+  const sortByTime = () => {
+    if (props.result) {
+      props.result.map(a => {
+        if (a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]) {
+          today.push(a);
+        }
+      });
+      props.result.map(a => {
+        if (a[mapTime[day + 1]] !== "Closed") {
+          tomorrow.push(a);
+        }
+      });
+      props.result.map(a => {
+        later.push(a);
+      });
+    }
+  };
+
+  const getTimeOptionArr = () => {
+    if (props.timeOption == "today") {
+      sortedItems = today;
+    } else if (props.timeOption == "tomorrow") {
+      sortedItems = tomorrow;
+    } else {
+      sortedItems = later;
+    }
+  };
+
+  sortByTime();
+  getTimeOptionArr();
 
   return (
     <ul className="results">
       {props.result ? (
-        props.result.map(a => {
+        sortedItems.map(a => {
           return (
             <li key={a.Name + a.Description}>
               {a.Name}
@@ -72,8 +107,6 @@ const ResultItems = ({ ...props }) => {
               ) : (
                 console.log("no result")
               )}
-              <br />
-              {props.timeOption ? "time chosen" : "no time chosen"}
             </li>
           );
         })
