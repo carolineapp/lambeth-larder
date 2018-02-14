@@ -8,6 +8,7 @@ const FormStyle = styled.form`
   color: white;
   flex-direction: column;
   padding: 2%;
+  height: 27vh;
 `;
 const FlexRow = styled.div`
   display: inherit;
@@ -32,7 +33,7 @@ const PostcodeSearchBar = styled.input`
 `;
 const Radio = styled.input`
   width: 20vw;
-  height: 5vh;
+  height: 4vh;
   border-radius: none;
 `;
 const FakeRadio = styled.label`
@@ -49,12 +50,19 @@ const FakeRadio = styled.label`
   }
 `;
 const Submit = styled.button`
+  display: flex;
   color: white;
+`;
+const Question = styled.p`
+  padding-top: 4%;
+  margin: 0;
+  font-size: 14px;
+`;
+const LabelSmall = styled.label`
+  font-size: 14px;
 `;
 
 const SearchForm = ({ ...props }) => {
-
-
   return (
     <FormStyle>
       <FlexRow>
@@ -66,11 +74,12 @@ const SearchForm = ({ ...props }) => {
           value={props.postcode}
           onChange={props.handleChange}
         />
+        <Submit type="submit" onClick={props.checkPostcode}>
+          Enter
+        </Submit>
       </FlexRow>
-      <Submit type="submit" onClick={props.checkPostcode}>
-        Enter
-      </Submit>
-      <p>When do you need food?</p>
+      {props.postcodeErrorMsg ? <p>{props.postcodeErrorMsg}</p> : ""}
+      <Question>When do you need food?</Question>
       <FlexRow>
         <FakeRadio htmlFor="time">Today</FakeRadio>
         <Radio
@@ -94,15 +103,15 @@ const SearchForm = ({ ...props }) => {
           onChange={props.handleTime}
         />
       </FlexRow>
-      <br />
-      <label htmlFor="advice-centres">See advice centres</label>
-      <input
-        type="checkbox"
-        name="advice-centres"
-        onChange={props.toggleAdviceCentres}
-      />
+      <FlexRow>
+        <LabelSmall htmlFor="advice-centres">See advice centres</LabelSmall>
+        <input
+          type="checkbox"
+          name="advice-centres"
+          onChange={props.toggleAdviceCentres}
+        />
+      </FlexRow>
     </FormStyle>
-
   );
 };
 
