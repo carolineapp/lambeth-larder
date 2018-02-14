@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import styled from "styled-components";
+// import { sortByTime, getTimeOptionArr } from "../../../helpers/getStatus";
 const geolib = require("geolib");
 
 const ResultItems = ({ ...props }) => {
@@ -59,11 +60,15 @@ const ResultItems = ({ ...props }) => {
       props.result.map(a => {
         if (a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]) {
           today.push(a);
-        } else if (a[mapTime[day + 1]] !== "Closed") {
-          tomorrow.push(a);
-        } else {
-          later.push(a);
         }
+      });
+      props.result.map(a => {
+        if (a[mapTime[day + 1]] !== "Closed") {
+          tomorrow.push(a);
+        }
+      });
+      props.result.map(a => {
+        later.push(a);
       });
     }
   };
@@ -80,7 +85,6 @@ const ResultItems = ({ ...props }) => {
 
   sortByTime();
   getTimeOptionArr();
-  console.log(sortedItems);
 
   return (
     <ul className="results">
