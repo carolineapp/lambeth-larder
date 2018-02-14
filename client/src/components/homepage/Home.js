@@ -27,6 +27,7 @@ const Home = ({ ...props }) => {
         toggleAdviceCentres={props.toggleAdviceCentres}
         checkPostcode={props.checkPostcode}
         postcodeErrorMsg={props.postcodeErrorMsg}
+        timeOption={props.timeOption}
       />
       <ResultItems
         result={props.results}
