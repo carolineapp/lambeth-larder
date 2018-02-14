@@ -9,7 +9,7 @@
     "server": "nodemon ./server/server.js",
     "client": "node start-client.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "postinstall": "cd client && npm i"
+    "postinstall": "cd client && npm i && npm run build"
   },
   "repository": {
     "type": "git",
