@@ -18,6 +18,10 @@ class App extends Component {
     };
   }
 
+
+
+
+
   componentDidMount() {
     axios.get("/airtable").then(res => {
       const data = [];
@@ -28,6 +32,17 @@ class App extends Component {
         results: data
       });
     });
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.setState({
+          lat: position.coords.latitude,
+          long: position.coords.longitude,
+          error: null,
+        });
+      },
+      (error) => this.setState({ error: error.message }),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+    );
   }
 
   handleChange = event => {
@@ -48,6 +63,7 @@ class App extends Component {
     });
   };
 
+  //if lat long is already set, don't check post code
   checkPostcode = e => {
     e.preventDefault();
     fetch(`https://api.postcodes.io/postcodes/${this.state.postcode}`)
@@ -60,7 +76,9 @@ class App extends Component {
       });
   };
 
+
   render() {
+
     return (
       <div className="App">
         <BrowserRouter>

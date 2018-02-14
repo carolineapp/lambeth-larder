@@ -53,6 +53,8 @@ const Submit = styled.button`
 `;
 
 const SearchForm = ({ ...props }) => {
+
+
   return (
     <FormStyle>
       <FlexRow>
@@ -100,6 +102,7 @@ const SearchForm = ({ ...props }) => {
         onChange={props.toggleAdviceCentres}
       />
     </FormStyle>
+
   );
 };
 
