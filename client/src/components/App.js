@@ -15,7 +15,8 @@ class App extends Component {
       results: null,
       lat: "",
       long: "",
-      postcodeErrorMsg: ""
+      postcodeErrorMsg: "",
+      fullScreen: false
     };
   }
 
@@ -60,6 +61,12 @@ class App extends Component {
     });
   };
 
+  toggleMap = event => {
+    this.setState({
+      fullScreen: !this.state.fullScreen
+    })
+  }
+
   //if lat long is already set, don't check post code
   checkPostcode = e => {
     e.preventDefault();
@@ -98,6 +105,8 @@ class App extends Component {
                 <div className="homepage__container">
                   <Home
                     {...props}
+                    fullScreen={this.state.fullScreen}
+                    toggleMap={this.toggleMap}
                     handleChange={this.handleChange}
                     handleTime={this.handleTime}
                     toggleAdviceCentres={this.toggleAdviceCentres}
