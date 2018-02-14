@@ -15,6 +15,9 @@ const getAirtableData = (req, res) => {
       fields: [
         "Name",
         "Description",
+        "Phone",
+        "Website",
+        "Email",
         "Address_Line_1",
         "Address_Line_2",
         "Address_Line_3",
