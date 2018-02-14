@@ -1,6 +1,8 @@
 import React from "react";
 
 const SearchForm = ({ ...props }) => {
+
+
   return (
     <form>
       <input
@@ -43,6 +45,7 @@ const SearchForm = ({ ...props }) => {
       <button type="submit" onClick={props.checkPostcode}>
         Go
       </button>
+      {/* <button onClick={props.getLocation}></button> */}
     </form>
   );
 };

@@ -11,7 +11,9 @@ const Home = ({ ...props }) => {
     <div>
       <Navbar />
       <MapWindow result={props.results} />
-      <SearchForm
+      <SearchForm 
+        // getLocation={props.getLocation}
+        handleClick={props.handleClick}
         handleChange={props.handleChange}
         handleTime={props.handleTime}
         toggleAdviceCentres={props.toggleAdviceCentres}
