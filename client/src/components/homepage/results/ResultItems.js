@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import styled from "styled-components";
+// import { sortByTime, getTimeOptionArr } from "../../../helpers/getStatus";
 const geolib = require("geolib");
 
 const ResultItems = ({ ...props }) => {
@@ -59,11 +60,15 @@ const ResultItems = ({ ...props }) => {
       props.result.map(a => {
         if (a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]) {
           today.push(a);
-        } else if (a[mapTime[day + 1]] !== "Closed") {
-          tomorrow.push(a);
-        } else {
-          later.push(a);
         }
+      });
+      props.result.map(a => {
+        if (a[mapTime[day + 1]] !== "Closed") {
+          tomorrow.push(a);
+        }
+      });
+      props.result.map(a => {
+        later.push(a);
       });
     }
   };
@@ -80,31 +85,33 @@ const ResultItems = ({ ...props }) => {
 
   sortByTime();
   getTimeOptionArr();
-  console.log(sortedItems);
 
   return (
     <ul className="results">
       {props.result ? (
         sortedItems.map(a => {
-          return (
-            <li key={a.Name + a.Description}>
-              {a.Name}
-              <br />
-              {a.Description}
-              <br />
-              {a.Address_Line_3}
-              <br />
-              {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
-                ? `Closes today at ${a[mapTime[day + 7]]}`
-                : "Closed Today"}
-              <br />
-              {props.lat ? (
-                <span>Distance:{distanceFinder(a, props.lat, props.long)}</span>
-              ) : (
-                console.log("no result")
-              )}
-            </li>
-          );
+          if (res.name)
+            return (
+              <li key={a.Name + a.Description}>
+                {a.Name}
+                <br />
+                {a.Description}
+                <br />
+                {a.Address_Line_3}
+                <br />
+                {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
+                  ? `Closes today at ${a[mapTime[day + 7]]}`
+                  : "Closed Today"}
+                <br />
+                {props.lat ? (
+                  <span>
+                    Distance:{distanceFinder(a, props.lat, props.long)}
+                  </span>
+                ) : (
+                  console.log("no result")
+                )}
+              </li>
+            );
         })
       ) : (
         <div>{noResult}</div>
