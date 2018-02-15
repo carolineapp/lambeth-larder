@@ -34,24 +34,27 @@ const PostcodeSearchBar = styled.input`
 `;
 const Radio = styled.input`
   display: none;
+  text-align: center;
 `;
 const FakeRadio = styled.label`
-  display: flex;
+  display: table;
   width: 20vw;
   height: 4vh;
   padding: 2%;
   color: white;
   background: #e71242;
   border: 2px solid white;
+  text-align: center;
 `;
 const FakeRadioOn = styled.label`
-  display: flex;
+  display: table;
   width: 20vw;
   height: 4vh;
   padding: 2%;
   color: #e71242;
   background: white;
   border: 2px solid #e71242;
+  text-align: center;
 `;
 
 const Submit = styled.button`
@@ -68,6 +71,12 @@ const LabelSmall = styled.label`
 `;
 const Padding = styled.div`
   margin: 5%;
+  padding-top: 2em;
+`;
+
+const CheckBox = styled.input`
+  color: #e71242;
+  border: 2px solid white;
 `;
 
 const SearchForm = ({ ...props }) => {
@@ -128,7 +137,7 @@ const SearchForm = ({ ...props }) => {
       </FlexRow>
       <Padding>
         <LabelSmall htmlFor="advice-centres">See advice centres</LabelSmall>
-        <input
+        <CheckBox
           id="advice-centres"
           type="checkbox"
           name="advice-centres"
