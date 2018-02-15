@@ -3,7 +3,8 @@ import styled from "styled-components";
 import Navbar from "../Navbar";
 import clock from "../../assets/clock.png";
 import styles from "../../assets/styles/style.css";
-
+import jug from "../../assets/jug.png";
+import marker from "../../assets/red_marker.png";
 
 const Div = styled.div`
   min-height: 100vh;
@@ -16,7 +17,7 @@ const Wrapper = styled.section`
   width: 90%;
   margin-left: auto;
   margin-right: auto;
-  margin-top:7vh;
+  margin-top: 7vh;
 `;
 
 const Header = styled.h1`
@@ -28,13 +29,16 @@ const Header = styled.h1`
 `;
 
 const Button = styled.button`
-  width: 20%;
+  min-width: 30%;
   padding: 2%;
   margin-top: 15%;
   margin-left: 5%;
   color: #e71242;
   background: white;
   border: 2px solid #e71242;
+  text-align: center;
+  line-height: 250%;
+  z-index: -1;
 `;
 const OpeningHours = styled.div`
   width: 90%;
@@ -49,16 +53,24 @@ const Column = styled.div`
   flex-direction: column;
   color: #e71242;
   width: 80%;
-  
 `;
 
 const Hours = styled.div`
   display: flex;
   justify-content: space-between;
-`
+`;
+
+const Info = styled.div`
+  padding: 1.5em;
+`;
+
+const Voucher = styled.div`
+  font-size: 1.2em;
+`;
+
 const DetailedResult = ({ postcode, match, results }) => {
   return (
-    <Div >
+    <Div>
       {results
         ? results.map(result => {
             if (result.Name === match.params.name) {
@@ -66,16 +78,26 @@ const DetailedResult = ({ postcode, match, results }) => {
                 <div>
                   <Navbar />
                   <Wrapper>
+                    <img
+                      src={jug}
+                      height={100}
+                      width={100}
+                      align="left"
+                      vertical-align="top"
+                    />
                     <Header>{result.Name}</Header>
-                    <p>{result.Description}</p>
 
-                    <div>
-                      {result.Address_Line_2}
-                      <br />
-                      {result.Address_Line_3}
-                      <br />
-                      {result.Postcode}
-                    </div>
+                    <Info>
+                      <p>{result.Description}</p>
+
+                      <div>
+                        {result.Address_Line_2}
+                        <br />
+                        {result.Address_Line_3}
+                        <br />
+                        {result.Postcode}
+                      </div>
+                    </Info>
                     <div>
                       <Button>
                         <a
@@ -83,41 +105,52 @@ const DetailedResult = ({ postcode, match, results }) => {
                             " "
                           ).join("")}&travelmode=transit`}
                         >
-                          Get Directions
+                          Get Directions{" "}
+                          <img
+                            src={marker}
+                            height={30}
+                            width={30}
+                            align="right"
+                            vertical-align="middle"
+                          />
                         </a>
                       </Button>
                     </div>
-                    <div>
-                      {result.Phone}
-                      <br />
-                      {result.Email}
-                      <br />
-                      <a href={result.Website}>{result.Website}</a>
-                    </div>
-                    {result.Requires_Voucher === "No" ? (
-                      <div>No Voucher Required</div>
-                    ) : (
-                      <a href="/voucher">Voucher Required (click here)</a>
-                    )}
-                  
+                    <Info>
+                      <div>
+                        {result.Phone}
+                        <br />
+                        {result.Email}
+                        <br />
+                        <a href={result.Website}>{result.Website}</a>
+                      </div>
+                      <Voucher>
+                        {result.Requires_Voucher === "No" ? (
+                          <div>No Voucher Required</div>
+                        ) : (
+                          <a href="/voucher">Voucher Required (click here)</a>
+                        )}
+                      </Voucher>
+                    </Info>
+
                     <OpeningHours>
                       <img src={clock} height={30} width={30} />
                       <Column>
                         Opening Hours:
                         <p>
-                          Monday:
+                          Monday:{" "}
                           {result.Monday_Open === "Closed"
                             ? "Closed"
                             : result.Monday_Open + "-" + result.Monday_Close}
                         </p>
                         <p>
-                          Tuesday:
+                          Tuesday:{" "}
                           {result.Tuesday_Open === "Closed"
                             ? "Closed"
                             : result.Tuesday_Open + "-" + result.Tuesday_Close}
                         </p>
                         <p>
-                          Wednesday:
+                          Wednesday:{" "}
                           {result.Wednesday_Open === "Closed"
                             ? "Closed"
                             : result.Wednesday_Open +
@@ -125,7 +158,7 @@ const DetailedResult = ({ postcode, match, results }) => {
                               result.Wednesday_Close}
                         </p>
                         <p>
-                          Thursday:
+                          Thursday:{" "}
                           {result.Thursday_Open === "Closed"
                             ? "Closed"
                             : result.Thursday_Open +
@@ -133,13 +166,13 @@ const DetailedResult = ({ postcode, match, results }) => {
                               result.Thursday_Close}
                         </p>
                         <p>
-                          Friday:
+                          Friday:{" "}
                           {result.Friday_Open === "Closed"
                             ? "Closed"
                             : result.Friday_Open + "-" + result.Friday_Close}
                         </p>
                         <p>
-                          Saturday:
+                          Saturday:{" "}
                           {result.Saturday_Open === "Closed"
                             ? "Closed"
                             : result.Saturday_Open +
@@ -147,14 +180,14 @@ const DetailedResult = ({ postcode, match, results }) => {
                               result.Saturday_Close}
                         </p>
                         <p>
-                          Sunday:
+                          Sunday:{" "}
                           {result.Sunday_Open === "Closed"
                             ? "Closed"
                             : result.Sunday_Open + "-" + result.Sunday_Close}
                         </p>
                       </Column>
                     </OpeningHours>
-                  
+
                     <a href="/">
                       <Button>Back</Button>
                     </a>
@@ -169,4 +202,3 @@ const DetailedResult = ({ postcode, match, results }) => {
 };
 
 export default DetailedResult;
-
