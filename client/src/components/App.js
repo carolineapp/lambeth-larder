@@ -5,6 +5,7 @@ import DetailedResult from "./detailedResult/DetailedResult";
 import axios from "axios";
 import Home from "./homepage/Home.js";
 import history from "../history";
+import NotFound from "./error";
 
 class App extends Component {
   constructor(props) {
@@ -102,46 +103,47 @@ class App extends Component {
       <Router>
         <div>
           <Switch>
-          <Route
-            exact
-            path="/"
-            render={props => (
-              <div className="homepage__container">
-                <Home
-                  {...props}
-                  toggleMap={this.toggleMap}
-                  adviceCentres={this.state.adviceCentres}
-                  fullScreen={this.state.fullScreen}
-                  handleChange={this.handleChange}
-                  handleTime={this.handleTime}
-                  toggleAdviceCentres={this.toggleAdviceCentres}
-                  Postcode={this.state.Postcode}
-                  checkPostcode={this.checkPostcode}
-                  results={this.state.results}
-                  lat={this.state.lat}
-                  long={this.state.long}
-                  postcodeErrorMsg={this.state.postcodeErrorMsg}
-                  timeOption={this.state.timeOption}
-                />
-              </div>
-            )}
-          />
-          <Route exact path="/voucher" component={Voucher} />
-          <Route
-            exact
-            path="/results/:name"
-            render={props => (
-              <div>
-                <DetailedResult
-                  {...props}
-                  timeOption={this.state.timeOption}
-                  postcode={this.state.postcode}
-                  results={this.state.results}
-                  history={history}
-                />
-              </div>
-            )}
-          />
+            <Route
+              exact
+              path="/"
+              render={props => (
+                <div className="homepage__container">
+                  <Home
+                    {...props}
+                    toggleMap={this.toggleMap}
+                    adviceCentres={this.state.adviceCentres}
+                    fullScreen={this.state.fullScreen}
+                    handleChange={this.handleChange}
+                    handleTime={this.handleTime}
+                    toggleAdviceCentres={this.toggleAdviceCentres}
+                    Postcode={this.state.Postcode}
+                    checkPostcode={this.checkPostcode}
+                    results={this.state.results}
+                    lat={this.state.lat}
+                    long={this.state.long}
+                    postcodeErrorMsg={this.state.postcodeErrorMsg}
+                    timeOption={this.state.timeOption}
+                  />
+                </div>
+              )}
+            />
+            <Route exact path="/voucher" component={Voucher} />
+            <Route
+              exact
+              path="/results/:name"
+              render={props => (
+                <div>
+                  <DetailedResult
+                    {...props}
+                    timeOption={this.state.timeOption}
+                    postcode={this.state.postcode}
+                    results={this.state.results}
+                    history={history}
+                  />
+                </div>
+              )}
+            />
+            <Route component={NotFound} />
           </Switch>
         </div>
       </Router>
