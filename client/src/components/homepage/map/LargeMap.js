@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Map, TileLayer } from "react-leaflet";
 import MarkersList from "./MarkersList";
 
-const mapboxToken = require("../../../config.js") || mapboxToken;
+const mapboxToken = "mapboxToken";
 
 const mapCenter = [51.45628, -0.10546];
 
