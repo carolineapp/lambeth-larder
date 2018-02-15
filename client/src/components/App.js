@@ -32,17 +32,19 @@ class App extends Component {
       });
     });
     navigator.geolocation.getCurrentPosition(position => {
+      console.log(position.coords.latitude);
       this.setState({
         lat: position.coords.latitude,
         long: position.coords.longitude
       });
-
+    });
+  }
   handleChange = event => {
     this.setState({
       postcode: event.target.value,
       postcodeErrorMsg: ""
     });
-  }
+  };
 
   handleTime = event => {
     this.setState({
@@ -59,8 +61,8 @@ class App extends Component {
   toggleMap = event => {
     this.setState({
       fullScreen: !this.state.fullScreen
-    })
-  }
+    });
+  };
 
   //if lat long is already set, don't check post code
   checkPostcode = e => {
@@ -106,6 +108,8 @@ class App extends Component {
               <div className="homepage__container">
                 <Home
                   {...props}
+                  toggleMap={this.toggleMap}
+                  fullScreen={this.state.fullScreen}
                   handleChange={this.handleChange}
                   handleTime={this.handleTime}
                   toggleAdviceCentres={this.toggleAdviceCentres}
