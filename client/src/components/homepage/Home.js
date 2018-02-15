@@ -4,6 +4,7 @@ import MapWindow from "./map/MapWindow";
 import Navbar from "../Navbar";
 import ResultItems from "./results/ResultItems";
 import styled from "styled-components";
+import LargeMap from "./map/LargeMap";
 
 const Home = ({ ...props }) => {
   const Title = styled.div`
@@ -19,7 +20,10 @@ const Home = ({ ...props }) => {
     <div>
       <Navbar />
       <Title>Emergency Food</Title>
-      <MapWindow result={props.results} lat={props.lat} long={props.long} />
+      {!props.fullScreen ? (
+        <div>
+      <MapWindow result={props.results} />
+      <button onClick = {props.toggleMap}>Open Map</button>
       <SearchForm
         handleClick={props.handleClick}
         handleChange={props.handleChange}
@@ -35,8 +39,12 @@ const Home = ({ ...props }) => {
         long={props.long}
         timeOption={props.timeOption}
       />
+      </div>
+      ) : ( <div><LargeMap  toggleMap ={props.toggleMap} result={props.results} lat={props.lat} long={props.long} />
+        <button onClick = {props.toggleMap}>Minimise</button></div>)
+    }
     </div>
-  );
-};
+  )
+}
 
 export default Home;

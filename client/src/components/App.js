@@ -16,7 +16,8 @@ class App extends Component {
       results: null,
       lat: "",
       long: "",
-      postcodeErrorMsg: ""
+      postcodeErrorMsg: "",
+      fullScreen: false
     };
   }
 
@@ -35,6 +36,11 @@ class App extends Component {
         lat: position.coords.latitude,
         long: position.coords.longitude
       });
+
+  handleChange = event => {
+    this.setState({
+      postcode: event.target.value,
+      postcodeErrorMsg: ""
     });
   }
 
@@ -49,6 +55,12 @@ class App extends Component {
       adviceCentres: !this.state.adviceCentres
     });
   };
+
+  toggleMap = event => {
+    this.setState({
+      fullScreen: !this.state.fullScreen
+    })
+  }
 
   //if lat long is already set, don't check post code
   checkPostcode = e => {
@@ -107,7 +119,6 @@ class App extends Component {
               </div>
             )}
           />
-
           <Route exact path="/voucher" component={Voucher} />
           <Route
             exact
