@@ -1,21 +1,24 @@
 import React from "react";
 import Navbar from "../Navbar";
 import styled from "styled-components";
+import jug from "../../assets/jug.png";
 
 const Wrapper = styled.section`
-  height: 100vh;
+  height: 85vh;
   background: white;
   width: 90%;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:7vh;
 `;
 const Div = styled.div`
   height: 100vh;
   background: #e71242;
 `;
-const Nav = styled.nav`
-  height: 10%;
-  width: 100%;
-`;
+// const Nav = styled.nav`
+//   height: 15%;
+//   width: 100%;
+// `;
 
 const WrapperContainer = styled.section`
   height: 85%;
@@ -34,11 +37,6 @@ const TextWrapper = styled.article`
   display: flex;
   justify-content: space-between;
   padding: 5%;
-`;
-
-const Img = styled.img`
-  width: 300px;
-  height: auto;
 `;
 
 const Button = styled.button`
@@ -64,7 +62,7 @@ console.log(props)
       <Wrapper className="voucher__container">
         <Header>How Food Banks Work</Header>
         <TextWrapper>
-          <Img alt="" src="../../../assets/jug.png" />
+          <img src={jug} height={100} width={100} />
           <div>
             <p>
               1. If you need to use a food bank, a health visitor, social
