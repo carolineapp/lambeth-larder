@@ -57,7 +57,7 @@ const Voucher = props => {
 
 console.log(props)
   return (
-    <Div className="voucher__body">
+    <Div>
       <Navbar />
       <Wrapper className="voucher__container">
         <Header>How Food Banks Work</Header>
