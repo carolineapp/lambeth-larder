@@ -22,7 +22,6 @@ const Header = styled.h1`
   font-size: 18px;
   font-family: lato;
 `;
-
 const TextWrapper = styled.article`
   display: flex;
   justify-content: space-between;
@@ -41,27 +40,23 @@ const OpeningHours = styled.div`
   display: flex;
   flex-direction: row;
 `;
+
 const Column = styled.div`
   display: flex;
   flex-direction: column;
   color: #e71242;
 `;
-// postcode, match, results
-const DetailedResult = ({ ...props }) => {
-  // console.log(props);
-  // console.log(props.timeOption);
-  console.log(this.props.history);
+const DetailedResult = ({ postcode, match, results }) => {
   return (
     <Div className="detailedResult__container">
-      {props.results
-        ? props.results.map(result => {
-            if (props.result.Name === props.match.params.name) {
+      {results
+        ? results.map(result => {
+            if (result.Name === match.params.name) {
               return (
                 <div>
                   <Navbar />
                   <Wrapper>
                     <Header>{result.Name}</Header>
-
                     <p>{result.Description}</p>
 
                     <div>
@@ -74,11 +69,9 @@ const DetailedResult = ({ ...props }) => {
                     <div>
                       <Button>
                         <a
-                          href={`https://www.google.com/maps/dir/?api=1&origin=${
-                            props.postcode
-                          }&destination=${props.result.Postcode.split(" ").join(
-                            ""
-                          )}&travelmode=transit`}
+                          href={`https://www.google.com/maps/dir/?api=1&origin=${postcode}&destination=${result.Postcode.split(
+                            " "
+                          ).join("")}&travelmode=transit`}
                         >
                           Get Directions
                         </a>
@@ -91,7 +84,6 @@ const DetailedResult = ({ ...props }) => {
                       <br />
                       <a href={result.Website}>{result.Website}</a>
                     </div>
-
                     {result.Requires_Voucher === "No" ? (
                       <div>No Voucher Required</div>
                     ) : (
@@ -165,3 +157,4 @@ const DetailedResult = ({ ...props }) => {
 };
 
 export default DetailedResult;
+
