@@ -6,6 +6,8 @@ import ResultItems from "./results/ResultItems";
 import styled from "styled-components";
 import LargeMap from "./map/LargeMap";
 
+
+
 const Home = ({ ...props }) => {
   const Title = styled.div`
     font-size: 20px;
@@ -16,6 +18,30 @@ const Home = ({ ...props }) => {
     color: rgba(0, 0, 0, 0.5);
   `;
 
+  const Span = styled.p`
+   font-size: 8px;
+   text-align: right;
+   padding-right: 2%;
+   margin: 0%;
+
+  `
+
+  const MinimiseMap = styled.button`
+    
+  `
+
+  const MaximiseMap = styled.button`
+   position: absolute;
+    background: #e71242;
+    border: none;
+    color: white;
+    display: block;
+    margin-top: -3%;
+    padding-right: 3%;
+    height: 25px;
+   
+  `
+
   return (
     <div>
       <Navbar />
@@ -23,7 +49,11 @@ const Home = ({ ...props }) => {
       {!props.fullScreen ? (
         <div>
           <MapWindow result={props.results} lat={props.lat} long={props.long} />
-          <button onClick={props.toggleMap}>Open Map</button>
+          <div>
+          <MaximiseMap onClick={props.toggleMap}>Map Full</MaximiseMap>
+          <Span>
+Leaflet | Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a></Span>
+          </div>
           <SearchForm
             handleClick={props.handleClick}
             handleChange={props.handleChange}
@@ -48,7 +78,7 @@ const Home = ({ ...props }) => {
             lat={props.lat}
             long={props.long}
           />
-          <button onClick={props.toggleMap}>Minimise</button>
+          <MinimiseMap onClick={props.toggleMap}>Minimise</MinimiseMap>
         </div>
       )}
     </div>

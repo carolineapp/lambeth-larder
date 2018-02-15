@@ -36,8 +36,8 @@ class MapWindow extends Component {
       mapboxToken.key
     }`;
 
-    const attr =
-      'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>';
+    // const attr =
+    //   'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>';
 
   
     let flatten = [];
@@ -66,7 +66,7 @@ class MapWindow extends Component {
           style={style}
     
         >
-          <TileLayer attribution={attr} url={url} id="mapbox.streets" />
+          <TileLayer attribution={false} url={url} id="mapbox.streets" />
 
           {flatten.length > 0 && <MarkersList flatten={flatten} />}
         </Map>
