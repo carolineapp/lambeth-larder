@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Map, TileLayer } from "react-leaflet";
 import MarkersList from "./MarkersList";
 
-const mapboxToken = require("../../../config.js");
+// const mapboxToken = require("../../../config.js");
 
 const mapCenter = [51.45628, -0.10546];
 
@@ -61,7 +61,7 @@ class LargeMap extends Component {
           }}
           center={mapCenter}
           zoom={zoomLevel}
-          style={{height:"75vh",width:"100vw"}}
+          style={{ height: "75vh", width: "100vw" }}
         >
           <TileLayer attribution={attr} url={url} id="mapbox.streets" />
 
