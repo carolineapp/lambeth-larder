@@ -89,12 +89,17 @@ const ResultItems = ({ ...props }) => {
   sortByTime();
   getTimeOptionArr();
 
-  const Results = styled.ul`
-    list-style: none;
+  const Results = styled.div`
+    background: #e71242;
+    margin: 0 auto;
+    padding: 0.75em;
   `;
 
   const Item = styled.li`
-    margin-bottom: 10px;
+    list-style: none;
+    margin-bottom: 1em;
+    background: white;
+    padding: 0.2em;
   `;
 
   return (
@@ -114,7 +119,9 @@ const ResultItems = ({ ...props }) => {
                 : "Closed Today"}
               <br />
               {props.lat ? (
-                <span>Distance:{distanceFinder(a, props.lat, props.long)}</span>
+                <span>
+                  Distance: {distanceFinder(a, props.lat, props.long)}
+                </span>
               ) : (
                 console.log("no result")
               )}
