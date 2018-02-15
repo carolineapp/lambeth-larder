@@ -46,12 +46,16 @@ const Column = styled.div`
   flex-direction: column;
   color: #e71242;
 `;
-const DetailedResult = ({ match, results }) => {
+// postcode, match, results
+const DetailedResult = ({ ...props }) => {
+  // console.log(props);
+  // console.log(props.timeOption);
+  console.log(this.props.history);
   return (
     <Div className="detailedResult__container">
-      {results
-        ? results.map(result => {
-            if (result.Name === match.params.name) {
+      {props.results
+        ? props.results.map(result => {
+            if (props.result.Name === props.match.params.name) {
               return (
                 <div>
                   <Navbar />
@@ -68,7 +72,17 @@ const DetailedResult = ({ match, results }) => {
                       {result.Postcode}
                     </div>
                     <div>
-                      <Button>Get Directions</Button>
+                      <Button>
+                        <a
+                          href={`https://www.google.com/maps/dir/?api=1&origin=${
+                            props.postcode
+                          }&destination=${props.result.Postcode.split(" ").join(
+                            ""
+                          )}&travelmode=transit`}
+                        >
+                          Get Directions
+                        </a>
+                      </Button>
                     </div>
                     <div>
                       {result.Phone}

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Voucher from "./voucher/Voucher";
 import DetailedResult from "./detailedResult/DetailedResult";
 import axios from "axios";
 import Home from "./homepage/Home.js";
+import history from "../history";
 
 class App extends Component {
   constructor(props) {
@@ -29,24 +30,13 @@ class App extends Component {
         results: data
       });
     });
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        this.setState({
-          lat: position.coords.latitude,
-          long: position.coords.longitude
-        });
-      }
-      // error => this.setState({ error: error.message }),
-      // { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-    );
-  }
-
-  handleChange = event => {
-    this.setState({
-      postcode: event.target.value,
-      postcodeErrorMsg: ""
+    navigator.geolocation.getCurrentPosition(position => {
+      this.setState({
+        lat: position.coords.latitude,
+        long: position.coords.longitude
+      });
     });
-  };
+  }
 
   handleTime = event => {
     this.setState({
@@ -86,47 +76,62 @@ class App extends Component {
     }
   };
 
+  handleChange = event => {
+    this.setState({
+      postcode: event.target.value,
+      postcodeErrorMsg: ""
+    });
+  };
+
   render() {
     return (
-      <div className="App">
-        <BrowserRouter>
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={props => (
-                <div className="homepage__container">
-                  <Home
-                    {...props}
-                    handleChange={this.handleChange}
-                    handleTime={this.handleTime}
-                    toggleAdviceCentres={this.toggleAdviceCentres}
-                    checkPostcode={this.checkPostcode}
-                    results={this.state.results}
-                    lat={this.state.lat}
-                    long={this.state.long}
-                    postcodeErrorMsg={this.state.postcodeErrorMsg}
-                    timeOption={this.state.timeOption}
-                  />
-                </div>
-              )}
-            />
+      <Router>
+        <div>
+          <Route
+            exact
+            path="/"
+            render={props => (
+              <div className="homepage__container">
+                <Home
+                  {...props}
+                  handleChange={this.handleChange}
+                  handleTime={this.handleTime}
+                  toggleAdviceCentres={this.toggleAdviceCentres}
+                  checkPostcode={this.checkPostcode}
+                  results={this.state.results}
+                  lat={this.state.lat}
+                  long={this.state.long}
+                  postcodeErrorMsg={this.state.postcodeErrorMsg}
+                  timeOption={this.state.timeOption}
+                />
+              </div>
+            )}
+          />
 
-            <Route exact path="/voucher" component={Voucher} />
-            <Route
-              exact
-              path="/results/:name"
-              render={props => (
-                <div>
-                  <DetailedResult {...props} results={this.state.results} />
-                </div>
-              )}
-            />
-          </Switch>
-        </BrowserRouter>
-      </div>
+          <Route exact path="/voucher" component={Voucher} />
+          <Route
+            exact
+            path="/results/:name"
+            render={props => (
+              <div>
+                <DetailedResult
+                  {...props}
+                  timeOption={this.state.timeOption}
+                  postcode={this.state.postcode}
+                  results={this.state.results}
+                  history={history}
+                />
+              </div>
+            )}
+          />
+        </div>
+      </Router>
     );
   }
 }
+
+// const mapStateToProps = state => ({ auth: state.auth });
+//
+// export default connect(mapStateToProps, { getUser })(App);
 
 export default App;
