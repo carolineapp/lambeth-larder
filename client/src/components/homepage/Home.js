@@ -48,7 +48,7 @@ const Home = ({ ...props }) => {
       <Title>Emergency Food</Title>
       {!props.fullScreen ? (
         <div>
-          <MapWindow result={props.results} lat={props.lat} long={props.long} />
+          <MapWindow result={props.results} lat={props.lat} long={props.long} timeOption={props.timeOption} />
           <div>
           <MaximiseMap onClick={props.toggleMap}>Map Full</MaximiseMap>
           <Span>

@@ -101,6 +101,7 @@ class App extends Component {
     return (
       <Router>
         <div>
+          <Switch>
           <Route
             exact
             path="/"
@@ -141,6 +142,7 @@ class App extends Component {
               </div>
             )}
           />
+          </Switch>
         </div>
       </Router>
     );
