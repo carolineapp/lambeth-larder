@@ -170,7 +170,7 @@ const ResultItems = ({ ...props }) => {
           {a.Address_Line_3}
           <br />
           {props.lat ? (
-            <span>Distance:{distanceFinder(a, props.lat, props.long)}</span>
+            <span>Distance: {distanceFinder(a, props.lat, props.long)}</span>
           ) : (
             console.log("can't find distance")
           )}
