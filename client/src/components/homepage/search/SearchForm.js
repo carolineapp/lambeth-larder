@@ -8,7 +8,7 @@ const FormStyle = styled.form`
   color: white;
   flex-direction: column;
   padding: 2%;
-  height: 27vh;
+  height: 33vh;
 `;
 const FlexRow = styled.div`
   display: inherit;
@@ -86,13 +86,8 @@ const CheckBox = styled.input`
 const SearchForm = ({ ...props }) => {
   return (
     <FormStyle>
-      <FlexRow>
-        <img
-          src={magnifyingGlass}
-          width={40}
-          height={40}
-          vertical-align="center"
-        />
+      {props.postcodeErrorMsg ? <p>{props.postcodeErrorMsg}</p> : ""}
+      <FlexRow className="flexrow">
         <PostcodeSearchBar
           type="text"
           name="postcode"
@@ -101,10 +96,14 @@ const SearchForm = ({ ...props }) => {
           onChange={props.handleChange}
         />
         <Submit type="submit" onClick={props.checkPostcode}>
-          Enter
+          <img
+            src={magnifyingGlass}
+            width={40}
+            height={40}
+            vertical-align="center"
+          />
         </Submit>
       </FlexRow>
-      {props.postcodeErrorMsg ? <p>{props.postcodeErrorMsg}</p> : ""}
       <Question>When do you need food? </Question>
       <FlexRow>
         {props.timeOption == "today" ? (

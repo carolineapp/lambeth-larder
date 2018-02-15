@@ -44,6 +44,10 @@ const ResultItems = ({ ...props }) => {
   const Flex = styled.div`
     display: flex;
   `;
+  const NoResults = styled.div`
+    color: white;
+    text-align: center;
+  `;
   const noResult =
     "! No emergency food venues are open in Lambeth now. Try searching for later this week or alternatively call One Lambeth Advice on 0800 254 0298.";
 
@@ -151,83 +155,100 @@ const ResultItems = ({ ...props }) => {
   // console.log("sort by advice food", Food);
 
   const adviceMap = Advice => {
-    return Advice.map(a => {
+    if (Advice.length > 1) {
+      return Advice.map(a => {
+        return (
+          <div>
+            <Item key={a.Name + a.Description}>
+              <Title>{a.Name}</Title>
+              <br />
+              {a.Description}
+              <br />
+              {a.Address_Line_3}
+              <br />
+              {props.lat ? (
+                <span>Distance:{distanceFinder(a, props.lat, props.long)}</span>
+              ) : (
+                console.log("no result")
+              )}
+              <Times>
+                <img
+                  src={clock1}
+                  alt="clock"
+                  width={20}
+                  height={20}
+                  vertical-align="middle"
+                />
+                {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
+                  ? ` Closes today at ${a[mapTime[day + 7]]}`
+                  : " Closed Today"}
+              </Times>
+            </Item>
+            <NextPage>
+              <a href={"/results/" + a.Name}>
+                <img alt="button-arrow" src={arrow} height={20} width={15} />
+              </a>
+            </NextPage>
+          </div>
+        );
+      });
+    } else {
       return (
-        <div>
-          <Item key={a.Name + a.Description}>
-            <Title>{a.Name}</Title>
-            <br />
-            {a.Description}
-            <br />
-            {a.Address_Line_3}
-            <br />
-            {props.lat ? (
-              <span>Distance:{distanceFinder(a, props.lat, props.long)}</span>
-            ) : (
-              console.log("no result")
-            )}
-            <Times>
-              <img
-                src={clock1}
-                alt="clock"
-                width={20}
-                height={20}
-                vertical-align="middle"
-              />
-              {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
-                ? ` Closes today at ${a[mapTime[day + 7]]}`
-                : " Closed Today"}
-            </Times>
-          </Item>
-          <NextPage>
-            <a href={"/results/" + a.Name}>
-              <img alt="button-arrow" src={arrow} height={20} width={15} />
-            </a>
-          </NextPage>
-        </div>
+        <NoResults>
+          Unfortunately there are no Advice Centres open at the moment. Try
+          searching tomorrow or next week.
+        </NoResults>
       );
-    });
+    }
   };
   const foodMap = Food => {
-    return Food.map(a => {
+    if (Food.length > 1) {
+      return Food.map(a => {
+        return (
+          <Flex>
+            <Item key={a.Name + a.Description}>
+              <Title>{a.Name}</Title>
+              <br />
+              {a.Description}
+              <br />
+              {a.Address_Line_3}
+              <br />
+              {props.lat ? (
+                <span>Distance:{distanceFinder(a, props.lat, props.long)}</span>
+              ) : (
+                console.log("can't find distance")
+              )}
+              <Times>
+                <img
+                  alt="clock"
+                  src={clock1}
+                  width={20}
+                  height={20}
+                  padding-left={10}
+                  vertical-align="middle"
+                />
+                {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
+                  ? ` Closes today at ${a[mapTime[day + 7]]}`
+                  : " Closed Today"}
+              </Times>
+            </Item>
+            <NextPage>
+              <a href={"/results/" + a.Name}>
+                <img alt="button-arrow" src={arrow} height={20} width={15} />
+              </a>
+            </NextPage>
+          </Flex>
+        );
+      });
+    } else {
       return (
-        <Flex>
-          <Item key={a.Name + a.Description}>
-            <Title>{a.Name}</Title>
-            <br />
-            {a.Description}
-            <br />
-            {a.Address_Line_3}
-            <br />
-            {props.lat ? (
-              <span>Distance:{distanceFinder(a, props.lat, props.long)}</span>
-            ) : (
-              console.log("can't find distance")
-            )}
-            <Times>
-              <img
-                alt="clock"
-                src={clock1}
-                width={20}
-                height={20}
-                padding-left={10}
-                vertical-align="middle"
-              />
-              {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
-                ? ` Closes today at ${a[mapTime[day + 7]]}`
-                : " Closed Today"}
-            </Times>
-          </Item>
-          <NextPage>
-            <a href={"/results/" + a.Name}>
-              <img alt="button-arrow" src={arrow} height={20} width={15} />
-            </a>
-          </NextPage>
-        </Flex>
+        <NoResults>
+          Unfortunately there are no Food Banks open at the moment. Try
+          searching tomorrow or next week.
+        </NoResults>
       );
-    });
+    }
   };
-
   return (
     <Results className="results">
       {props.adviceCentres === true ? adviceMap(Advice) : foodMap(Food)}
