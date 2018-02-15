@@ -23,7 +23,7 @@ const Home = ({ ...props }) => {
       {!props.fullScreen ? (
         <div>
       <MapWindow result={props.results} />
-      <button onClick = {props.toggleMap}>Open Map</button>
+      <button onClick = {props.toggleMap}>Open Maps</button>
       <SearchForm
         handleClick={props.handleClick}
         handleChange={props.handleChange}
