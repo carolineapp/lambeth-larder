@@ -41,12 +41,15 @@ const ResultItems = ({ ...props }) => {
     const latB = parseFloat(lat);
     const longB = parseFloat(long);
     const distance =
-      geolib.getDistance(
-        { latitude: latA, longitude: longA },
-        { latitude: latB, longitude: longB }
-      ) /
-        1000 +
-      "km";
+      Math.round(
+        geolib.getDistance(
+          { latitude: latA, longitude: longA },
+          { latitude: latB, longitude: longB }
+        ) /
+          1000 *
+          0.62,
+        2
+      ) + " miles";
     return distance;
   };
 
@@ -86,12 +89,20 @@ const ResultItems = ({ ...props }) => {
   sortByTime();
   getTimeOptionArr();
 
+  const Results = styled.ul`
+    list-style: none;
+  `;
+
+  const Item = styled.li`
+    margin-bottom: 10px;
+  `;
+
   return (
-    <ul className="results">
+    <Results>
       {props.result ? (
         sortedItems.map(a => {
           return (
-            <li key={a.Name + a.Description}>
+            <Item key={a.Name + a.Description}>
               {a.Name}
               <br />
               {a.Description}
@@ -107,13 +118,13 @@ const ResultItems = ({ ...props }) => {
               ) : (
                 console.log("no result")
               )}
-            </li>
+            </Item>
           );
         })
       ) : (
         <div>{noResult}</div>
       )}
-    </ul>
+    </Results>
   );
 };
 
