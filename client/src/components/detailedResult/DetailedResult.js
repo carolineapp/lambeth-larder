@@ -17,7 +17,8 @@ const Wrapper = styled.section`
   width: 90%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 7vh;
+  margin-top:7vh;
+  margin-bottom: 
 `;
 
 const Header = styled.h1`

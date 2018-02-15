@@ -101,6 +101,7 @@ class App extends Component {
     return (
       <Router>
         <div>
+          <Switch>
           <Route
             exact
             path="/"
@@ -109,10 +110,12 @@ class App extends Component {
                 <Home
                   {...props}
                   toggleMap={this.toggleMap}
+                  adviceCentres={this.state.adviceCentres}
                   fullScreen={this.state.fullScreen}
                   handleChange={this.handleChange}
                   handleTime={this.handleTime}
                   toggleAdviceCentres={this.toggleAdviceCentres}
+                  Postcode={this.state.Postcode}
                   checkPostcode={this.checkPostcode}
                   results={this.state.results}
                   lat={this.state.lat}
@@ -139,6 +142,7 @@ class App extends Component {
               </div>
             )}
           />
+          </Switch>
         </div>
       </Router>
     );
