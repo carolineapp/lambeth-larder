@@ -15,7 +15,8 @@ class App extends Component {
       results: null,
       lat: "",
       long: "",
-      postcodeErrorMsg: ""
+      postcodeErrorMsg: "",
+      fullScreen: false
     };
   }
 
@@ -36,10 +37,12 @@ class App extends Component {
           long: position.coords.longitude
         });
       }
-      // error => this.setState({ error: error.message }),
-      // { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+  
     );
   }
+
+      // error => this.setState({ error: error.message }),
+      // { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
 
   handleChange = event => {
     this.setState({
@@ -59,6 +62,12 @@ class App extends Component {
       adviceCentres: !this.state.adviceCentres
     });
   };
+
+  toggleMap = event => {
+    this.setState({
+      fullScreen: !this.state.fullScreen
+    })
+  }
 
   //if lat long is already set, don't check post code
   checkPostcode = e => {
@@ -98,6 +107,8 @@ class App extends Component {
                 <div className="homepage__container">
                   <Home
                     {...props}
+                    fullScreen={this.state.fullScreen}
+                    toggleMap={this.toggleMap}
                     handleChange={this.handleChange}
                     handleTime={this.handleTime}
                     toggleAdviceCentres={this.toggleAdviceCentres}

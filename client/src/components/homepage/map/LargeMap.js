@@ -8,12 +8,7 @@ const mapCenter = [51.45628, -0.10546];
 
 const zoomLevel = 13;
 
-const style = {
-  height:"35vh",
-  width:"100vw"
-}
-
-class MapWindow extends Component {
+class LargeMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -43,7 +38,6 @@ class MapWindow extends Component {
     const attr =
       'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>';
 
-  
     let flatten = [];
     const getLatLong = () => {
       if (this.props.result) {
@@ -67,8 +61,7 @@ class MapWindow extends Component {
           }}
           center={mapCenter}
           zoom={zoomLevel}
-          style={style}
-    
+          style={{height:"70vh",width:"100vw"}}
         >
           <TileLayer attribution={attr} url={url} id="mapbox.streets" />
 
@@ -79,4 +72,4 @@ class MapWindow extends Component {
   }
 }
 
-export default MapWindow;
+export default LargeMap;
