@@ -28,6 +28,7 @@ const PostcodeSearchBar = styled.input`
   font: lato;
   color: white;
   font-size: 18px;
+  margin-top: 2em;
   &::placeholder {
     color: white;
   }
@@ -60,14 +61,17 @@ const FakeRadioOn = styled.label`
 const Submit = styled.button`
   display: flex;
   color: white;
+  background-color: none;
 `;
 const Question = styled.p`
-  padding-top: 4%;
-  margin: 0;
+  padding-top: 4em;
   font-size: 14px;
+  margin: 0 auto;
 `;
 const LabelSmall = styled.label`
   font-size: 14px;
+  margin: 0 auto;
+  padding-top: 1em;
 `;
 const Padding = styled.div`
   margin: 5%;
@@ -83,7 +87,12 @@ const SearchForm = ({ ...props }) => {
   return (
     <FormStyle>
       <FlexRow>
-        <img src={magnifyingGlass} width={40} height={40} />
+        <img
+          src={magnifyingGlass}
+          width={40}
+          height={40}
+          vertical-align="center"
+        />
         <PostcodeSearchBar
           type="text"
           name="postcode"
@@ -96,7 +105,7 @@ const SearchForm = ({ ...props }) => {
         </Submit>
       </FlexRow>
       {props.postcodeErrorMsg ? <p>{props.postcodeErrorMsg}</p> : ""}
-      <Question>When do you need food?</Question>
+      <Question>When do you need food? </Question>
       <FlexRow>
         {props.timeOption == "today" ? (
           <FakeRadioOn htmlFor="today">Today</FakeRadioOn>
