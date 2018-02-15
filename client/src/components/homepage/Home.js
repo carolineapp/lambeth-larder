@@ -22,29 +22,37 @@ const Home = ({ ...props }) => {
       <Title>Emergency Food</Title>
       {!props.fullScreen ? (
         <div>
-      <MapWindow result={props.results} />
-      <button onClick = {props.toggleMap}>Open Map</button>
-      <SearchForm
-        handleClick={props.handleClick}
-        handleChange={props.handleChange}
-        handleTime={props.handleTime}
-        toggleAdviceCentres={props.toggleAdviceCentres}
-        checkPostcode={props.checkPostcode}
-        postcodeErrorMsg={props.postcodeErrorMsg}
-        timeOption={props.timeOption}
-      />
-      <ResultItems
-        result={props.results}
-        lat={props.lat}
-        long={props.long}
-        timeOption={props.timeOption}
-      />
-      </div>
-      ) : ( <div><LargeMap  toggleMap ={props.toggleMap} result={props.results} lat={props.lat} long={props.long} />
-        <button onClick = {props.toggleMap}>Minimise</button></div>)
-    }
+          <MapWindow result={props.results} lat={props.lat} long={props.long} />
+          <button onClick={props.toggleMap}>Open Map</button>
+          <SearchForm
+            handleClick={props.handleClick}
+            handleChange={props.handleChange}
+            handleTime={props.handleTime}
+            toggleAdviceCentres={props.toggleAdviceCentres}
+            checkPostcode={props.checkPostcode}
+            postcodeErrorMsg={props.postcodeErrorMsg}
+            timeOption={props.timeOption}
+          />
+          <ResultItems
+            result={props.results}
+            lat={props.lat}
+            long={props.long}
+            timeOption={props.timeOption}
+          />
+        </div>
+      ) : (
+        <div>
+          <LargeMap
+            toggleMap={props.toggleMap}
+            result={props.results}
+            lat={props.lat}
+            long={props.long}
+          />
+          <button onClick={props.toggleMap}>Minimise</button>
+        </div>
+      )}
     </div>
-  )
-}
+  );
+};
 
 export default Home;
