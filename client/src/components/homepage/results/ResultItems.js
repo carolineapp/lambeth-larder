@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import styled from "styled-components";
+import clock from "../../../assets/clock.png";
 // import { sortByTime, getTimeOptionArr } from "../../../helpers/getStatus";
 const geolib = require("geolib");
 
@@ -91,7 +92,6 @@ const ResultItems = ({ ...props }) => {
 
   const Results = styled.div`
     background: #e71242;
-    margin: 0 auto;
     padding: 0.75em;
   `;
 
@@ -99,7 +99,20 @@ const ResultItems = ({ ...props }) => {
     list-style: none;
     margin-bottom: 1em;
     background: white;
-    padding: 0.2em;
+    padding: 0.5em;
+    color: #999999;
+  `;
+
+  const Title = styled.div`
+    font-size: 1.2rem;
+    color: #999999;
+    padding-bottom: 0.2em;
+  `;
+
+  const Times = styled.div`
+    color: #e71242;
+    padding-top: 0.4em;
+    padding-left: 0.6em;
   `;
 
   return (
@@ -108,15 +121,10 @@ const ResultItems = ({ ...props }) => {
         sortedItems.map(a => {
           return (
             <Item key={a.Name + a.Description}>
-              {a.Name}
-              <br />
+              <Title>{a.Name}</Title>
               {a.Description}
               <br />
               {a.Address_Line_3}
-              <br />
-              {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
-                ? `Closes today at ${a[mapTime[day + 7]]}`
-                : "Closed Today"}
               <br />
               {props.lat ? (
                 <span>
@@ -125,6 +133,18 @@ const ResultItems = ({ ...props }) => {
               ) : (
                 console.log("no result")
               )}
+
+              <Times>
+                <img
+                  src={clock}
+                  width={12}
+                  height={12}
+                  vertical-align="middle"
+                />
+                {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
+                  ? ` Closes today at ${a[mapTime[day + 7]]}`
+                  : " Closed Today"}
+              </Times>
             </Item>
           );
         })
