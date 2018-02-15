@@ -1,21 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-  document.getElementById("main").style.marginLeft = "250px";
-}
-
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-  document.getElementById("main").style.marginLeft = "0";
-}
-
-const Nav = styled.nav`
-
-`;
-
-
+const Nav = styled.nav``;
 
 const Navbar = () => {
   return (
@@ -27,8 +13,8 @@ const Navbar = () => {
           <span />
           <span />
           <span />
-          
-          <ul id="menu" style={{width:"230px"}}>
+
+          <ul id="menu" style={{ width: "230px" }}>
             <a href="http://www.lambethlarder.org/money-saving-ideas--budget-recipes.html">
               <li>MONEY SAVING IDEAS AND BUDGET RECIPES</li>
             </a>

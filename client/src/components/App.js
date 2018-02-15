@@ -31,13 +31,13 @@ class App extends Component {
         results: data
       });
     });
-    // navigator.geolocation.getCurrentPosition(position => {
-    //   console.log(position.coords.latitude);
-    //   this.setState({
-    //     lat: position.coords.latitude,
-    //     long: position.coords.longitude
-    //   });
-    // });
+    navigator.geolocation.getCurrentPosition(position => {
+      console.log(position.coords.latitude);
+      this.setState({
+        lat: position.coords.latitude,
+        long: position.coords.longitude
+      });
+    });
   }
   handleChange = event => {
     this.setState({
