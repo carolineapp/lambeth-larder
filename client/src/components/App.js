@@ -31,13 +31,13 @@ class App extends Component {
         results: data
       });
     });
-    navigator.geolocation.getCurrentPosition(position => {
-      console.log(position.coords.latitude);
-      this.setState({
-        lat: position.coords.latitude,
-        long: position.coords.longitude
-      });
-    });
+    // navigator.geolocation.getCurrentPosition(position => {
+    //   console.log(position.coords.latitude);
+    //   this.setState({
+    //     lat: position.coords.latitude,
+    //     long: position.coords.longitude
+    //   });
+    // });
   }
   handleChange = event => {
     this.setState({
@@ -101,6 +101,7 @@ class App extends Component {
     return (
       <Router>
         <div>
+          <Switch>
           <Route
             exact
             path="/"
@@ -139,6 +140,7 @@ class App extends Component {
               </div>
             )}
           />
+          </Switch>
         </div>
       </Router>
     );
