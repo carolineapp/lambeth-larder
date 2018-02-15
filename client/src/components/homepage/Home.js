@@ -6,6 +6,8 @@ import ResultItems from "./results/ResultItems";
 import styled from "styled-components";
 import LargeMap from "./map/LargeMap";
 
+
+
 const Home = ({ ...props }) => {
   const Title = styled.div`
     font-size: 20px;
@@ -50,7 +52,7 @@ const Home = ({ ...props }) => {
           <div>
           <MaximiseMap onClick={props.toggleMap}>Map Full</MaximiseMap>
           <Span>
-Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a></Span>
+Leaflet | Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a></Span>
           </div>
           <SearchForm
             handleClick={props.handleClick}
