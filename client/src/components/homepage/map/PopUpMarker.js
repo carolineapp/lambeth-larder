@@ -1,7 +1,7 @@
 import React from "react";
 import { Marker, Popup } from "react-leaflet";
 import Leaflet from "leaflet";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const image = new Leaflet.Icon({
   iconUrl: require("../../../assets/red_marker.png"),
@@ -17,12 +17,11 @@ const Header = styled.h2`
   padding: "2%",
   text-align: centre
   margin-bottom: "0";
-`
+`;
 
 const style = {
   width: "30%"
 };
-
 
 const MyPopupMarker = ({ map, position, text }) => (
   <Marker map={map} position={position} icon={image}>
