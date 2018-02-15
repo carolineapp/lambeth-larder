@@ -38,6 +38,7 @@ const Home = ({ ...props }) => {
             lat={props.lat}
             long={props.long}
             timeOption={props.timeOption}
+            adviceCentres={props.adviceCentres}
           />
         </div>
       ) : (

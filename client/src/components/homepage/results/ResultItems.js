@@ -86,33 +86,79 @@ const ResultItems = ({ ...props }) => {
   sortByTime();
   getTimeOptionArr();
 
+  const Advice = [];
+  const Food = [];
+
+  const sortByAdvice = () => {
+    {
+      props.result
+        ? sortedItems.map(a => {
+            if (a.FoodCentre === "true") {
+              Food.push(a);
+            } else if (a.FoodCentre === "false") {
+              Advice.push(a);
+            } else {
+              console.log("database issue");
+            }
+          })
+        : "something went wrong";
+    }
+  };
+  sortByAdvice();
+  // console.log("sort by advice", Advice);
+  // console.log("sort by advice food", Food);
+
+  const adviceMap = Advice => {
+    return Advice.map(a => {
+      return (
+        <li key={a.Name + a.Description}>
+          {a.Name}
+          <br />
+          {a.Description}
+          <br />
+          {a.Address_Line_3}
+          <br />
+          {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
+            ? `Closes today at ${a[mapTime[day + 7]]}`
+            : "Closed Today"}
+          <br />
+          {props.lat ? (
+            <span>Distance:{distanceFinder(a, props.lat, props.long)}</span>
+          ) : (
+            console.log("no result")
+          )}
+        </li>
+      );
+    });
+  };
+  const foodMap = Food => {
+    return Food.map(a => {
+      return (
+        <li key={a.Name + a.Description}>
+          {a.Name}
+          <br />
+          {a.Description}
+          <br />
+          {a.Address_Line_3}
+          <br />
+          {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
+            ? `Closes today at ${a[mapTime[day + 7]]}`
+            : "Closed Today"}
+          <br />
+          {props.lat ? (
+            <span>Distance:{distanceFinder(a, props.lat, props.long)}</span>
+          ) : (
+            console.log("can't find distance")
+          )}
+        </li>
+      );
+    });
+  };
+
   return (
     <ul className="results">
-      {props.result ? (
-        sortedItems.map(a => {
-          return (
-            <li key={a.Name + a.Description}>
-              {a.Name}
-              <br />
-              {a.Description}
-              <br />
-              {a.Address_Line_3}
-              <br />
-              {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
-                ? `Closes today at ${a[mapTime[day + 7]]}`
-                : "Closed Today"}
-              <br />
-              {props.lat ? (
-                <span>Distance:{distanceFinder(a, props.lat, props.long)}</span>
-              ) : (
-                console.log("no result")
-              )}
-            </li>
-          );
-        })
-      ) : (
-        <div>{noResult}</div>
-      )}
+      {console.log("advice", Advice)}
+      {props.adviceCentres === true ? adviceMap(Advice) : foodMap(Food)}
     </ul>
   );
 };
