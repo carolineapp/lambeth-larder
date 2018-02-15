@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import Navbar from "../Navbar";
 import clock from "../../assets/clock.png";
+import styles from "../../assets/styles/style.css";
+
 
 const Div = styled.div`
   min-height: 100vh;
@@ -9,10 +11,12 @@ const Div = styled.div`
 `;
 
 const Wrapper = styled.section`
-  height: 85%;
-  width: 90%;
+  min-height: 85vh;
   background: white;
-  margin: auto;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:7vh;
 `;
 
 const Header = styled.h1`
@@ -23,11 +27,6 @@ const Header = styled.h1`
   font-family: lato;
 `;
 
-const TextWrapper = styled.article`
-  display: flex;
-  justify-content: space-between;
-  padding: 5%;
-`;
 const Button = styled.button`
   width: 20%;
   padding: 2%;
@@ -38,30 +37,36 @@ const Button = styled.button`
   border: 2px solid #e71242;
 `;
 const OpeningHours = styled.div`
+  width: 90%;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  margin: auto;
 `;
+
 const Column = styled.div`
   display: flex;
   flex-direction: column;
   color: #e71242;
+  width: 80%;
+  
 `;
-// postcode, match, results
-const DetailedResult = ({ ...props }) => {
-  // console.log(props);
-  // console.log(props.timeOption);
-  console.log(this.props.history);
+
+const Hours = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+const DetailedResult = ({ postcode, match, results }) => {
   return (
-    <Div className="detailedResult__container">
-      {props.results
-        ? props.results.map(result => {
-            if (props.result.Name === props.match.params.name) {
+    <Div >
+      {results
+        ? results.map(result => {
+            if (result.Name === match.params.name) {
               return (
                 <div>
                   <Navbar />
                   <Wrapper>
                     <Header>{result.Name}</Header>
-
                     <p>{result.Description}</p>
 
                     <div>
@@ -74,11 +79,9 @@ const DetailedResult = ({ ...props }) => {
                     <div>
                       <Button>
                         <a
-                          href={`https://www.google.com/maps/dir/?api=1&origin=${
-                            props.postcode
-                          }&destination=${props.result.Postcode.split(" ").join(
-                            ""
-                          )}&travelmode=transit`}
+                          href={`https://www.google.com/maps/dir/?api=1&origin=${postcode}&destination=${result.Postcode.split(
+                            " "
+                          ).join("")}&travelmode=transit`}
                         >
                           Get Directions
                         </a>
@@ -91,12 +94,12 @@ const DetailedResult = ({ ...props }) => {
                       <br />
                       <a href={result.Website}>{result.Website}</a>
                     </div>
-
                     {result.Requires_Voucher === "No" ? (
                       <div>No Voucher Required</div>
                     ) : (
                       <a href="/voucher">Voucher Required (click here)</a>
                     )}
+                  
                     <OpeningHours>
                       <img src={clock} height={30} width={30} />
                       <Column>
@@ -151,6 +154,7 @@ const DetailedResult = ({ ...props }) => {
                         </p>
                       </Column>
                     </OpeningHours>
+                  
                     <a href="/">
                       <Button>Back</Button>
                     </a>
@@ -165,3 +169,4 @@ const DetailedResult = ({ ...props }) => {
 };
 
 export default DetailedResult;
+

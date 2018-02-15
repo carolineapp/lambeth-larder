@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import styled from "styled-components";
+import clock from "../../../assets/clock.png";
 // import { sortByTime, getTimeOptionArr } from "../../../helpers/getStatus";
 const geolib = require("geolib");
 
@@ -41,12 +42,15 @@ const ResultItems = ({ ...props }) => {
     const latB = parseFloat(lat);
     const longB = parseFloat(long);
     const distance =
-      geolib.getDistance(
-        { latitude: latA, longitude: longA },
-        { latitude: latB, longitude: longB }
-      ) /
-        1000 +
-      "km";
+      Math.round(
+        geolib.getDistance(
+          { latitude: latA, longitude: longA },
+          { latitude: latB, longitude: longB }
+        ) /
+          1000 *
+          0.62,
+        2
+      ) + " miles";
     return distance;
   };
 
