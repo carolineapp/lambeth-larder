@@ -28,53 +28,71 @@ const PostcodeSearchBar = styled.input`
   font: lato;
   color: white;
   font-size: 18px;
+  margin-top: 2em;
   &::placeholder {
     color: white;
   }
 `;
 const Radio = styled.input`
   display: none;
+  text-align: center;
 `;
 const FakeRadio = styled.label`
-  display: flex;
+  display: table;
   width: 20vw;
   height: 4vh;
   padding: 2%;
   color: white;
   background: #e71242;
   border: 2px solid white;
+  text-align: center;
 `;
 const FakeRadioOn = styled.label`
-  display: flex;
+  display: table;
   width: 20vw;
   height: 4vh;
   padding: 2%;
   color: #e71242;
   background: white;
   border: 2px solid #e71242;
+  text-align: center;
 `;
 
 const Submit = styled.button`
   display: flex;
   color: white;
+  background-color: none;
 `;
 const Question = styled.p`
-  padding-top: 4%;
-  margin: 0;
+  padding-top: 4em;
   font-size: 14px;
+  margin: 0 auto;
 `;
 const LabelSmall = styled.label`
   font-size: 14px;
+  margin: 0 auto;
+  padding-top: 1em;
 `;
 const Padding = styled.div`
   margin: 5%;
+  padding-top: 2em;
+`;
+
+const CheckBox = styled.input`
+  color: #e71242;
+  border: 2px solid white;
 `;
 
 const SearchForm = ({ ...props }) => {
   return (
     <FormStyle>
       <FlexRow>
-        <img src={magnifyingGlass} width={40} height={40} />
+        <img
+          src={magnifyingGlass}
+          width={40}
+          height={40}
+          vertical-align="center"
+        />
         <PostcodeSearchBar
           type="text"
           name="postcode"
@@ -87,7 +105,7 @@ const SearchForm = ({ ...props }) => {
         </Submit>
       </FlexRow>
       {props.postcodeErrorMsg ? <p>{props.postcodeErrorMsg}</p> : ""}
-      <Question>When do you need food?</Question>
+      <Question>When do you need food? </Question>
       <FlexRow>
         {props.timeOption == "today" ? (
           <FakeRadioOn htmlFor="today">Today</FakeRadioOn>
@@ -128,7 +146,7 @@ const SearchForm = ({ ...props }) => {
       </FlexRow>
       <Padding>
         <LabelSmall htmlFor="advice-centres">See advice centres</LabelSmall>
-        <input
+        <CheckBox
           id="advice-centres"
           type="checkbox"
           name="advice-centres"

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import styled from "styled-components";
+import clock from "../../../assets/clock.png";
 // import { sortByTime, getTimeOptionArr } from "../../../helpers/getStatus";
 const geolib = require("geolib");
 
@@ -41,12 +42,15 @@ const ResultItems = ({ ...props }) => {
     const latB = parseFloat(lat);
     const longB = parseFloat(long);
     const distance =
-      geolib.getDistance(
-        { latitude: latA, longitude: longA },
-        { latitude: latB, longitude: longB }
-      ) /
-        1000 +
-      "km";
+      Math.round(
+        geolib.getDistance(
+          { latitude: latA, longitude: longA },
+          { latitude: latB, longitude: longB }
+        ) /
+          1000 *
+          0.62,
+        2
+      ) + " miles";
     return distance;
   };
 
@@ -86,34 +90,68 @@ const ResultItems = ({ ...props }) => {
   sortByTime();
   getTimeOptionArr();
 
+  const Results = styled.div`
+    background: #e71242;
+    padding: 0.75em;
+  `;
+
+  const Item = styled.li`
+    list-style: none;
+    margin-bottom: 1em;
+    background: white;
+    padding: 0.5em;
+    color: #999999;
+  `;
+
+  const Title = styled.div`
+    font-size: 1.2rem;
+    color: #999999;
+    padding-bottom: 0.2em;
+  `;
+
+  const Times = styled.div`
+    color: #e71242;
+    padding-top: 0.4em;
+    padding-left: 0.6em;
+  `;
+
   return (
-    <ul className="results">
+    <Results>
       {props.result ? (
         sortedItems.map(a => {
           return (
-            <li key={a.Name + a.Description}>
-              {a.Name}
-              <br />
+            <Item key={a.Name + a.Description}>
+              <Title>{a.Name}</Title>
               {a.Description}
               <br />
               {a.Address_Line_3}
               <br />
-              {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
-                ? `Closes today at ${a[mapTime[day + 7]]}`
-                : "Closed Today"}
-              <br />
               {props.lat ? (
-                <span>Distance:{distanceFinder(a, props.lat, props.long)}</span>
+                <span>
+                  Distance: {distanceFinder(a, props.lat, props.long)}
+                </span>
               ) : (
                 console.log("no result")
               )}
-            </li>
+
+              <Times>
+                <img
+                  src={clock}
+                  width={12}
+                  height={12}
+                  vertical-align="middle"
+                />
+                {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
+                  ? ` Closes today at ${a[mapTime[day + 7]]}`
+                  : " Closed Today"}
+              </Times>
+            </Item>
           );
         })
       ) : (
         <div>{noResult}</div>
       )}
-    </ul>
+    </Results>
   );
 };
 
