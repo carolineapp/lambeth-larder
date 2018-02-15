@@ -170,7 +170,7 @@ const ResultItems = ({ ...props }) => {
           {a.Address_Line_3}
           <br />
           {props.lat ? (
-            <span>Distance:{distanceFinder(a, props.lat, props.long)}</span>
+            <span>Distance: {distanceFinder(a, props.lat, props.long)}</span>
           ) : (
             console.log("can't find distance")
           )}
@@ -178,7 +178,9 @@ const ResultItems = ({ ...props }) => {
             <img src={clock} with={12} height={12} vertical-align="middle" />
             {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
               ? ` Closes today at ${a[mapTime[day + 7]]}`
-              : " Closed Today"}
+              : a[mapTime[day + 1]] !== "Closed"
+                ? ` Opens tomorrow at ${a[mapTime[day + 1]]}`
+                : " Closed tomorrow"}
           </Times>
         </Item>
       );
