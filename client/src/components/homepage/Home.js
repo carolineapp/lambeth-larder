@@ -68,6 +68,7 @@ Leaflet | Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> c
             lat={props.lat}
             long={props.long}
             timeOption={props.timeOption}
+            adviceCentres={props.adviceCentres}
           />
         </div>
       ) : (

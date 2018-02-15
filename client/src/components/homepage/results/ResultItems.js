@@ -1,10 +1,33 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import styled from "styled-components";
+import clock from "../../../assets/clock.png";
 // import { sortByTime, getTimeOptionArr } from "../../../helpers/getStatus";
 const geolib = require("geolib");
 
 const ResultItems = ({ ...props }) => {
+  const Results = styled.div`
+    background: #e71242;
+    padding: 0.75em;
+  `;
+  const Item = styled.li`
+    list-style: none;
+    margin-bottom: 1em;
+    background-color: white;
+    padding: 0.5em;
+    color: #999999;
+  `;
+  const Title = styled.div`
+    font-size: 1.2rem;
+    color: #999999;
+    padding-bottom: 0.2em;
+  `;
+  const Times = styled.div`
+    color: #e71242;
+    padding-top: 0.4em;
+    padding-left: 0.6em;
+  `;
+
   const noResult =
     "! No emergency food venues are open in Lambeth now. Try searching for later this week or alternatively call One Lambeth Advice on 0800 254 0298.";
 
@@ -41,12 +64,15 @@ const ResultItems = ({ ...props }) => {
     const latB = parseFloat(lat);
     const longB = parseFloat(long);
     const distance =
-      geolib.getDistance(
-        { latitude: latA, longitude: longA },
-        { latitude: latB, longitude: longB }
-      ) /
-        1000 +
-      "km";
+      Math.round(
+        geolib.getDistance(
+          { latitude: latA, longitude: longA },
+          { latitude: latB, longitude: longB }
+        ) /
+          1000 *
+          0.62,
+        2
+      ) + " miles";
     return distance;
   };
 
@@ -86,34 +112,83 @@ const ResultItems = ({ ...props }) => {
   sortByTime();
   getTimeOptionArr();
 
+  const Advice = [];
+  const Food = [];
+
+  const sortByAdvice = () => {
+    {
+      props.result
+        ? sortedItems.map(a => {
+            if (a.FoodCentre === "true") {
+              Food.push(a);
+            } else if (a.FoodCentre === "false") {
+              Advice.push(a);
+            } else {
+              console.log("database issue");
+            }
+          })
+        : "something went wrong";
+    }
+  };
+  sortByAdvice();
+  // console.log("sort by advice", Advice);
+  // console.log("sort by advice food", Food);
+
+  const adviceMap = Advice => {
+    return Advice.map(a => {
+      return (
+        <Item key={a.Name + a.Description}>
+          <Title>{a.Name}</Title>
+          <br />
+          {a.Description}
+          <br />
+          {a.Address_Line_3}
+          <br />
+          {props.lat ? (
+            <span>Distance:{distanceFinder(a, props.lat, props.long)}</span>
+          ) : (
+            console.log("no result")
+          )}
+          <Times>
+            <img src={clock} with={12} height={12} vertical-align="middle" />
+            {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
+              ? ` Closes today at ${a[mapTime[day + 7]]}`
+              : " Closed Today"}
+          </Times>
+        </Item>
+      );
+    });
+  };
+  const foodMap = Food => {
+    return Food.map(a => {
+      return (
+        <Item key={a.Name + a.Description}>
+          <Title>{a.Name}</Title>
+          <br />
+          {a.Description}
+          <br />
+          {a.Address_Line_3}
+          <br />
+          {props.lat ? (
+            <span>Distance:{distanceFinder(a, props.lat, props.long)}</span>
+          ) : (
+            console.log("can't find distance")
+          )}
+          <Times>
+            <img src={clock} with={12} height={12} vertical-align="middle" />
+            {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
+              ? ` Closes today at ${a[mapTime[day + 7]]}`
+              : " Closed Today"}
+          </Times>
+        </Item>
+      );
+    });
+  };
+
   return (
-    <ul className="results">
-      {props.result ? (
-        sortedItems.map(a => {
-          return (
-            <li key={a.Name + a.Description}>
-              {a.Name}
-              <br />
-              {a.Description}
-              <br />
-              {a.Address_Line_3}
-              <br />
-              {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
-                ? `Closes today at ${a[mapTime[day + 7]]}`
-                : "Closed Today"}
-              <br />
-              {props.lat ? (
-                <span>Distance:{distanceFinder(a, props.lat, props.long)}</span>
-              ) : (
-                console.log("no result")
-              )}
-            </li>
-          );
-        })
-      ) : (
-        <div>{noResult}</div>
-      )}
-    </ul>
+    <Results className="results">
+      {props.adviceCentres === true ? adviceMap(Advice) : foodMap(Food)}
+    </Results>
   );
 };
 
