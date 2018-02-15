@@ -52,6 +52,7 @@ const Button = styled.button`
 `;
 
 const Voucher = props => {
+ //Can we add a loading message/spinner here?
   // if (!props) {
   //   return <div>Loading...</div>;
   // }
