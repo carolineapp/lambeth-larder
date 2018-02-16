@@ -183,11 +183,10 @@ const ResultItems = ({ ...props }) => {
                   vertical-align="middle"
                 />
                 {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
-                  ? ` Closes today at ${a[mapTime[day + 7]]}`
-                  : " Closed Today"}
-                {a[mapTime[day + 1]] !== "Closed"
-                  ? ` Opens tomorrow at ${a[mapTime[day + 1]]}`
-                  : " Closed tomorrow"}
+                  ? `Closes today at ${a[mapTime[day + 7]]}`
+                  : a[mapTime[day + 1]] !== "Closed"
+                    ? `Opens tomorrow at ${a[mapTime[day + 1]]}`
+                    : " Closed tomorrow"}
               </Times>
             </Item>
             <NextPage>
@@ -237,11 +236,10 @@ const ResultItems = ({ ...props }) => {
                 />
 
                 {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
-                  ? ` Closes today at ${a[mapTime[day + 7]]}`
-                  : ""}
-                {a[mapTime[day + 1]] !== "Closed"
-                  ? ` Opens tomorrow at ${a[mapTime[day + 1]]}`
-                  : " Closed tomorrow"}
+                  ? `Closes today at ${a[mapTime[day + 7]]}`
+                  : a[mapTime[day + 1]] !== "Closed"
+                    ? `Opens tomorrow at ${a[mapTime[day + 1]]}`
+                    : " Closed tomorrow"}
               </Times>
             </Item>
             <NextPage>
