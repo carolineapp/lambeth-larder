@@ -2,10 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const routes = require("./controllers/routes");
 const app = express();
-const PORT = process.env.PORT || 3001;
 require("./controllers/airtable");
 
 /*Express Middleware*/
+app.set("port", process.env.PORT || 3001);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(routes);
