@@ -17,8 +17,6 @@ const style = {
   width: "100vw"
 };
 
-const centre = [51.456277, -0.105462];
-
 class MapWindow extends Component {
   constructor(props) {
     super(props);
@@ -114,6 +112,14 @@ class MapWindow extends Component {
     };
 
     getLatLong();
+
+    let centre = [];
+
+    if (this.props.lat) {
+      centre = [this.props.lat, this.props.long];
+    } else {
+      centre = [51.456277, -0.105462];
+    }
 
     return (
       <div>

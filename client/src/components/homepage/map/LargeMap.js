@@ -4,8 +4,6 @@ import MarkersList from "./MarkersList";
 
 const mapboxToken = require("../../../config.js");
 
-const mapCenter = [51.45628, -0.10546];
-
 const zoomLevel = 13;
 
 class LargeMap extends Component {
@@ -53,15 +51,22 @@ class LargeMap extends Component {
 
     getLatLong();
 
+    let centre = [];
+    if (this.props.lat) {
+      centre = [this.props.lat, this.props.long];
+    } else {
+      centre = [51.456277, -0.105462];
+    }
+
     return (
       <div>
         <Map
           ref={m => {
             this.leafletMap = m;
           }}
-          center={mapCenter}
+          center={centre}
           zoom={zoomLevel}
-          style={{height:"75vh",width:"100vw"}}
+          style={{ height: "75vh", width: "100vw" }}
         >
           <TileLayer attribution={attr} url={url} id="mapbox.streets" />
 
