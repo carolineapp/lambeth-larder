@@ -12,13 +12,10 @@ const hours = d.getHours();
 const minutes = d.getMinutes();
 const time = `${hours}:${minutes}`;
 
-
 const style = {
   height: "35vh",
   width: "100vw"
 };
-
-
 
 class MapWindow extends Component {
   constructor(props) {
@@ -114,17 +111,15 @@ class MapWindow extends Component {
       }
     };
 
-    let centre = [];
-
-    if(this.props.lat) {
-      centre = [this.props.lat,this.props.long]
-    } else {
-      centre = [51.456277, -0.105462]
-    }
-
     getLatLong();
 
- 
+    let centre = [];
+
+    if (this.props.lat) {
+      centre = [this.props.lat, this.props.long];
+    } else {
+      centre = [51.456277, -0.105462];
+    }
 
     return (
       <div>
