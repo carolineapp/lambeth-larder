@@ -159,7 +159,7 @@ const ResultItems = ({ ...props }) => {
     if (Advice.length > 1) {
       return Advice.map(a => {
         return (
-          <div>
+          <Flex>
             <Item key={a.Name + a.Description}>
               <Title>{a.Name}</Title>
               <br />
@@ -194,7 +194,7 @@ const ResultItems = ({ ...props }) => {
                 <img alt="button-arrow" src={arrow} height={20} width={15} />
               </a>
             </NextPage>
-          </div>
+          </Flex>
         );
       });
     } else {
