@@ -1,25 +1,5 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const routes = require("./controllers/routes");
-const app = express();
-require("./controllers/airtable");
+const app = require("./app");
 
-/*Express Middleware*/
-app.set("port", process.env.PORT || 3001);
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(routes);
-app.disabled("x-powered-by");
-
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "..", "client", "build")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
-  });
-}
-
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
+app.listen(app.get("port"), () => {
+  console.log(`Find the server at: http://localhost:${app.get("port")}/`);
 });
-
-module.exports = { app };
