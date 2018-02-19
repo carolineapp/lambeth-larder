@@ -33,7 +33,6 @@ class App extends Component {
       });
     });
     navigator.geolocation.getCurrentPosition(position => {
-      console.log(position.coords.latitude);
       this.setState({
         lat: position.coords.latitude,
         long: position.coords.longitude
@@ -150,9 +149,5 @@ class App extends Component {
     );
   }
 }
-
-// const mapStateToProps = state => ({ auth: state.auth });
-//
-// export default connect(mapStateToProps, { getUser })(App);
 
 export default App;

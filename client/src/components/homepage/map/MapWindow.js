@@ -84,9 +84,9 @@ class MapWindow extends Component {
 
     const getTimeOptionArr = () => {
       if (this.props.result) {
-        if (this.props.timeOption == "today") {
+        if (this.props.timeOption === "today") {
           sortedItems = today;
-        } else if (this.props.timeOption == "tomorrow") {
+        } else if (this.props.timeOption === "tomorrow") {
           sortedItems = tomorrow;
         } else {
           sortedItems = later;

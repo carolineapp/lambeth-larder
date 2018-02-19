@@ -1,13 +1,11 @@
-import React, { Component } from "react";
-import { render } from "react-dom";
+import React from "react";
 import styled from "styled-components";
-import clock from "../../../assets/clock.png";
-import clock1 from "../../../assets/clock1.png";
+import clock from "../../../assets/clock1.png";
 import arrow from "../../../assets/arrow.png";
 // import { sortByTime, getTimeOptionArr } from "../../../helpers/getStatus";
 const geolib = require("geolib");
 
-const ResultItems = ({ ...props }) => {
+const ResultItems = props => {
   const Results = styled.div`
     background: #e71242;
     padding: 0.75em;
@@ -49,8 +47,8 @@ const ResultItems = ({ ...props }) => {
     text-align: center;
     height: 20vh;
   `;
-  const noResult =
-    "! No emergency food venues are open in Lambeth now. Try searching for later this week or alternatively call One Lambeth Advice on 0800 254 0298.";
+  // const noResult =
+  //   "! No emergency food venues are open in Lambeth now. Try searching for later this week or alternatively call One Lambeth Advice on 0800 254 0298.";
 
   const d = new Date();
   const day = d.getDay(); // returns the current day as a value between 0-6 where Sunday = 0
@@ -121,9 +119,9 @@ const ResultItems = ({ ...props }) => {
   };
 
   const getTimeOptionArr = () => {
-    if (props.timeOption == "today") {
+    if (props.timeOption === "today") {
       sortedItems = today;
-    } else if (props.timeOption == "tomorrow") {
+    } else if (props.timeOption === "tomorrow") {
       sortedItems = tomorrow;
     } else {
       sortedItems = later;
@@ -152,8 +150,6 @@ const ResultItems = ({ ...props }) => {
     }
   };
   sortByAdvice();
-  // console.log("sort by advice", Advice);
-  // console.log("sort by advice food", Food);
 
   const adviceMap = Advice => {
     if (Advice.length > 1) {
@@ -176,7 +172,7 @@ const ResultItems = ({ ...props }) => {
               )}
               <Times>
                 <img
-                  src={clock1}
+                  src={clock}
                   alt="clock"
                   width={20}
                   height={20}
@@ -223,12 +219,12 @@ const ResultItems = ({ ...props }) => {
                   Distance: {distanceFinder(a, props.lat, props.long)}
                 </span>
               ) : (
-                console.log("can't find distance")
+                console.log(" ")
               )}
               <Times>
                 <img
                   alt="clock"
-                  src={clock1}
+                  src={clock}
                   width={20}
                   height={20}
                   padding-left={10}

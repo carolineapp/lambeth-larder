@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Navbar from "../Navbar";
 import clock from "../../assets/clock.png";
-import styles from "../../assets/styles/style.css";
+// import styles from "../../assets/styles/style.css";
 import jug from "../../assets/jug.png";
 import marker from "../../assets/red_marker.png";
 
@@ -56,10 +56,10 @@ const Column = styled.div`
   width: 80%;
 `;
 
-const Hours = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
+// const Hours = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+// `;
 
 const Info = styled.div`
   padding: 1.5em;
@@ -85,6 +85,7 @@ const DetailedResult = ({ postcode, match, results }) => {
                       width={100}
                       align="left"
                       vertical-align="top"
+                      alt=""
                     />
                     <Header>{result.Name}</Header>
 
@@ -113,6 +114,7 @@ const DetailedResult = ({ postcode, match, results }) => {
                             width={30}
                             align="right"
                             vertical-align="middle"
+                            alt=""
                           />
                         </a>
                       </Button>
@@ -135,7 +137,7 @@ const DetailedResult = ({ postcode, match, results }) => {
                     </Info>
 
                     <OpeningHours>
-                      <img src={clock} height={30} width={30} />
+                      <img src={clock} height={30} width={30} alt={"clock"} />
                       <Column>
                         Opening Hours:
                         <p>
