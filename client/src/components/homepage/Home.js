@@ -38,7 +38,8 @@ const Home = ({ ...props }) => {
     display: block;
     margin-top: -3%;
     padding-right: 3%;
-    height: 25px;
+    height: 1.7rem;
+    font-size: 1rem;
    
   `
 

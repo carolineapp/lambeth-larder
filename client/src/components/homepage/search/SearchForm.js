@@ -27,7 +27,7 @@ const PostcodeSearchBar = styled.input`
   border: 2px solid white;
   font: lato;
   color: white;
-  font-size: 18px;
+  font-size: 1.2rem;
   margin-top: 2em;
   &::placeholder {
     color: white;
