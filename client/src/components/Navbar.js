@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const Nav = styled.nav`
-margin: 2% 2% 0% 2%;
+margin-top: 4%;
+margin-left: 5%;
 `;
 
 const Navbar = () => {

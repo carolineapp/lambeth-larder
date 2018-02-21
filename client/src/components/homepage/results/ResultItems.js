@@ -12,6 +12,7 @@ const ResultItems = ({ ...props }) => {
     background: #e71242;
     padding-top: 1rem;
     padding: 0.75em;
+
   `;
   const Item = styled.div`
     background-color: white;

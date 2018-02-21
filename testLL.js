@@ -27,7 +27,7 @@ const PostcodeSearchBar = styled.input`
   border: 2px solid white;
   font: lato;
   color: white;
-  font-size: 18px;
+  font-size: 1.2rem;
   margin-top: 2em;
   &::placeholder {
     color: white;
@@ -64,12 +64,12 @@ const Submit = styled.button`
   background-color: none;
 `;
 const Question = styled.p`
-  padding-top: 4em;
+  padding-top: 3.2em;
   font-size: 1rem;
   margin: 0 auto;
 `;
 const LabelSmall = styled.label`
-  font-size: 1 rem;
+  font-size: 1rem;
   margin: 0 auto;
   padding-top: 1em;
 `;
@@ -81,14 +81,15 @@ const Padding = styled.div`
 const CheckBox = styled.input`
   color: #e71242;
   border: 2px solid white;
-  width: 2rem;
+  margin-left 5%;
+  margin-bottom: 0;
 `;
 
 const SearchForm = ({ ...props }) => {
   return (
     <FormStyle>
       {props.postcodeErrorMsg ? <p>{props.postcodeErrorMsg}</p> : ""}
-      <FlexRow className="flexrow">
+      <FlexRow>
         <PostcodeSearchBar
           type="text"
           name="postcode"
