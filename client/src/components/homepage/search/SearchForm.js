@@ -89,7 +89,7 @@ const SearchForm = ({ ...props }) => {
   return (
     <FormStyle>
       {props.postcodeErrorMsg ? <p>{props.postcodeErrorMsg}</p> : ""}
-      <FlexRow className="flexrow">
+      <FlexRow>
         <PostcodeSearchBar
           type="text"
           name="postcode"

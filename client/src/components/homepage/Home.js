@@ -11,7 +11,7 @@ import LargeMap from "./map/LargeMap";
 const Home = ({ ...props }) => {
 
   const Container = styled.div`
-
+  
   `
   const Title = styled.div`
     font-size: 20px;

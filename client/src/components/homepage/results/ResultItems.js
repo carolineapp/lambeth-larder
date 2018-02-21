@@ -20,7 +20,7 @@ const ResultItems = ({ ...props }) => {
     flex-direction: column;
     justify-content: space-around; 
     width: 80%;
-    padding: 1%;
+    padding: 2%;
 
   `;
   const Title = styled.div`
@@ -32,6 +32,8 @@ const ResultItems = ({ ...props }) => {
     color: #e71242;
     padding-top: 0.4em;
     padding-left: 0.2em;
+    display: flex;
+    align-items: center;
   `;
 
    //Flex contains the list item result and the link to "more detail"//
@@ -51,6 +53,10 @@ const ResultItems = ({ ...props }) => {
   
   `;
  
+  const OpenClosed = styled.span`
+  margin-left: 3%;
+  line-height: 1rem;
+  `
   const NoResults = styled.div`
     color: white;
     text-align: center;
@@ -185,11 +191,13 @@ const ResultItems = ({ ...props }) => {
                   alt="clock"
                   width={20}
                   height={20}
-                  vertical-align="middle"
+                  
                 />
-                {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
+                <OpenClosed>
+                {a [mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
                   ? ` Closes today at ${a[mapTime[day + 7]]}`
                   : " Closed Today"}
+               </OpenClosed>
               </Times>
             </Item>
             <NextPage>
@@ -217,13 +225,11 @@ const ResultItems = ({ ...props }) => {
           <Flex>
             <Item key={a.Name + a.Description}>
               <Title>{a.Name}</Title>
-              <br />
-              {a.Description}
-              <br />
+              <p>{a.Description}</p>
               {a.Address_Line_3}
               <br />
               {props.lat ? (
-                <span>Distance:{distanceFinder(a, props.lat, props.long)}</span>
+                <span>Distance: {distanceFinder(a, props.lat, props.long)}</span>
               ) : (
                 console.log("can't find distance")
               )}
@@ -233,12 +239,13 @@ const ResultItems = ({ ...props }) => {
                   src={clock1}
                   width={20}
                   height={20}
-                  padding-left={10}
-                  vertical-align="middle"
+
                 />
+                <OpenClosed>
                 {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
                   ? ` Closes today at ${a[mapTime[day + 7]]}`
                   : " Closed Today"}
+                </OpenClosed>
               </Times>
             </Item>
             <NextPage>
