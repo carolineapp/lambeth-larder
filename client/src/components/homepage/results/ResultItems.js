@@ -47,8 +47,6 @@ const ResultItems = props => {
     text-align: center;
     height: 20vh;
   `;
-  // const noResult =
-  //   "! No emergency food venues are open in Lambeth now. Try searching for later this week or alternatively call One Lambeth Advice on 0800 254 0298.";
 
   const d = new Date();
   const day = d.getDay(); // returns the current day as a value between 0-6 where Sunday = 0
@@ -100,10 +98,12 @@ const ResultItems = props => {
   let later = [];
   let sortedItems = [];
 
+  //&& time < a[mapTime[day + 7]]
+
   const sortByTime = () => {
     if (props.result) {
       props.result.map(a => {
-        if (a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]) {
+        if (a[mapTime[day]] !== "Closed") {
           today.push(a);
         }
       });
@@ -230,12 +230,68 @@ const ResultItems = props => {
                   padding-left={10}
                   vertical-align="middle"
                 />
-
-                {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
+                {props.timeOption === "today" && time < a[mapTime[day]]
+                  ? `Opens today at ${a[mapTime[day]]}`
+                  : ""}
+                {props.timeOption === "today" &&
+                time > a[mapTime[day]] &&
+                time < a[mapTime[day + 7]]
                   ? `Closes today at ${a[mapTime[day + 7]]}`
-                  : a[mapTime[day + 1]] !== "Closed"
-                    ? `Opens tomorrow at ${a[mapTime[day + 1]]}`
-                    : " Closed tomorrow"}
+                  : ""}
+                {props.timeOption === "today" && time > a[mapTime[day + 7]]
+                  ? `Has closed for today`
+                  : ""}
+                {props.timeOption === "tomorrow"
+                  ? `Opens tomorrow at ${a[mapTime[day + 1]]}`
+                  : ""}
+                {props.timeOption === "later" && a.Monday_Open !== "Closed"
+                  ? `Opens Monday at ${a.Monday_Open}`
+                  : ""}
+                {props.timeOption === "later" &&
+                a.Monday_Open === "Closed" &&
+                a.Tuesday_Open !== "Closed"
+                  ? `Opens Tuesday at ${a.Tuesday_Open}`
+                  : ""}
+                {props.timeOption === "later" &&
+                a.Monday_Open === "Closed" &&
+                a.Tuesday_Open === "Closed" &&
+                a.Wednesday_Open !== "Closed"
+                  ? `Opens Wednesday at ${a.Wednesday_Open}`
+                  : ""}
+                {props.timeOption === "later" &&
+                a.Monday_Open === "Closed" &&
+                a.Tuesday_Open === "Closed" &&
+                a.Wednesday_Open === "Closed" &&
+                a.Thursday_Open !== "Closed"
+                  ? `Opens Thursday at ${a.Thursday_Open}`
+                  : ""}
+                {props.timeOption === "later" &&
+                a.Monday_Open === "Closed" &&
+                a.Tuesday_Open === "Closed" &&
+                a.Wednesday_Open === "Closed" &&
+                a.Thursday_Open === "Closed" &&
+                a.Friday_Open !== "Closed"
+                  ? `Opens Friday at ${a.Friday_Open}`
+                  : ""}
+                {props.timeOption === "later" &&
+                a.Monday_Open === "Closed" &&
+                a.Tuesday_Open === "Closed" &&
+                a.Wednesday_Open === "Closed" &&
+                a.Thursday_Open === "Closed" &&
+                a.Friday_Open === "Closed" &&
+                a.Saturday_Open !== "Closed"
+                  ? `Opens Saturday at ${a.Saturday_Open}`
+                  : ""}
+                {props.timeOption === "later" &&
+                a.Monday_Open === "Closed" &&
+                a.Tuesday_Open === "Closed" &&
+                a.Wednesday_Open === "Closed" &&
+                a.Thursday_Open === "Closed" &&
+                a.Friday_Open === "Closed" &&
+                a.Saturday_Open === "Closed" &&
+                a.Sunday_Open !== "Closed"
+                  ? `Opens Sunday at ${a.Sunday_Open}`
+                  : ""}
               </Times>
             </Item>
             <NextPage>
