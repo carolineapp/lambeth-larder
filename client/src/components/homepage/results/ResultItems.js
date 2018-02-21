@@ -10,17 +10,17 @@ const geolib = require("geolib");
 const ResultItems = ({ ...props }) => {
   const Results = styled.div`
     background: #e71242;
+    padding-top: 1rem;
     padding: 0.75em;
   `;
   const Item = styled.div`
-    margin-bottom: 5px;
     background-color: white;
-    padding: 5px;
     color: #999999;
     display: flex;
     flex-direction: column;
-    min-width: 79vw;
-    height: 25vh;
+    width: 80%;
+    padding: 1%;
+
   `;
   const Title = styled.div`
     font-size: 1.2rem;
@@ -32,18 +32,24 @@ const ResultItems = ({ ...props }) => {
     padding-top: 0.4em;
     padding-left: 0.2em;
   `;
+
+   //Flex contains the list item result and the link to "more detail"//
+   const Flex = styled.div`
+   display: flex;
+   margin: auto;
+   min-height: 25vh;
+   justify-content: space-between;
+   margin-bottom: 5%;
+ `;
   const NextPage = styled.button`
-    min-width: 3rem;
+
     border: none;
-    border-left: 4px solid #e71242;
-    margin-bottom: 25px;
     padding: 5px;
-    height: 26.5vh;
     background-color: white;
+    width: 15%;
+  
   `;
-  const Flex = styled.div`
-    display: flex;
-  `;
+ 
   const NoResults = styled.div`
     color: white;
     text-align: center;
@@ -159,6 +165,7 @@ const ResultItems = ({ ...props }) => {
       return Advice.map(a => {
         return (
           <div>
+            <Flex>
             <Item key={a.Name + a.Description}>
               <Title>{a.Name}</Title>
               <br />
@@ -189,6 +196,7 @@ const ResultItems = ({ ...props }) => {
                 <img alt="button-arrow" src={arrow} height={20} width={15} />
               </a>
             </NextPage>
+            </Flex>
           </div>
         );
       });
