@@ -59,6 +59,12 @@ const Home = ({ ...props }) => {
     }
   `;
 
+  const Cont = styled.div`
+  @media screen and (min-width: 600px) {
+    width: 30%;
+  }
+  `
+
   return (
     <div>
       <Navbar />
@@ -83,6 +89,7 @@ const Home = ({ ...props }) => {
                 </a>, Imagery © <a href="http://mapbox.com">Mapbox</a>
               </Span>
             </MapNavAttribution>
+            <Cont>
             <SearchForm
               handleClick={props.handleClick}
               handleChange={props.handleChange}
@@ -99,6 +106,7 @@ const Home = ({ ...props }) => {
               timeOption={props.timeOption}
               adviceCentres={props.adviceCentres}
             />
+            </Cont>
           </div>
         </div>
       ) : (
@@ -110,7 +118,7 @@ const Home = ({ ...props }) => {
             long={props.long}
           />
                 <MapNavAttribution>
-                <MinimiseMap onClick={props.toggleMap}>Minimise</MinimiseMap>
+                  <MinimiseMap onClick={props.toggleMap}>Minimise</MinimiseMap>
               <Span>
                 Leaflet | Map data &copy;{" "}
                 <a href="http://openstreetmap.org">OpenStreetMap</a>{" "}

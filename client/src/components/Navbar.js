@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Nav = styled.nav`
-margin-top: 4%;
+padding-top: 4%;
 margin-left: 5%;
 @media screen and (min-width: 600px) {
   height:5vh;

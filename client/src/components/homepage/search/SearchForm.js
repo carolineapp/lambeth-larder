@@ -10,17 +10,14 @@ const FormStyle = styled.form`
   padding: 2%;
   height: 33vh;
   @media screen and (min-width: 600px) {
-      width: 30vw;
-      
-
- }
+    width: 100%;
+  }
 `;
 const FlexRow = styled.div`
   display: inherit;
   flex-direction: row;
   margin-top: 3vh;
   justify-content: space-around;
-  
 `;
 const PostcodeSearchBar = styled.input`
   display: flex;
@@ -39,9 +36,7 @@ const PostcodeSearchBar = styled.input`
     color: white;
   }
   @media screen and (min-width: 600px) {
-   
-
-}
+  }
 `;
 const Radio = styled.input`
   display: none;

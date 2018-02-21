@@ -12,6 +12,9 @@ const ResultItems = ({ ...props }) => {
     background: #e71242;
     padding-top: 1rem;
     padding: 0.75em;
+    @media screen and (min-width: 600px) {
+      width: 100%;
+    }
 
   `;
   const Item = styled.div`
@@ -176,9 +179,7 @@ const ResultItems = ({ ...props }) => {
             <Flex>
             <Item key={a.Name + a.Description}>
               <Title>{a.Name}</Title>
-              <br />
-              {a.Description}
-              <br />
+              <p>{a.Description}</p>
               {a.Address_Line_3}
               <br />
               {props.lat ? (
