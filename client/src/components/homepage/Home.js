@@ -60,9 +60,7 @@ const Home = ({ ...props }) => {
   `;
 
   const Cont = styled.div`
-  @media screen and (min-width: 600px) {
-    width: 30%;
-  }
+
   `
 
   return (
@@ -89,7 +87,7 @@ const Home = ({ ...props }) => {
                 </a>, Imagery © <a href="http://mapbox.com">Mapbox</a>
               </Span>
             </MapNavAttribution>
-            <Cont>
+         
             <SearchForm
               handleClick={props.handleClick}
               handleChange={props.handleChange}
@@ -106,7 +104,7 @@ const Home = ({ ...props }) => {
               timeOption={props.timeOption}
               adviceCentres={props.adviceCentres}
             />
-            </Cont>
+         
           </div>
         </div>
       ) : (

@@ -10,7 +10,7 @@ const FormStyle = styled.form`
   padding: 2%;
   height: 33vh;
   @media screen and (min-width: 600px) {
-    width: 100%;
+    width: 500px;
   }
 `;
 const FlexRow = styled.div`

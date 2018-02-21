@@ -13,9 +13,8 @@ const ResultItems = ({ ...props }) => {
     padding-top: 1rem;
     padding: 0.75em;
     @media screen and (min-width: 600px) {
-      width: 100%;
+      width: 500px;
     }
-
   `;
   const Item = styled.div`
     background-color: white;
@@ -179,6 +178,7 @@ const ResultItems = ({ ...props }) => {
             <Flex>
             <Item key={a.Name + a.Description}>
               <Title>{a.Name}</Title>
+
               <p>{a.Description}</p>
               {a.Address_Line_3}
               <br />
