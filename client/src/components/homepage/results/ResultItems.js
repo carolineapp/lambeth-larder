@@ -51,8 +51,10 @@ const ResultItems = props => {
   const d = new Date();
   const day = d.getDay(); // returns the current day as a value between 0-6 where Sunday = 0
   const hours = d.getHours();
+  console.log("hours", hours);
   const minutes = d.getMinutes();
   const time = `${hours}:${minutes}`;
+  console.log(time);
 
   // mapTime object gives the current day from getDay as the key and returns the corresponding value. ie. today is Tuesday which = 2 so mapTime[2] returns a.Tuesday_Open which gives either "Closed" or it's opening time.
 
@@ -93,118 +95,47 @@ const ResultItems = props => {
     return distance;
   };
 
-  let today = [];
-  let tomorrow = [];
-  let later = [];
-  let sortedItems = [];
-
-  //&& time < a[mapTime[day + 7]]
+  let sortedItemsTime = [];
 
   const sortByTime = () => {
     if (props.result) {
-      props.result.map(a => {
-        if (a[mapTime[day]] !== "Closed") {
-          today.push(a);
-        }
-      });
-      props.result.map(a => {
-        if (a[mapTime[day + 1]] !== "Closed") {
-          tomorrow.push(a);
-        }
-      });
-      props.result.map(a => {
-        later.push(a);
-      });
+      if (props.timeOption === "today") {
+        sortedItemsTime = props.result.filter(function(r) {
+          return r[mapTime[day]] !== "Closed";
+        });
+      } else if (props.timeOption === "tomorrow") {
+        sortedItemsTime = props.result.filter(function(r) {
+          return r[mapTime[day + 1]] !== "Closed";
+        });
+      } else {
+        sortedItemsTime = props.result;
+      }
     }
   };
 
-  const getTimeOptionArr = () => {
-    if (props.timeOption === "today") {
-      sortedItems = today;
-    } else if (props.timeOption === "tomorrow") {
-      sortedItems = tomorrow;
-    } else {
-      sortedItems = later;
-    }
-  };
+  if (props.timeOption !== "") {
+    sortByTime();
+  }
 
-  sortByTime();
-  getTimeOptionArr();
-
-  const Advice = [];
-  const Food = [];
+  let advice = [];
+  let food = [];
 
   const sortByAdvice = () => {
-    {
-      props.result
-        ? sortedItems.map(a => {
-            if (a.FoodCentre === "true") {
-              Food.push(a);
-            } else if (a.FoodCentre === "false") {
-              Advice.push(a);
-            } else {
-              console.log("database issue");
-            }
-          })
-        : "something went wrong";
+    if (sortedItemsTime) {
+      food = sortedItemsTime.filter(function(item) {
+        return item.FoodCentre === "true";
+      });
+      advice = sortedItemsTime.filter(function(item) {
+        return item.FoodCentre === "false";
+      });
     }
   };
+
   sortByAdvice();
 
-  const adviceMap = Advice => {
-    if (Advice.length > 1) {
-      return Advice.map(a => {
-        return (
-          <Flex>
-            <Item key={a.Name + a.Description}>
-              <Title>{a.Name}</Title>
-              <br />
-              {a.Description}
-              <br />
-              {a.Address_Line_3}
-              <br />
-              {props.lat ? (
-                <span>
-                  Distance: {distanceFinder(a, props.lat, props.long)}
-                </span>
-              ) : (
-                console.log("no result")
-              )}
-              <Times>
-                <img
-                  src={clock}
-                  alt="clock"
-                  width={20}
-                  height={20}
-                  vertical-align="middle"
-                />
-                {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
-                  ? `Closes today at ${a[mapTime[day + 7]]}`
-                  : a[mapTime[day + 1]] !== "Closed"
-                    ? `Opens tomorrow at ${a[mapTime[day + 1]]}`
-                    : " Closed tomorrow"}
-              </Times>
-            </Item>
-            <NextPage>
-              <a href={"/results/" + a.Name}>
-                <img alt="button-arrow" src={arrow} height={20} width={15} />
-              </a>
-            </NextPage>
-          </Flex>
-        );
-      });
-    } else {
-      return (
-        <NoResults>
-          Unfortunately there are no Advice Centres open at the moment. Try
-          searching tomorrow or next week.
-        </NoResults>
-      );
-    }
-  };
-  const foodMap = Food => {
-    if (Food.length > 1) {
-      return Food.map(a => {
+  const foodAdviceMap = array => {
+    if (array.length > 1) {
+      return array.map(a => {
         return (
           <Flex>
             <Item key={a.Name + a.Description}>
@@ -305,15 +236,17 @@ const ResultItems = props => {
     } else {
       return (
         <NoResults>
-          Unfortunately there are no Food Banks open at the moment. Try
-          searching tomorrow or next week.
+          Unfortunately there are no centres open at the moment. Try searching
+          tomorrow or next week.
         </NoResults>
       );
     }
   };
   return (
     <Results className="results">
-      {props.adviceCentres === true ? adviceMap(Advice) : foodMap(Food)}
+      {props.adviceCentres === true
+        ? foodAdviceMap(advice)
+        : foodAdviceMap(food)}
     </Results>
   );
 };
