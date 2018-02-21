@@ -75,13 +75,13 @@ const LabelSmall = styled.label`
 `;
 const Padding = styled.div`
   margin: 5%;
-  padding-top: 2em;
+  padding-top: 3em;
 `;
 
 const CheckBox = styled.input`
   color: #e71242;
   border: 2px solid white;
-  margin: 6% 0 0 5%;
+  margin-left: 1rem;
 `;
 
 const SearchForm = ({ ...props }) => {
