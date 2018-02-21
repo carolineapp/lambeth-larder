@@ -4,6 +4,14 @@ import styled from "styled-components";
 const Nav = styled.nav`
 margin-top: 4%;
 margin-left: 5%;
+@media screen and (min-width: 600px) {
+  height:5vh;
+  background-color: qhite;
+  margin: 0;
+  padding-top: 3%;
+  padding-left: 3%;
+
+}
 `;
 
 const Navbar = () => {

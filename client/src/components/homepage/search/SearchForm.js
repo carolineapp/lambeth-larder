@@ -9,19 +9,25 @@ const FormStyle = styled.form`
   flex-direction: column;
   padding: 2%;
   height: 33vh;
+  @media screen and (min-width: 600px) {
+      width: 30vw;
+      
+
+ }
 `;
 const FlexRow = styled.div`
   display: inherit;
   flex-direction: row;
   margin-top: 3vh;
   justify-content: space-around;
+  
 `;
 const PostcodeSearchBar = styled.input`
   display: flex;
   align-self: center;
   padding: 1%;
   margin: 2%;
-  width: 75vw;
+  width: 75%;
   height: 6vh;
   background-color: #e71242;
   border: 2px solid white;
@@ -32,6 +38,10 @@ const PostcodeSearchBar = styled.input`
   &::placeholder {
     color: white;
   }
+  @media screen and (min-width: 600px) {
+   
+
+}
 `;
 const Radio = styled.input`
   display: none;
@@ -39,7 +49,7 @@ const Radio = styled.input`
 `;
 const FakeRadio = styled.label`
   display: table;
-  width: 20vw;
+  width: 20%;
   height: 4vh;
   padding: 2%;
   color: white;
@@ -49,7 +59,7 @@ const FakeRadio = styled.label`
 `;
 const FakeRadioOn = styled.label`
   display: table;
-  width: 20vw;
+  width: 20%;
   height: 4vh;
   padding: 2%;
   color: #e71242;
