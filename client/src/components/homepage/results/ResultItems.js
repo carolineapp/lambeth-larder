@@ -18,6 +18,7 @@ const ResultItems = ({ ...props }) => {
     color: #999999;
     display: flex;
     flex-direction: column;
+    justify-content: space-around; 
     width: 80%;
     padding: 1%;
 

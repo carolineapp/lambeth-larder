@@ -9,6 +9,10 @@ import LargeMap from "./map/LargeMap";
 
 
 const Home = ({ ...props }) => {
+
+  const Container = styled.div`
+
+  `
   const Title = styled.div`
     font-size: 20px;
     height: 15vh;
@@ -48,7 +52,7 @@ const Home = ({ ...props }) => {
   `
 
   return (
-    <div>
+    <Container>
       <Navbar />
       <Title>Emergency Food</Title>
       {!props.fullScreen ? (
@@ -87,7 +91,7 @@ Leaflet | Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> c
           <MinimiseMap onClick={props.toggleMap}>Minimise</MinimiseMap>
         </div>
       )}
-    </div>
+    </Container>
   );
 };
 
