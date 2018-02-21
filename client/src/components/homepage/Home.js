@@ -20,27 +20,31 @@ const Home = ({ ...props }) => {
 
   const Span = styled.p`
    font-size: 8px;
-   text-align: right;
-   padding-right: 2%;
+   padding-left: 3%;
    margin: 0%;
+   display:block;
+   line-height: 2.5vh;
 
   `
 
   const MinimiseMap = styled.button`
+
     
   `
-
+  const MapNavAttribution = styled.div`
+  display: flex;
+  justify-content: space-between;
+  height: 5vh;
+  width: 99%;
+  `
   const MaximiseMap = styled.button`
-   position: absolute;
     background: #e71242;
     border: none;
     color: white;
-    display: block;
-    margin-top: -3%;
-    padding-right: 3%;
-    height: 1.7rem;
-    font-size: 1rem;
-   
+  
+    font-size: 0.875rem;
+    width: 30%;
+    margin:0;
   `
 
   return (
@@ -50,11 +54,11 @@ const Home = ({ ...props }) => {
       {!props.fullScreen ? (
         <div>
           <MapWindow result={props.results} lat={props.lat} long={props.long} timeOption={props.timeOption} />
-          <div>
+          <MapNavAttribution>
           <MaximiseMap onClick={props.toggleMap}>Map Full</MaximiseMap>
           <Span>
 Leaflet | Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a></Span>
-          </div>
+          </MapNavAttribution>
           <SearchForm
             handleClick={props.handleClick}
             handleChange={props.handleChange}

@@ -65,11 +65,11 @@ const Submit = styled.button`
 `;
 const Question = styled.p`
   padding-top: 4em;
-  font-size: 14px;
+  font-size: 1rem;
   margin: 0 auto;
 `;
 const LabelSmall = styled.label`
-  font-size: 14px;
+  font-size: 1rem;
   margin: 0 auto;
   padding-top: 1em;
 `;
@@ -81,6 +81,7 @@ const Padding = styled.div`
 const CheckBox = styled.input`
   color: #e71242;
   border: 2px solid white;
+  margin: 6% 0 0 5%;
 `;
 
 const SearchForm = ({ ...props }) => {
