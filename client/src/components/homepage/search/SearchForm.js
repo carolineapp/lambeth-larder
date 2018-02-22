@@ -89,7 +89,7 @@ const CheckBox = styled.input`
   width: 2rem;
 `;
 
-const SearchForm = ({ ...props }) => {
+const SearchForm = props => {
   return (
     <FormStyle>
       {props.postcodeErrorMsg ? <p>{props.postcodeErrorMsg}</p> : ""}
@@ -150,7 +150,7 @@ const SearchForm = ({ ...props }) => {
         />
       </FlexRow>
       <Padding>
-        <LabelSmall htmlFor="advice-centres">See advice centres</LabelSmall>
+        <LabelSmall htmlFor="advice-centres">See other support</LabelSmall>
         <CheckBox
           id="advice-centres"
           type="checkbox"

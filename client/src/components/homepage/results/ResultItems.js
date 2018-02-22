@@ -1,13 +1,11 @@
-import React, { Component } from "react";
-import { render } from "react-dom";
+import React from "react";
 import styled from "styled-components";
-import clock from "../../../assets/clock.png";
-import clock1 from "../../../assets/clock1.png";
+import clock from "../../../assets/clock1.png";
 import arrow from "../../../assets/arrow.png";
 // import { sortByTime, getTimeOptionArr } from "../../../helpers/getStatus";
 const geolib = require("geolib");
 
-const ResultItems = ({ ...props }) => {
+const ResultItems = props => {
   const Results = styled.div`
     background: #e71242;
     padding-top: 1rem;
@@ -62,14 +60,14 @@ const ResultItems = ({ ...props }) => {
     text-align: center;
     height: 20vh;
   `;
-  const noResult =
-    "! No emergency food venues are open in Lambeth now. Try searching for later this week or alternatively call One Lambeth Advice on 0800 254 0298.";
 
   const d = new Date();
   const day = d.getDay(); // returns the current day as a value between 0-6 where Sunday = 0
   const hours = d.getHours();
+  console.log("hours", hours);
   const minutes = d.getMinutes();
   const time = `${hours}:${minutes}`;
+  console.log(time);
 
   // mapTime object gives the current day from getDay as the key and returns the corresponding value. ie. today is Tuesday which = 2 so mapTime[2] returns a.Tuesday_Open which gives either "Closed" or it's opening time.
 
@@ -110,116 +108,54 @@ const ResultItems = ({ ...props }) => {
     return distance;
   };
 
-  let today = [];
-  let tomorrow = [];
-  let later = [];
-  let sortedItems = [];
+  let sortedItemsTime = [];
 
   const sortByTime = () => {
     if (props.result) {
-      props.result.map(a => {
-        if (a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]) {
-          today.push(a);
-        }
-      });
-      props.result.map(a => {
-        if (a[mapTime[day + 1]] !== "Closed") {
-          tomorrow.push(a);
-        }
-      });
-      props.result.map(a => {
-        later.push(a);
-      });
+      if (props.timeOption === "today") {
+        sortedItemsTime = props.result.filter(function(r) {
+          return r[mapTime[day]] !== "Closed";
+        });
+      } else if (props.timeOption === "tomorrow") {
+        sortedItemsTime = props.result.filter(function(r) {
+          return r[mapTime[day + 1]] !== "Closed";
+        });
+      } else {
+        sortedItemsTime = props.result;
+      }
     }
   };
 
-  const getTimeOptionArr = () => {
-    if (props.timeOption == "today") {
-      sortedItems = today;
-    } else if (props.timeOption == "tomorrow") {
-      sortedItems = tomorrow;
-    } else {
-      sortedItems = later;
-    }
-  };
+  if (props.timeOption !== "") {
+    sortByTime();
+  }
 
-  sortByTime();
-  getTimeOptionArr();
-
-  const Advice = [];
-  const Food = [];
+  let advice = [];
+  let food = [];
 
   const sortByAdvice = () => {
-    {
-      props.result
-        ? sortedItems.map(a => {
-            if (a.FoodCentre === "true") {
-              Food.push(a);
-            } else if (a.FoodCentre === "false") {
-              Advice.push(a);
-            } else {
-              console.log("database issue");
-            }
-          })
-        : "something went wrong";
-    }
-  };
-  sortByAdvice();
-  // console.log("sort by advice", Advice);
-  // console.log("sort by advice food", Food);
-
-  const adviceMap = Advice => {
-    if (Advice.length > 1) {
-      return Advice.map(a => {
-        return (
-            <Flex>
-              <Item key={a.Name + a.Description}>
-                <Title>{a.Name}</Title>
-
-                <p>{a.Description}</p>
-                {a.Address_Line_3}
-                <br />
-                {props.lat ? (
-                  <span>
-                    Distance:{distanceFinder(a, props.lat, props.long)}
-                  </span>
-                ) : (
-                  console.log("no result")
-                )}
-                <Times>
-                  <img src={clock1} alt="clock" width={20} height={20} />
-                  <OpenClosed>
-                    {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
-                      ? ` Closes today at ${a[mapTime[day + 7]]}`
-                      : " Closed Today"}
-                  </OpenClosed>
-                </Times>
-              </Item>
-              <NextPage>
-                <a href={"/results/" + a.Name}>
-                  <img alt="button-arrow" src={arrow} height={20} width={15} />
-                </a>
-              </NextPage>
-            </Flex>
-        );
+    if (sortedItemsTime) {
+      food = sortedItemsTime.filter(function(item) {
+        return item.FoodCentre === "true";
       });
-    } else {
-      return (
-        <NoResults>
-          Unfortunately there are no Advice Centres open at the moment. Try
-          searching tomorrow or next week.
-        </NoResults>
-      );
+      advice = sortedItemsTime.filter(function(item) {
+        return item.FoodCentre === "false";
+      });
     }
   };
-  const foodMap = Food => {
-    if (Food.length > 1) {
-      return Food.map(a => {
+
+  sortByAdvice();
+
+  const foodAdviceMap = array => {
+    if (array.length > 1) {
+      return array.map(a => {
         return (
           <Flex>
             <Item key={a.Name + a.Description}>
               <Title>{a.Name}</Title>
-              <p>{a.Description}</p>
+              <br />
+              {a.Description}
+              <br />
               {a.Address_Line_3}
               <br />
               {props.lat ? (
@@ -227,16 +163,73 @@ const ResultItems = ({ ...props }) => {
                   Distance: {distanceFinder(a, props.lat, props.long)}
                 </span>
               ) : (
-                console.log("can't find distance")
+                console.log(" ")
               )}
               <Times>
-                <img alt="clock" src={clock1} width={20} height={20} />
+                <img alt="clock" src={clock} width={20} height={20} />
                 <OpenClosed>
-                  {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
+                  {props.timeOption === "today" && time < a[mapTime[day]]
+                    ? `Opens today at ${a[mapTime[day]]}`
+                    : ""}
+                  {props.timeOption === "today" &&
+                  time > a[mapTime[day]] &&
+                  time < a[mapTime[day + 7]]
                     ? `Closes today at ${a[mapTime[day + 7]]}`
-                    : a[mapTime[day + 1]] !== "Closed"
-                      ? `Opens tomorrow at ${a[mapTime[day + 1]]}`
-                      : " Closed tomorrow"}
+                    : ""}
+                  {props.timeOption === "today" && time > a[mapTime[day + 7]]
+                    ? `Has closed for today`
+                    : ""}
+                  {props.timeOption === "tomorrow"
+                    ? `Opens tomorrow at ${a[mapTime[day + 1]]}`
+                    : ""}
+                  {props.timeOption === "later" && a.Monday_Open !== "Closed"
+                    ? `Opens Monday at ${a.Monday_Open}`
+                    : ""}
+                  {props.timeOption === "later" &&
+                  a.Monday_Open === "Closed" &&
+                  a.Tuesday_Open !== "Closed"
+                    ? `Opens Tuesday at ${a.Tuesday_Open}`
+                    : ""}
+                  {props.timeOption === "later" &&
+                  a.Monday_Open === "Closed" &&
+                  a.Tuesday_Open === "Closed" &&
+                  a.Wednesday_Open !== "Closed"
+                    ? `Opens Wednesday at ${a.Wednesday_Open}`
+                    : ""}
+                  {props.timeOption === "later" &&
+                  a.Monday_Open === "Closed" &&
+                  a.Tuesday_Open === "Closed" &&
+                  a.Wednesday_Open === "Closed" &&
+                  a.Thursday_Open !== "Closed"
+                    ? `Opens Thursday at ${a.Thursday_Open}`
+                    : ""}
+                  {props.timeOption === "later" &&
+                  a.Monday_Open === "Closed" &&
+                  a.Tuesday_Open === "Closed" &&
+                  a.Wednesday_Open === "Closed" &&
+                  a.Thursday_Open === "Closed" &&
+                  a.Friday_Open !== "Closed"
+                    ? `Opens Friday at ${a.Friday_Open}`
+                    : ""}
+                  {props.timeOption === "later" &&
+                  a.Monday_Open === "Closed" &&
+                  a.Tuesday_Open === "Closed" &&
+                  a.Wednesday_Open === "Closed" &&
+                  a.Thursday_Open === "Closed" &&
+                  a.Friday_Open === "Closed" &&
+                  a.Saturday_Open !== "Closed"
+                    ? `Opens Saturday at ${a.Saturday_Open}`
+                    : ""}
+                  {props.timeOption === "later" &&
+                  a.Monday_Open === "Closed" &&
+                  a.Tuesday_Open === "Closed" &&
+                  a.Wednesday_Open === "Closed" &&
+                  a.Thursday_Open === "Closed" &&
+                  a.Friday_Open === "Closed" &&
+                  a.Saturday_Open === "Closed" &&
+                  a.Sunday_Open !== "Closed"
+                    ? `Opens Sunday at ${a.Sunday_Open}`
+                    : ""}
                 </OpenClosed>
               </Times>
             </Item>
@@ -251,15 +244,17 @@ const ResultItems = ({ ...props }) => {
     } else {
       return (
         <NoResults>
-          Unfortunately there are no Food Banks open at the moment. Try
-          searching tomorrow or next week.
+          Unfortunately there are no centres open at the moment. Try searching
+          tomorrow or next week.
         </NoResults>
       );
     }
   };
   return (
     <Results className="results">
-      {props.adviceCentres === true ? adviceMap(Advice) : foodMap(Food)}
+      {props.adviceCentres === true
+        ? foodAdviceMap(advice)
+        : foodAdviceMap(food)}
     </Results>
   );
 };

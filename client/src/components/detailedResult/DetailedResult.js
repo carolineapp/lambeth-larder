@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Navbar from "../Navbar";
 import clock from "../../assets/clock.png";
-import styles from "../../assets/styles/style.css";
+// import styles from "../../assets/styles/style.css";
 import jug from "../../assets/jug.png";
 import marker from "../../assets/red_marker.png";
 import banner from "../../assets/EmergencyFood_temp.png";
@@ -12,10 +12,8 @@ const Div = styled.div`
   background: #e71242;
   @media screen and (min-width: 600px) {
     background-color: white;
-}
-
+  }
 `;
-
 
 const Wrapper = styled.section`
   min-height: 85vh;
@@ -29,8 +27,7 @@ const Wrapper = styled.section`
     background-color: white;
     width: 80%;
     margin: auto;
-
-}
+  }
 `;
 
 const Header = styled.h1`
@@ -38,11 +35,10 @@ const Header = styled.h1`
   text-align: center;
   padding-top: 10%;
   padding-right: 2%;
-  
+
   font-size: 18px;
   font-family: lato;
-  @media screen and (min-width: 600px){
-    
+  @media screen and (min-width: 600px) {
   }
 `;
 
@@ -74,11 +70,10 @@ const Column = styled.div`
 `;
 
 const Banner = styled.img`
-
-@media screen and (max-width: 600px){
-  display: none;
-}
-`
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
+`;
 
 const Hours = styled.div`
   display: flex;
@@ -110,6 +105,7 @@ const DetailedResult = ({ postcode, match, results }) => {
                       width={100}
                       align="left"
                       vertical-align="top"
+                      alt=""
                     />
                     <Header>{result.Name}</Header>
 
@@ -138,6 +134,7 @@ const DetailedResult = ({ postcode, match, results }) => {
                             width={30}
                             align="right"
                             vertical-align="middle"
+                            alt=""
                           />
                         </a>
                       </Button>
@@ -160,7 +157,7 @@ const DetailedResult = ({ postcode, match, results }) => {
                     </Info>
 
                     <OpeningHours>
-                      <img src={clock} height={30} width={30} />
+                      <img src={clock} height={30} width={30} alt={"clock"} />
                       <Column>
                         Opening Hours:
                         <p>

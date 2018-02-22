@@ -9,22 +9,11 @@ const Wrapper = styled.section`
   width: 90%;
   margin-left: auto;
   margin-right: auto;
-  margin-top:7vh;
+  margin-top: 7vh;
 `;
 const Div = styled.div`
   height: 100vh;
   background: #e71242;
-`;
-// const Nav = styled.nav`
-//   height: 15%;
-//   width: 100%;
-// `;
-
-const WrapperContainer = styled.section`
-  height: 85%;
-  width: 90%;
-  background: white;
-  margin: auto;
 `;
 
 const Header = styled.h1`
@@ -50,14 +39,13 @@ const Button = styled.button`
 `;
 
 const Voucher = props => {
-
   return (
     <Div>
       <Navbar />
       <Wrapper className="voucher__container">
         <Header>How Food Banks Work</Header>
         <TextWrapper>
-          <img src={jug} height={100} width={100} />
+          <img src={jug} height={100} width={100} alt={"icon of a jug"} />
           <div>
             <p>
               1. If you need to use a food bank, a health visitor, social
@@ -76,7 +64,6 @@ const Voucher = props => {
             </p>
           </div>
         </TextWrapper>
-        {/* link to home page */}
         <a href="/">
           <Button>Back</Button>
         </a>
