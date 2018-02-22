@@ -4,9 +4,8 @@
   "description": "Info on emergency food.",
   "main": "index.js",
   "scripts": {
-    "test":
-      "NODE_ENV=test ./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./server/tests/*.test.js | tap-spec",
-    "start": "serve -s client/build",
+    "test": "NODE_ENV=test ./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./server/tests/*.test.js | tap-spec",
+    "start": "node ./server/server.js",
     "server": "nodemon ./server/server.js",
     "client": "node start-client.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
@@ -32,6 +31,7 @@
     "istanbul": "^0.4.5",
     "leaflet": "^1.3.1",
     "nodemon": "^1.14.12",
+    "path": "^0.12.7",
     "react-leaflet": "^1.8.0",
     "react-leaflet-control": "^1.4.1",
     "url": "^0.11.0"
