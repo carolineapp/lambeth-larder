@@ -60,6 +60,7 @@ const ResultItems = ({ ...props }) => {
   const NoResults = styled.div`
     color: white;
     text-align: center;
+    height: 20vh;
   `;
   const noResult =
     "! No emergency food venues are open in Lambeth now. Try searching for later this week or alternatively call One Lambeth Advice on 0800 254 0298.";
@@ -200,7 +201,6 @@ const ResultItems = ({ ...props }) => {
                 </a>
               </NextPage>
             </Flex>
-        
         );
       });
     } else {
