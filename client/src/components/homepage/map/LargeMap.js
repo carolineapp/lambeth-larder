@@ -66,7 +66,7 @@ class LargeMap extends Component {
           }}
           center={centre}
           zoom={zoomLevel}
-          style={{ height: "75vh", width: "100vw" }}
+          style={{ height: "73vh", width: "100vw" }}
         >
           <TileLayer attribution={attr} url={url} id="mapbox.streets" />
 

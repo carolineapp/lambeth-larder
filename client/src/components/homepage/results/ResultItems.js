@@ -8,17 +8,20 @@ const geolib = require("geolib");
 const ResultItems = props => {
   const Results = styled.div`
     background: #e71242;
+    padding-top: 1rem;
     padding: 0.75em;
+    @media screen and (min-width: 600px) {
+      width: 500px;
+    }
   `;
   const Item = styled.div`
-    margin-bottom: 5px;
     background-color: white;
-    padding: 5px;
     color: #999999;
     display: flex;
     flex-direction: column;
-    min-width: 79vw;
-    height: 25vh;
+    justify-content: space-around;
+    width: 80%;
+    padding: 2%;
   `;
   const Title = styled.div`
     font-size: 1.2rem;
@@ -29,18 +32,28 @@ const ResultItems = props => {
     color: #e71242;
     padding-top: 0.4em;
     padding-left: 0.2em;
+    display: flex;
+    align-items: center;
   `;
-  const NextPage = styled.button`
-    min-width: 3rem;
-    border: none;
-    border-left: 4px solid #e71242;
-    margin-bottom: 25px;
-    padding: 5px;
-    height: 26.5vh;
-    background-color: white;
-  `;
+
+  //Flex contains the list item result and the link to "more detail"//
   const Flex = styled.div`
     display: flex;
+    margin: auto;
+    min-height: 25vh;
+    justify-content: space-between;
+    margin-bottom: 5%;
+  `;
+  const NextPage = styled.button`
+    border: none;
+    padding: 5px;
+    background-color: white;
+    width: 15%;
+  `;
+
+  const OpenClosed = styled.span`
+    margin-left: 3%;
+    line-height: 1rem;
   `;
   const NoResults = styled.div`
     color: white;
@@ -153,76 +166,71 @@ const ResultItems = props => {
                 console.log(" ")
               )}
               <Times>
-                <img
-                  alt="clock"
-                  src={clock}
-                  width={20}
-                  height={20}
-                  padding-left={10}
-                  vertical-align="middle"
-                />
-                {props.timeOption === "today" && time < a[mapTime[day]]
-                  ? `Opens today at ${a[mapTime[day]]}`
-                  : ""}
-                {props.timeOption === "today" &&
-                time > a[mapTime[day]] &&
-                time < a[mapTime[day + 7]]
-                  ? `Closes today at ${a[mapTime[day + 7]]}`
-                  : ""}
-                {props.timeOption === "today" && time > a[mapTime[day + 7]]
-                  ? `Has closed for today`
-                  : ""}
-                {props.timeOption === "tomorrow"
-                  ? `Opens tomorrow at ${a[mapTime[day + 1]]}`
-                  : ""}
-                {props.timeOption === "later" && a.Monday_Open !== "Closed"
-                  ? `Opens Monday at ${a.Monday_Open}`
-                  : ""}
-                {props.timeOption === "later" &&
-                a.Monday_Open === "Closed" &&
-                a.Tuesday_Open !== "Closed"
-                  ? `Opens Tuesday at ${a.Tuesday_Open}`
-                  : ""}
-                {props.timeOption === "later" &&
-                a.Monday_Open === "Closed" &&
-                a.Tuesday_Open === "Closed" &&
-                a.Wednesday_Open !== "Closed"
-                  ? `Opens Wednesday at ${a.Wednesday_Open}`
-                  : ""}
-                {props.timeOption === "later" &&
-                a.Monday_Open === "Closed" &&
-                a.Tuesday_Open === "Closed" &&
-                a.Wednesday_Open === "Closed" &&
-                a.Thursday_Open !== "Closed"
-                  ? `Opens Thursday at ${a.Thursday_Open}`
-                  : ""}
-                {props.timeOption === "later" &&
-                a.Monday_Open === "Closed" &&
-                a.Tuesday_Open === "Closed" &&
-                a.Wednesday_Open === "Closed" &&
-                a.Thursday_Open === "Closed" &&
-                a.Friday_Open !== "Closed"
-                  ? `Opens Friday at ${a.Friday_Open}`
-                  : ""}
-                {props.timeOption === "later" &&
-                a.Monday_Open === "Closed" &&
-                a.Tuesday_Open === "Closed" &&
-                a.Wednesday_Open === "Closed" &&
-                a.Thursday_Open === "Closed" &&
-                a.Friday_Open === "Closed" &&
-                a.Saturday_Open !== "Closed"
-                  ? `Opens Saturday at ${a.Saturday_Open}`
-                  : ""}
-                {props.timeOption === "later" &&
-                a.Monday_Open === "Closed" &&
-                a.Tuesday_Open === "Closed" &&
-                a.Wednesday_Open === "Closed" &&
-                a.Thursday_Open === "Closed" &&
-                a.Friday_Open === "Closed" &&
-                a.Saturday_Open === "Closed" &&
-                a.Sunday_Open !== "Closed"
-                  ? `Opens Sunday at ${a.Sunday_Open}`
-                  : ""}
+                <img alt="clock" src={clock} width={20} height={20} />
+                <OpenClosed>
+                  {props.timeOption === "today" && time < a[mapTime[day]]
+                    ? `Opens today at ${a[mapTime[day]]}`
+                    : ""}
+                  {props.timeOption === "today" &&
+                  time > a[mapTime[day]] &&
+                  time < a[mapTime[day + 7]]
+                    ? `Closes today at ${a[mapTime[day + 7]]}`
+                    : ""}
+                  {props.timeOption === "today" && time > a[mapTime[day + 7]]
+                    ? `Has closed for today`
+                    : ""}
+                  {props.timeOption === "tomorrow"
+                    ? `Opens tomorrow at ${a[mapTime[day + 1]]}`
+                    : ""}
+                  {props.timeOption === "later" && a.Monday_Open !== "Closed"
+                    ? `Opens Monday at ${a.Monday_Open}`
+                    : ""}
+                  {props.timeOption === "later" &&
+                  a.Monday_Open === "Closed" &&
+                  a.Tuesday_Open !== "Closed"
+                    ? `Opens Tuesday at ${a.Tuesday_Open}`
+                    : ""}
+                  {props.timeOption === "later" &&
+                  a.Monday_Open === "Closed" &&
+                  a.Tuesday_Open === "Closed" &&
+                  a.Wednesday_Open !== "Closed"
+                    ? `Opens Wednesday at ${a.Wednesday_Open}`
+                    : ""}
+                  {props.timeOption === "later" &&
+                  a.Monday_Open === "Closed" &&
+                  a.Tuesday_Open === "Closed" &&
+                  a.Wednesday_Open === "Closed" &&
+                  a.Thursday_Open !== "Closed"
+                    ? `Opens Thursday at ${a.Thursday_Open}`
+                    : ""}
+                  {props.timeOption === "later" &&
+                  a.Monday_Open === "Closed" &&
+                  a.Tuesday_Open === "Closed" &&
+                  a.Wednesday_Open === "Closed" &&
+                  a.Thursday_Open === "Closed" &&
+                  a.Friday_Open !== "Closed"
+                    ? `Opens Friday at ${a.Friday_Open}`
+                    : ""}
+                  {props.timeOption === "later" &&
+                  a.Monday_Open === "Closed" &&
+                  a.Tuesday_Open === "Closed" &&
+                  a.Wednesday_Open === "Closed" &&
+                  a.Thursday_Open === "Closed" &&
+                  a.Friday_Open === "Closed" &&
+                  a.Saturday_Open !== "Closed"
+                    ? `Opens Saturday at ${a.Saturday_Open}`
+                    : ""}
+                  {props.timeOption === "later" &&
+                  a.Monday_Open === "Closed" &&
+                  a.Tuesday_Open === "Closed" &&
+                  a.Wednesday_Open === "Closed" &&
+                  a.Thursday_Open === "Closed" &&
+                  a.Friday_Open === "Closed" &&
+                  a.Saturday_Open === "Closed" &&
+                  a.Sunday_Open !== "Closed"
+                    ? `Opens Sunday at ${a.Sunday_Open}`
+                    : ""}
+                </OpenClosed>
               </Times>
             </Item>
             <NextPage>
