@@ -89,10 +89,14 @@ const CheckBox = styled.input`
   width: 2rem;
 `;
 
+const ErrMessage = styled.div`
+  height: 3rem;
+`
+
 const SearchForm = props => {
   return (
     <FormStyle>
-      {props.postcodeErrorMsg ? <p>{props.postcodeErrorMsg}</p> : ""}
+      {props.postcodeErrorMsg ? <ErrMessage>{props.postcodeErrorMsg}</ErrMessage> : <ErrMessage></ErrMessage>}
       <FlexRow className="flexrow">
         <PostcodeSearchBar
           type="text"
