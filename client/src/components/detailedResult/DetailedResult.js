@@ -5,17 +5,11 @@ import clock from "../../assets/clock.png";
 import styles from "../../assets/styles/style.css";
 import jug from "../../assets/jug.png";
 import marker from "../../assets/red_marker.png";
-import banner from "../../assets/EmergencyFood_temp.png";
 
 const Div = styled.div`
   min-height: 100vh;
   background: #e71242;
-  @media screen and (min-width: 600px) {
-    background-color: white;
-}
-
 `;
-
 
 const Wrapper = styled.section`
   min-height: 85vh;
@@ -25,25 +19,14 @@ const Wrapper = styled.section`
   margin-right: auto;
   margin-top: 7vh;
   margin-bottom: ;
-  @media screen and (min-width: 600px) {
-    background-color: white;
-    width: 80%;
-    margin: auto;
-
-}
 `;
 
 const Header = styled.h1`
   color: rgb(24, 23, 24);
   text-align: center;
   padding-top: 10%;
-  padding-right: 2%;
-  
   font-size: 18px;
   font-family: lato;
-  @media screen and (min-width: 600px){
-    
-  }
 `;
 
 const Button = styled.button`
@@ -73,13 +56,6 @@ const Column = styled.div`
   width: 80%;
 `;
 
-const Banner = styled.img`
-
-@media screen and (max-width: 600px){
-  display: none;
-}
-`
-
 const Hours = styled.div`
   display: flex;
   justify-content: space-between;
@@ -102,7 +78,6 @@ const DetailedResult = ({ postcode, match, results }) => {
               return (
                 <div>
                   <Navbar />
-                  <Banner src={banner} width={"100%"} />
                   <Wrapper>
                     <img
                       src={jug}

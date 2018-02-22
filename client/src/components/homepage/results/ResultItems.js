@@ -10,20 +10,17 @@ const geolib = require("geolib");
 const ResultItems = ({ ...props }) => {
   const Results = styled.div`
     background: #e71242;
-    padding-top: 1rem;
     padding: 0.75em;
-    @media screen and (min-width: 600px) {
-      width: 500px;
-    }
   `;
   const Item = styled.div`
+    margin-bottom: 5px;
     background-color: white;
+    padding: 5px;
     color: #999999;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    width: 80%;
-    padding: 2%;
+    min-width: 79vw;
+    height: 25vh;
   `;
   const Title = styled.div`
     font-size: 1.2rem;
@@ -34,28 +31,18 @@ const ResultItems = ({ ...props }) => {
     color: #e71242;
     padding-top: 0.4em;
     padding-left: 0.2em;
-    display: flex;
-    align-items: center;
-  `;
-
-  //Flex contains the list item result and the link to "more detail"//
-  const Flex = styled.div`
-    display: flex;
-    margin: auto;
-    min-height: 25vh;
-    justify-content: space-between;
-    margin-bottom: 5%;
   `;
   const NextPage = styled.button`
+    min-width: 3rem;
     border: none;
+    border-left: 4px solid #e71242;
+    margin-bottom: 25px;
     padding: 5px;
+    height: 26.5vh;
     background-color: white;
-    width: 15%;
   `;
-
-  const OpenClosed = styled.span`
-    margin-left: 3%;
-    line-height: 1rem;
+  const Flex = styled.div`
+    display: flex;
   `;
   const NoResults = styled.div`
     color: white;
@@ -172,35 +159,42 @@ const ResultItems = ({ ...props }) => {
     if (Advice.length > 1) {
       return Advice.map(a => {
         return (
-            <Flex>
-              <Item key={a.Name + a.Description}>
-                <Title>{a.Name}</Title>
-
-                <p>{a.Description}</p>
-                {a.Address_Line_3}
-                <br />
-                {props.lat ? (
-                  <span>
-                    Distance:{distanceFinder(a, props.lat, props.long)}
-                  </span>
-                ) : (
-                  console.log("no result")
-                )}
-                <Times>
-                  <img src={clock1} alt="clock" width={20} height={20} />
-                  <OpenClosed>
-                    {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
-                      ? ` Closes today at ${a[mapTime[day + 7]]}`
-                      : " Closed Today"}
-                  </OpenClosed>
-                </Times>
-              </Item>
-              <NextPage>
-                <a href={"/results/" + a.Name}>
-                  <img alt="button-arrow" src={arrow} height={20} width={15} />
-                </a>
-              </NextPage>
-            </Flex>
+          <Flex>
+            <Item key={a.Name + a.Description}>
+              <Title>{a.Name}</Title>
+              <br />
+              {a.Description}
+              <br />
+              {a.Address_Line_3}
+              <br />
+              {props.lat ? (
+                <span>
+                  Distance: {distanceFinder(a, props.lat, props.long)}
+                </span>
+              ) : (
+                console.log("no result")
+              )}
+              <Times>
+                <img
+                  src={clock1}
+                  alt="clock"
+                  width={20}
+                  height={20}
+                  vertical-align="middle"
+                />
+                {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
+                  ? `Closes today at ${a[mapTime[day + 7]]}`
+                  : a[mapTime[day + 1]] !== "Closed"
+                    ? `Opens tomorrow at ${a[mapTime[day + 1]]}`
+                    : " Closed tomorrow"}
+              </Times>
+            </Item>
+            <NextPage>
+              <a href={"/results/" + a.Name}>
+                <img alt="button-arrow" src={arrow} height={20} width={15} />
+              </a>
+            </NextPage>
+          </Flex>
         );
       });
     } else {
@@ -219,7 +213,9 @@ const ResultItems = ({ ...props }) => {
           <Flex>
             <Item key={a.Name + a.Description}>
               <Title>{a.Name}</Title>
-              <p>{a.Description}</p>
+              <br />
+              {a.Description}
+              <br />
               {a.Address_Line_3}
               <br />
               {props.lat ? (
@@ -230,14 +226,20 @@ const ResultItems = ({ ...props }) => {
                 console.log("can't find distance")
               )}
               <Times>
-                <img alt="clock" src={clock1} width={20} height={20} />
-                <OpenClosed>
-                  {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
-                    ? `Closes today at ${a[mapTime[day + 7]]}`
-                    : a[mapTime[day + 1]] !== "Closed"
-                      ? `Opens tomorrow at ${a[mapTime[day + 1]]}`
-                      : " Closed tomorrow"}
-                </OpenClosed>
+                <img
+                  alt="clock"
+                  src={clock1}
+                  width={20}
+                  height={20}
+                  padding-left={10}
+                  vertical-align="middle"
+                />
+
+                {a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]
+                  ? `Closes today at ${a[mapTime[day + 7]]}`
+                  : a[mapTime[day + 1]] !== "Closed"
+                    ? `Opens tomorrow at ${a[mapTime[day + 1]]}`
+                    : " Closed tomorrow"}
               </Times>
             </Item>
             <NextPage>
