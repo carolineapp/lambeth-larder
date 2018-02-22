@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Map, TileLayer } from "react-leaflet";
 import MarkersList from "./MarkersList";
 
-const mapboxToken = require("../../../config.js");
+const mapboxToken = "";
 
 const zoomLevel = 13;
 
