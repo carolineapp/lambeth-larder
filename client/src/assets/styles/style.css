@@ -19,4 +19,27 @@
     transition: color 0.3s ease;
   }
   
-  /* Nav bar styles -------> */
+
+  /* Map styles here */
+    
+     .leaflet-container {
+      width: 100vw;
+      height: 35vh;
+    }
+
+    .leaflet-container h2 {
+      margin:0;
+    }
+    .leaflet-control-attribution {
+      display: none;
+    }
+
+
+  @media only screen and (min-width: 600px) {
+    .leaflet-container {
+      width: 80%;
+      height: 400px;
+      margin:auto;
+    }
+
+}

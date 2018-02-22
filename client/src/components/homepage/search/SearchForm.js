@@ -8,16 +8,22 @@ const FormStyle = styled.form`
   color: white;
   flex-direction: column;
   padding: 2%;
-  height: 33vh;
+  height: 45vh;
+  max-width: 500px;
   @media screen and (min-width: 600px) {
     width: 500px;
+    margin-left:10%;
+    padding: 1%;
   }
 `;
+
+//For postcode search bar and submit button
 const FlexRow = styled.div`
-  display: inherit;
+  display: flex;
   flex-direction: row;
   margin-top: 3vh;
   justify-content: space-around;
+  align-items: center;
 `;
 const PostcodeSearchBar = styled.input`
   display: flex;
@@ -31,7 +37,7 @@ const PostcodeSearchBar = styled.input`
   font: lato;
   color: white;
   font-size: 18px;
-  margin-top: 2em;
+  margin-top: 1em;
   &::placeholder {
     color: white;
   }
@@ -59,7 +65,7 @@ const FakeRadioOn = styled.label`
   padding: 2%;
   color: #e71242;
   background: white;
-  border: 2px solid #e71242;
+  border: 2px solid white;
   text-align: center;
 `;
 
@@ -67,11 +73,12 @@ const Submit = styled.button`
   display: flex;
   color: white;
   background-color: none;
+  margin-top:3%;
 `;
 const Question = styled.p`
-  padding-top: 4em;
+  padding-top: 2em;
   font-size: 1rem;
-  margin: 0 auto;
+  margin: 0 auto 3% auto;
 `;
 const LabelSmall = styled.label`
   font-size: 1 rem;
@@ -81,6 +88,7 @@ const LabelSmall = styled.label`
 const Padding = styled.div`
   margin: 5%;
   padding-top: 2em;
+  height: 2em;
 `;
 
 const CheckBox = styled.input`
@@ -89,10 +97,16 @@ const CheckBox = styled.input`
   width: 2rem;
 `;
 
+//Makes space for error message so that things don't overlap
+
+const ErrMessage = styled.div`
+  padding: 2%;
+`
+
 const SearchForm = props => {
   return (
     <FormStyle>
-      {props.postcodeErrorMsg ? <p>{props.postcodeErrorMsg}</p> : ""}
+      {props.postcodeErrorMsg ? <ErrMessage>{props.postcodeErrorMsg}</ErrMessage> : <ErrMessage></ErrMessage>}
       <FlexRow className="flexrow">
         <PostcodeSearchBar
           type="text"
@@ -107,6 +121,7 @@ const SearchForm = props => {
             width={40}
             height={40}
             vertical-align="center"
+           
           />
         </Submit>
       </FlexRow>
