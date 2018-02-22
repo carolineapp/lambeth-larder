@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Map, TileLayer } from "react-leaflet";
 import MarkersList from "./MarkersList";
-
+import styles from "../../../assets/styles/style.css";
 const mapboxToken = require("../../../config.js");
 
 const zoomLevel = 13;
@@ -12,10 +12,6 @@ const hours = d.getHours();
 const minutes = d.getMinutes();
 const time = `${hours}:${minutes}`;
 
-const style = {
-  height: "35vh",
-  width: "100vw"
-};
 
 class MapWindow extends Component {
   constructor(props) {
@@ -130,7 +126,6 @@ class MapWindow extends Component {
             }}
             center={centre}
             zoom={zoomLevel}
-            style={style}
           >
             <TileLayer attribution={false} url={url} id="mapbox.streets" />
 
