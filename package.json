@@ -4,8 +4,9 @@
   "description": "Info on emergency food.",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test ./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./server/tests/*.test.js | tap-spec",
-    "start": "node ./server/server.js",
+    "test":
+      "NODE_ENV=test ./node_modules/.bin/istanbul cover ./node_modules/tape/bin/tape ./server/tests/*.test.js | tap-spec",
+    "start": "serve -s client/build",
     "server": "nodemon ./server/server.js",
     "client": "node start-client.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
