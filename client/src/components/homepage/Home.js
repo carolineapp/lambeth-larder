@@ -24,6 +24,7 @@ const Home = props => {
     line-height: 2.5vh;
     @media screen and (min-width: 600px) {
       font-size: 0.8rem;
+      width: 50%;
     }
   `;
 
@@ -44,6 +45,11 @@ const Home = props => {
     justify-content: space-between;
     height: 5vh;
     width: 99%;
+    @media screen and (min-width: 600px) {
+      width: 80%;
+      margin: auto;
+      text-align: right;
+    }
   `;
   const MaximiseMap = styled.button`
     background: #e71242;

@@ -5,13 +5,16 @@ import arrow from "../../../assets/arrow.png";
 // import { sortByTime, getTimeOptionArr } from "../../../helpers/getStatus";
 const geolib = require("geolib");
 
-const ResultItems = props => {
+const ResultItems = (props) => {
   const Results = styled.div`
     background: #e71242;
     padding-top: 1rem;
     padding: 0.75em;
+    max-width: 500px;
     @media screen and (min-width: 600px) {
       width: 500px;
+      margin-left: 10%;
+      padding: 1%;
     }
   `;
   const Item = styled.div`
@@ -43,6 +46,9 @@ const ResultItems = props => {
     min-height: 25vh;
     justify-content: space-between;
     margin-bottom: 5%;
+    @media screen and (min-width: 600px) {
+      width: 100%;
+    }
   `;
   const NextPage = styled.button`
     border: none;
@@ -58,7 +64,6 @@ const ResultItems = props => {
   const NoResults = styled.div`
     color: white;
     text-align: center;
-    height: 20vh;
   `;
 
   const d = new Date();
@@ -153,9 +158,7 @@ const ResultItems = props => {
           <Flex>
             <Item key={a.Name + a.Description}>
               <Title>{a.Name}</Title>
-              <br />
-              {a.Description}
-              <br />
+              <p>{a.Description}</p>
               {a.Address_Line_3}
               <br />
               {props.lat ? (

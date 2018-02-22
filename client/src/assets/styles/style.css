@@ -1,22 +1,38 @@
+body {
+  color: #252525;
+  font-family: "Lato", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100vw;
+  font-size: 16px;
+}
 
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #232323;
+  transition: color 0.3s ease;
+}
 
- body {
-    color: #252525;
-    font-family: "Lato", sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    width: 100vw;
-    font-size: 16px;
+/* Map styles here */
 
+.leaflet-container {
+  width: 100vw;
+  height: 35vh;
+}
+
+.leaflet-container h2 {
+  margin: 0;
+}
+.leaflet-control-attribution {
+  display: none;
+}
+
+@media only screen and (min-width: 600px) {
+  .leaflet-container {
+    width: 80%;
+    height: 400px;
+    margin: auto;
   }
-  
-  
-  a {
-    text-decoration: none;
-    cursor: pointer;
-    color: #232323;
-    transition: color 0.3s ease;
-  }
-  
-  /* Nav bar styles -------> */
+}
