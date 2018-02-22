@@ -2,9 +2,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const routes = require("./controllers/routes");
 const app = express();
-const PORT = process.env.PORT || 3001;
 
 /*Express Middleware*/
+app.set("port", process.env.PORT || 3001);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(routes);
@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app.listen(PORT, () => {
+app.listen("port", () => {
   console.log(`Listening on port ${PORT}`);
 });
 
