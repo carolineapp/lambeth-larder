@@ -103,7 +103,6 @@ class App extends Component {
         <div>
           <Switch>
             <Route
-              exact
               path="/"
               render={props => (
                 <div className="homepage__container">
@@ -131,15 +130,13 @@ class App extends Component {
               exact
               path="/results/:name"
               render={props => (
-                <div>
-                  <DetailedResult
-                    {...props}
-                    timeOption={this.state.timeOption}
-                    postcode={this.state.postcode}
-                    results={this.state.results}
-                    history={history}
-                  />
-                </div>
+                <DetailedResult
+                  {...props}
+                  timeOption={this.state.timeOption}
+                  postcode={this.state.postcode}
+                  results={this.state.results}
+                  history={history}
+                />
               )}
             />
             <Route component={NotFound} />
