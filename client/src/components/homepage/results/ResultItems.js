@@ -12,9 +12,10 @@ const ResultItems = (props) => {
     padding: 0.75em;
     max-width: 500px;
     @media screen and (min-width: 600px) {
-      width: 500px;
+      width: 400px;
       margin-left: 10%;
       padding: 1%;
+  
     }
   `;
   const Item = styled.div`

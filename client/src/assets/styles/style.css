@@ -6,6 +6,8 @@ body {
   box-sizing: border-box;
   width: 100vw;
   font-size: 16px;
+  background-color: #e71242;
+ 
 }
 
 a {
@@ -19,7 +21,7 @@ a {
 
 .leaflet-container {
   width: 100vw;
-  height: 35vh;
+  height: 30vh;
 }
 
 .leaflet-container h2 {
@@ -34,5 +36,11 @@ a {
     width: 80%;
     height: 400px;
     margin: auto;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  body {
+    background-color: white;
   }
 }
