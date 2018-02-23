@@ -99,6 +99,7 @@ const Info = styled.div`
 `;
 const Link = styled.p`
   text-decoration: underline;
+  overflow-wrap: break-word;
 `;
 const Voucher = styled.div`
   font-weight: 700;

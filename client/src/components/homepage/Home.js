@@ -45,6 +45,7 @@ const Home = props => {
   const MinimiseMap = styled.button`
     background: #e71242;
     border: none;
+    border-bottom: 2px solid white;
     color: white;
 
     font-size: 0.875rem;
