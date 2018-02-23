@@ -13,7 +13,13 @@ const Home = props => {
     display: flex;
     align-items: center;
     padding-left: 5vw;
+    margin-top: 4%;
+    margin-bottom: 4%;
     color: rgba(0, 0, 0, 0.5);
+     @media screen and (min-width: 600px) {
+      margin-left: 5%;
+      font-size: 1.25rem;
+    }
   `;
 
   const Span = styled.p`
