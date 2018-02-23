@@ -8,16 +8,30 @@ import LargeMap from "./map/LargeMap";
 
 const Home = props => {
   const Title = styled.div`
-    font-size: 20px;
+    font-size: 1.25rem
     height: 15vh;
     display: flex;
     align-items: center;
     padding-left: 5vw;
+    margin-top: 4%;
+    padding-bottom: 4%;
     color: rgba(0, 0, 0, 0.5);
+     @media screen and (min-width: 600px) {
+      margin-left: 5%;
+      margin-top:0;
+      margin-bottom: 0;
+      font-size: 1.25rem;
+    }
   `;
 
+  const Header = styled.header`
+  width: 100%;
+  background: white;
+ 
+`;
+
   const Span = styled.p`
-    font-size: 8px;
+    font-size: 0.5rem;
     padding-left: 3%;
     margin: 0%;
     display: block;
@@ -31,6 +45,7 @@ const Home = props => {
   const MinimiseMap = styled.button`
     background: #e71242;
     border: none;
+    border-bottom: 2px solid white;
     color: white;
 
     font-size: 0.875rem;
@@ -44,7 +59,8 @@ const Home = props => {
     display: flex;
     justify-content: space-between;
     height: 5vh;
-    width: 99%;
+    width: 100%;
+    background-color: white;
     @media screen and (min-width: 600px) {
       width: 80%;
       margin: auto;
@@ -63,10 +79,13 @@ const Home = props => {
     }
   `;
 
+ 
   return (
     <div>
-      <Navbar />
-      <Title>Emergency Food</Title>
+      <Header>
+        <Navbar />
+        <Title>Emergency Food</Title>
+      </Header>
       {!props.fullScreen ? (
         <div>
           <MapWindow

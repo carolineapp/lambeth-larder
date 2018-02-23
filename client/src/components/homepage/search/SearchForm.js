@@ -14,6 +14,7 @@ const FormStyle = styled.form`
     width: 400px;
     margin-left: 10%;
     padding: 1%;
+   
   }
 `;
 const FlexRow = styled.div`

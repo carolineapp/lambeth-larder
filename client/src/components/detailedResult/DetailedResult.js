@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Navbar from "../Navbar";
 import clock from "../../assets/clock.png";
-// import styles from "../../assets/styles/style.css";
+import styles from "../../assets/styles/style.css";
 import jug from "../../assets/jug.png";
 import marker from "../../assets/red_marker.png";
 import banner from "../../assets/EmergencyFood_temp.png";
@@ -21,12 +21,13 @@ const Wrapper = styled.section`
   width: 90%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 7vh;
-  margin-bottom: ;
+  margin-top: 5vh;
   @media screen and (min-width: 600px) {
-    background-color: white;
-    width: 80%;
-    margin: auto;
+    width: 70%;
+    margin: 5% auto;
+    border: 5px solid #e71242;
+    padding: 4%;
+    font-size: 1.125rem;
   }
 `;
 
@@ -36,35 +37,48 @@ const Header = styled.h1`
   padding-top: 10%;
   padding-right: 2%;
 
-  font-size: 18px;
   font-family: lato;
   @media screen and (min-width: 600px) {
+    padding: 2%;
+    font-size: 1.875rem;
   }
 `;
 
 const Button = styled.button`
   min-width: 30%;
-  padding: 2%;
-  margin-top: 15%;
-  margin-left: 5%;
+  padding: 1%;
+  margin-top: 3%;
+  margin-left: 6%;
+  margin-bottom: 5%;
   color: #e71242;
   background: white;
   border: 2px solid #e71242;
   text-align: center;
   line-height: 250%;
   z-index: -1;
+  font-size: 1rem;
+  @media screen and (min-width: 600px) {
+    margin-left: 1%;
+    min-width: 10%;
+    margin-bottom: 3%;
+  }
 `;
 const OpeningHours = styled.div`
-  width: 90%;
+  width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin: auto;
+  @media screen and (min-width: 600px) {
+    width: 50%;
+    margin: 2%;
+  }
 `;
 
 const Column = styled.div`
   display: flex;
   flex-direction: column;
+  margin-left: 18%;
   color: #e71242;
   width: 80%;
 `;
@@ -81,11 +95,17 @@ const Hours = styled.div`
 `;
 
 const Info = styled.div`
-  padding: 1.5em;
+  padding: 1.2em;
 `;
-
+const Link = styled.p`
+  text-decoration: underline;
+  overflow-wrap: break-word;
+`;
 const Voucher = styled.div`
-  font-size: 1.2em;
+  font-weight: 700;
+  @media screen and (min-width: 600px) {
+    font-size: 1.125rem;
+  }
 `;
 
 const DetailedResult = ({ postcode, match, results }) => {
@@ -140,13 +160,6 @@ const DetailedResult = ({ postcode, match, results }) => {
                       </Button>
                     </div>
                     <Info>
-                      <div>
-                        {result.Phone}
-                        <br />
-                        {result.Email}
-                        <br />
-                        <a href={result.Website}>{result.Website}</a>
-                      </div>
                       <Voucher>
                         {result.Requires_Voucher === "No" ? (
                           <div>No Voucher Required</div>
@@ -154,6 +167,15 @@ const DetailedResult = ({ postcode, match, results }) => {
                           <a href="/voucher">Voucher Required (click here)</a>
                         )}
                       </Voucher>
+                      <div>
+                        <p>{result.Phone}</p>
+
+                        <p>{result.Email}</p>
+
+                        <a href={result.Website}>
+                          <Link>{result.Website}</Link>
+                        </a>
+                      </div>
                     </Info>
 
                     <OpeningHours>
