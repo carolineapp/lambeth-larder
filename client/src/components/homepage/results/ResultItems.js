@@ -10,8 +10,11 @@ const ResultItems = props => {
     background: #e71242;
     padding-top: 1rem;
     padding: 0.75em;
+    max-width: 500px;
     @media screen and (min-width: 600px) {
       width: 500px;
+      margin-left: 10%;
+      padding: 1%;
     }
   `;
   const Item = styled.div`
@@ -22,7 +25,11 @@ const ResultItems = props => {
     justify-content: space-around;
     width: 80%;
     padding: 2%;
+    @media screen and (min-width: 600px) {
+      width: 100%;
+    }
   `;
+
   const Title = styled.div`
     font-size: 1.2rem;
     color: #999999;
@@ -58,7 +65,6 @@ const ResultItems = props => {
   const NoResults = styled.div`
     color: white;
     text-align: center;
-    height: 20vh;
   `;
 
   const d = new Date();
@@ -145,9 +151,7 @@ const ResultItems = props => {
           <Flex>
             <Item key={a.Name + a.Description}>
               <Title>{a.Name}</Title>
-              <br />
-              {a.Description}
-              <br />
+              <p>{a.Description}</p>
               {a.Address_Line_3}
               <br />
               {props.lat ? (
