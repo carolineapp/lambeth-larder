@@ -11,6 +11,11 @@ const ResultItems = props => {
     padding-top: 1rem;
     padding: 0.75em;
     max-width: 500px;
+    @media screen and (min-width: 600px) {
+      width: 500px;
+      margin-left: 10%;
+      padding: 1%;
+    }
   `;
   const Item = styled.div`
     background-color: white;
@@ -20,20 +25,11 @@ const ResultItems = props => {
     justify-content: space-around;
     width: 80%;
     padding: 2%;
-    @media screen and (min-width: 600px) {
-      width: 100%;
-    }
   `;
-
   const Title = styled.div`
     font-size: 1.2rem;
     color: #999999;
     padding-bottom: 0.2em;
-    @media screen and (min-width: 600px) {
-      width: 500px;
-      margin-left: 10%;
-      padding: 1%;
-    }
   `;
   const Times = styled.div`
     color: #e71242;
@@ -50,6 +46,9 @@ const ResultItems = props => {
     min-height: 25vh;
     justify-content: space-between;
     margin-bottom: 5%;
+    @media screen and (min-width: 600px) {
+      width: 100%;
+    }
   `;
   const NextPage = styled.button`
     border: none;
@@ -167,21 +166,21 @@ const ResultItems = props => {
                   {props.timeOption === "today" && time < a[mapTime[day]]
                     ? `Opens today at ${a[mapTime[day]]}`
                     : ""}
-                  {props.timeOption === "" && time < a[mapTime[day]]
-                    ? `Opens today at ${a[mapTime[day]]}`
-                    : ""}
                   {props.timeOption === "today" &&
-                  time > a[mapTime[day]] &&
-                  time < a[mapTime[day + 7]]
-                    ? `Closes today at ${a[mapTime[day + 7]]}`
-                    : ""}
-                  {props.timeOption === "" &&
                   time > a[mapTime[day]] &&
                   time < a[mapTime[day + 7]]
                     ? `Closes today at ${a[mapTime[day + 7]]}`
                     : ""}
                   {props.timeOption === "today" && time > a[mapTime[day + 7]]
                     ? `Has closed for today`
+                    : ""}
+                  {props.timeOption === "" && time < a[mapTime[day]]
+                    ? `Opens today at ${a[mapTime[day]]}`
+                    : ""}
+                  {props.timeOption === "" &&
+                  time > a[mapTime[day]] &&
+                  time < a[mapTime[day + 7]]
+                    ? `Closes today at ${a[mapTime[day + 7]]}`
                     : ""}
                   {props.timeOption === "" && time > a[mapTime[day + 7]]
                     ? `Has closed for today`
