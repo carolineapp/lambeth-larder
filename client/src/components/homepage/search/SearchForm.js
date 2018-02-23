@@ -8,10 +8,10 @@ const FormStyle = styled.form`
   color: white;
   flex-direction: column;
   padding: 2%;
-  height: 45vh;
+  max-height: 45vh;
   max-width: 500px;
   @media screen and (min-width: 600px) {
-    width: 500px;
+    width: 400px;
     margin-left: 10%;
     padding: 1%;
   }
@@ -19,7 +19,6 @@ const FormStyle = styled.form`
 const FlexRow = styled.div`
   display: flex;
   flex-direction: row;
-  margin-top: 3vh;
   justify-content: space-around;
   align-items: center;
 `;
@@ -27,24 +26,22 @@ const PostcodeSearchBar = styled.input`
   display: flex;
   align-self: center;
   padding: 1%;
-  margin: 2%;
   width: 75%;
   height: 6vh;
   background-color: #e71242;
   border: 2px solid white;
   font: lato;
   color: white;
-  font-size: 18px;
-  margin-top: 1em;
+  font-size: 1.125rem;
   &::placeholder {
     color: white;
   }
-  @media screen and (min-width: 600px) {
-  }
+  
 `;
 const Radio = styled.input`
   display: none;
   text-align: center;
+  
 `;
 const FakeRadio = styled.label`
   display: table;
@@ -55,6 +52,9 @@ const FakeRadio = styled.label`
   background: #e71242;
   border: 2px solid white;
   text-align: center;
+  @media screen and (min-width: 600px) {
+    line-height: 2rem;
+  }
 `;
 const FakeRadioOn = styled.label`
   display: table;
@@ -65,18 +65,21 @@ const FakeRadioOn = styled.label`
   background: white;
   border: 2px solid white;
   text-align: center;
+  @media screen and (min-width: 600px) {
+    line-height: 2rem;
+  }
 `;
 
 const Submit = styled.button`
   display: flex;
   color: white;
   background-color: none;
-  margin-top: 3%;
+
 `;
 const Question = styled.p`
-  padding-top: 2em;
+  padding-top: 1em;
   font-size: 1rem;
-  margin: 0 auto 3% auto;
+  margin: 0 auto 5% auto;
 `;
 const LabelSmall = styled.label`
   font-size: 1 rem;
@@ -84,9 +87,9 @@ const LabelSmall = styled.label`
   padding-top: 1em;
 `;
 const Padding = styled.div`
-  margin: 5%;
   padding-top: 2em;
   height: 2em;
+  margin-left: 5%;
 `;
 
 const CheckBox = styled.input`
