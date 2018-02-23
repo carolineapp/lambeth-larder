@@ -11,11 +11,6 @@ const ResultItems = props => {
     padding-top: 1rem;
     padding: 0.75em;
     max-width: 500px;
-    @media screen and (min-width: 600px) {
-      width: 500px;
-      margin-left: 10%;
-      padding: 1%;
-    }
   `;
   const Item = styled.div`
     background-color: white;
@@ -34,6 +29,11 @@ const ResultItems = props => {
     font-size: 1.2rem;
     color: #999999;
     padding-bottom: 0.2em;
+    @media screen and (min-width: 600px) {
+      width: 500px;
+      margin-left: 10%;
+      padding: 1%;
+    }
   `;
   const Times = styled.div`
     color: #e71242;
