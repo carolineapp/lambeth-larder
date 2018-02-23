@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const routes = require("./controllers/routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
-require("./controllers/airtable");
+const path = require("path");
 
 /*Express Middleware*/
 app.use(bodyParser.json());

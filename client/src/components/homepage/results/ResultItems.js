@@ -5,7 +5,7 @@ import arrow from "../../../assets/arrow.png";
 // import { sortByTime, getTimeOptionArr } from "../../../helpers/getStatus";
 const geolib = require("geolib");
 
-const ResultItems = (props) => {
+const ResultItems = props => {
   const Results = styled.div`
     background: #e71242;
     padding-top: 1rem;
@@ -70,10 +70,8 @@ const ResultItems = (props) => {
   const d = new Date();
   const day = d.getDay(); // returns the current day as a value between 0-6 where Sunday = 0
   const hours = d.getHours();
-  console.log("hours", hours);
   const minutes = d.getMinutes();
   const time = `${hours}:${minutes}`;
-  console.log(time);
 
   // mapTime object gives the current day from getDay as the key and returns the corresponding value. ie. today is Tuesday which = 2 so mapTime[2] returns a.Tuesday_Open which gives either "Closed" or it's opening time.
 
@@ -102,23 +100,19 @@ const ResultItems = (props) => {
     const latB = parseFloat(lat);
     const longB = parseFloat(long);
     const distance =
-      Math.round(
-        geolib.getDistance(
-          { latitude: latA, longitude: longA },
-          { latitude: latB, longitude: longB }
-        ) /
-          1000 *
-          0.62,
-        2
-      ) + " miles";
-    return distance;
+      geolib.getDistance(
+        { latitude: latA, longitude: longA },
+        { latitude: latB, longitude: longB }
+      ) / 1000;
+    const roundedDist = (distance * 0.62).toFixed(1) + " miles";
+    return roundedDist;
   };
 
   let sortedItemsTime = [];
 
   const sortByTime = () => {
     if (props.result) {
-      if (props.timeOption === "today") {
+      if (props.timeOption === "today" || !props.timeOption) {
         sortedItemsTime = props.result.filter(function(r) {
           return r[mapTime[day]] !== "Closed";
         });
@@ -132,9 +126,7 @@ const ResultItems = (props) => {
     }
   };
 
-  if (props.timeOption !== "") {
-    sortByTime();
-  }
+  sortByTime();
 
   let advice = [];
   let food = [];
@@ -181,6 +173,17 @@ const ResultItems = (props) => {
                     ? `Closes today at ${a[mapTime[day + 7]]}`
                     : ""}
                   {props.timeOption === "today" && time > a[mapTime[day + 7]]
+                    ? `Has closed for today`
+                    : ""}
+                  {!props.timeOption && time < a[mapTime[day]]
+                    ? `Opens today at ${a[mapTime[day]]}`
+                    : ""}
+                  {!props.timeOption &&
+                  time > a[mapTime[day]] &&
+                  time < a[mapTime[day + 7]]
+                    ? `Closes today at ${a[mapTime[day + 7]]}`
+                    : ""}
+                  {!props.timeOption && time > a[mapTime[day + 7]]
                     ? `Has closed for today`
                     : ""}
                   {props.timeOption === "tomorrow"
