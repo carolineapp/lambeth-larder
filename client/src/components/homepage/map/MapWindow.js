@@ -94,10 +94,36 @@ class MapWindow extends Component {
     sortByTime();
     getTimeOptionArr();
 
+
+  //added on Friday 21st//
+    let advice = [];
+    let food = [];
+  
+    const sortByAdvice = () => {
+      if (sortedItems) {
+        food = sortedItems.filter(function(item) {
+          return item.FoodCentre === "true";
+        });
+        advice = sortedItems.filter(function(item) {
+          return item.FoodCentre === "false";
+        });
+      }
+    };
+    sortByAdvice()
+//----------------------------//
     let flatten = [];
     const getLatLong = () => {
-      if (sortedItems) {
-        sortedItems.map((res, i) => {
+      //need to check that sortAdice has completed first?//
+      if (sortedItems && this.props.advice) {
+        advice.map((res, i) => {
+          flatten.push({
+            key: i,
+            position: [+res.Lat, +res.Long],
+            text: res.Name
+          });
+        });
+      } else if(sortedItems && !this.props.advice) {
+        food.map((res, i) => {
           flatten.push({
             key: i,
             position: [+res.Lat, +res.Long],

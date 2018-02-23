@@ -93,6 +93,7 @@ const Home = props => {
             lat={props.lat}
             long={props.long}
             timeOption={props.timeOption}
+            advice={props.adviceCentres}
           />
           <div>
             <MapNavAttribution>
@@ -132,6 +133,8 @@ const Home = props => {
             result={props.results}
             lat={props.lat}
             long={props.long}
+            timeOption={props.timeOption}
+            advice={props.adviceCentres}
           />
           <MapNavAttribution>
             <MinimiseMap onClick={props.toggleMap}>Minimise</MinimiseMap>

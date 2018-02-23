@@ -37,12 +37,12 @@ const PostcodeSearchBar = styled.input`
   &::placeholder {
     color: white;
   }
-  @media screen and (min-width: 600px) {
-  }
+  
 `;
 const Radio = styled.input`
   display: none;
   text-align: center;
+  
 `;
 const FakeRadio = styled.label`
   display: table;
@@ -53,6 +53,9 @@ const FakeRadio = styled.label`
   background: #e71242;
   border: 2px solid white;
   text-align: center;
+  @media screen and (min-width: 600px) {
+    line-height: 2rem;
+  }
 `;
 const FakeRadioOn = styled.label`
   display: table;
@@ -63,13 +66,16 @@ const FakeRadioOn = styled.label`
   background: white;
   border: 2px solid white;
   text-align: center;
+  @media screen and (min-width: 600px) {
+    line-height: 2rem;
+  }
 `;
 
 const Submit = styled.button`
   display: flex;
   color: white;
   background-color: none;
-  margin-top: 3%;
+
 `;
 const Question = styled.p`
   padding-top: 1em;

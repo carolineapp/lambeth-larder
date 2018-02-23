@@ -78,7 +78,7 @@ const OpeningHours = styled.div`
 const Column = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 18%;
+  margin-left: 5%;
   color: #e71242;
   width: 80%;
 `;
@@ -181,7 +181,7 @@ const DetailedResult = ({ postcode, match, results }) => {
                     <OpeningHours>
                       <img src={clock} height={30} width={30} alt={"clock"} />
                       <Column>
-                        Opening Hours:
+                        <p style={{marginTop: "0"}}>Opening Hours:</p>
                         <p>
                           Monday:{" "}
                           {result.Monday_Open === "Closed"
