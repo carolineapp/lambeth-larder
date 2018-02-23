@@ -8,7 +8,7 @@ import LargeMap from "./map/LargeMap";
 
 const Home = props => {
   const Title = styled.div`
-    font-size: 20px;
+    font-size: 1.25rem
     height: 15vh;
     display: flex;
     align-items: center;
@@ -17,7 +17,7 @@ const Home = props => {
   `;
 
   const Span = styled.p`
-    font-size: 8px;
+    font-size: 0.5rem;
     padding-left: 3%;
     margin: 0%;
     display: block;

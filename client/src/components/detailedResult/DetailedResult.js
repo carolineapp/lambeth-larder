@@ -36,7 +36,7 @@ const Header = styled.h1`
   padding-top: 10%;
   padding-right: 2%;
 
-  font-size: 18px;
+  font-size: 1.125rem;
   font-family: lato;
   @media screen and (min-width: 600px) {
   }
