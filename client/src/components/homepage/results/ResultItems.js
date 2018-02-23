@@ -111,7 +111,7 @@ const ResultItems = props => {
 
   const sortByTime = () => {
     if (props.result) {
-      if (props.timeOption === "today" || props.timeOption === "") {
+      if (props.timeOption === "today" || !props.timeOption) {
         sortedItemsTime = props.result.filter(function(r) {
           return r[mapTime[day]] !== "Closed";
         });
@@ -174,15 +174,15 @@ const ResultItems = props => {
                   {props.timeOption === "today" && time > a[mapTime[day + 7]]
                     ? `Has closed for today`
                     : ""}
-                  {props.timeOption === "" && time < a[mapTime[day]]
+                  {!props.timeOption && time < a[mapTime[day]]
                     ? `Opens today at ${a[mapTime[day]]}`
                     : ""}
-                  {props.timeOption === "" &&
+                  {!props.timeOption &&
                   time > a[mapTime[day]] &&
                   time < a[mapTime[day + 7]]
                     ? `Closes today at ${a[mapTime[day + 7]]}`
                     : ""}
-                  {props.timeOption === "" && time > a[mapTime[day + 7]]
+                  {!props.timeOption && time > a[mapTime[day + 7]]
                     ? `Has closed for today`
                     : ""}
                   {props.timeOption === "tomorrow"
