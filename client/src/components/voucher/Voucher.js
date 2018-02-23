@@ -22,7 +22,7 @@ const Wrapper = styled.section`
   }
 `;
 const Div = styled.div`
-  min-height: 100vh;
+  height: 100%;
   background: #e71242;
   @media screen and (min-width: 600px) {
     background-color: white;
@@ -60,6 +60,7 @@ const Button = styled.button`
     margin-left: 1%;
     margin-bottom: 3%;
     margin-top: 1%;
+    padding: 1%;
   }
 `;
 

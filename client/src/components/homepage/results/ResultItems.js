@@ -15,6 +15,7 @@ const ResultItems = (props) => {
       width: 400px;
       margin-left: 10%;
       padding: 1%;
+  
     }
   `;
   const Item = styled.div`

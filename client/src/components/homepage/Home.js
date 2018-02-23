@@ -14,13 +14,21 @@ const Home = props => {
     align-items: center;
     padding-left: 5vw;
     margin-top: 4%;
-    margin-bottom: 4%;
+    padding-bottom: 4%;
     color: rgba(0, 0, 0, 0.5);
      @media screen and (min-width: 600px) {
       margin-left: 5%;
+      margin-top:0;
+      margin-bottom: 0;
       font-size: 1.25rem;
     }
   `;
+
+  const Header = styled.header`
+  width: 100%;
+  background: white;
+ 
+`;
 
   const Span = styled.p`
     font-size: 0.5rem;
@@ -50,7 +58,8 @@ const Home = props => {
     display: flex;
     justify-content: space-between;
     height: 5vh;
-    width: 99%;
+    width: 100%;
+    background-color: white;
     @media screen and (min-width: 600px) {
       width: 80%;
       margin: auto;
@@ -69,10 +78,13 @@ const Home = props => {
     }
   `;
 
+ 
   return (
     <div>
-      <Navbar />
-      <Title>Emergency Food</Title>
+      <Header>
+        <Navbar />
+        <Title>Emergency Food</Title>
+      </Header>
       {!props.fullScreen ? (
         <div>
           <MapWindow
