@@ -5,7 +5,7 @@ import arrow from "../../../assets/arrow.png";
 // import { sortByTime, getTimeOptionArr } from "../../../helpers/getStatus";
 const geolib = require("geolib");
 
-const ResultItems = (props) => {
+const ResultItems = props => {
   const Results = styled.div`
     background: #e71242;
     padding-top: 1rem;
@@ -68,11 +68,12 @@ const ResultItems = (props) => {
 
   const d = new Date();
   const day = d.getDay(); // returns the current day as a value between 0-6 where Sunday = 0
-  const hours = d.getHours();
-  console.log("hours", hours);
+  let hours = d.getHours();
   const minutes = d.getMinutes();
+  if (hours < 10) {
+    hours = "0" + hours;
+  }
   const time = `${hours}:${minutes}`;
-  console.log(time);
 
   // mapTime object gives the current day from getDay as the key and returns the corresponding value. ie. today is Tuesday which = 2 so mapTime[2] returns a.Tuesday_Open which gives either "Closed" or it's opening time.
 
@@ -171,12 +172,12 @@ const ResultItems = (props) => {
               <Times>
                 <img alt="clock" src={clock} width={20} height={20} />
                 <OpenClosed>
-                  {props.timeOption === "today" && time < a[mapTime[day]]
+                  {props.timeOption === "today" && time <= a[mapTime[day]]
                     ? `Opens today at ${a[mapTime[day]]}`
                     : ""}
                   {props.timeOption === "today" &&
                   time > a[mapTime[day]] &&
-                  time < a[mapTime[day + 7]]
+                  time <= a[mapTime[day + 7]]
                     ? `Closes today at ${a[mapTime[day + 7]]}`
                     : ""}
                   {props.timeOption === "today" && time > a[mapTime[day + 7]]
@@ -248,7 +249,7 @@ const ResultItems = (props) => {
       return (
         <NoResults>
           Unfortunately there are no centres open at the moment. Try searching
-          tomorrow or next week.
+          for a later day.
         </NoResults>
       );
     }

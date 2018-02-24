@@ -1,17 +1,14 @@
 import React, { Component } from "react";
 import { Map, TileLayer } from "react-leaflet";
 import MarkersList from "./MarkersList";
-import styles from "../../../assets/styles/style.css";
-
+// import styles from "../../../assets/styles/style.css";
 const mapboxToken = require("../../../config.js");
-
 const zoomLevel = 13;
-
 const d = new Date();
 const day = d.getDay(); // returns the current day as a value between 0-6 where Sunday = 0
-const hours = d.getHours();
-const minutes = d.getMinutes();
-const time = `${hours}:${minutes}`;
+// const hours = d.getHours();
+// const minutes = d.getMinutes();
+// const time = `${hours}:${minutes}`;
 
 class MapWindow extends Component {
   constructor(props) {
@@ -55,49 +52,47 @@ class MapWindow extends Component {
       13: "Saturday_Close"
     };
 
-    let today = [];
-    let tomorrow = [];
-    let later = [];
-    let sortedItems = [];
+    let sortedItemsTime = [];
 
     const sortByTime = () => {
       if (this.props.result) {
-        this.props.result.map(a => {
-          if (a[mapTime[day]] !== "Closed" && time < a[mapTime[day + 7]]) {
-            today.push(a);
-          }
-        });
-        this.props.result.map(a => {
-          if (a[mapTime[day + 1]] !== "Closed") {
-            tomorrow.push(a);
-          }
-        });
-        this.props.result.map(a => {
-          later.push(a);
-        });
-      }
-    };
-
-    const getTimeOptionArr = () => {
-      if (this.props.result) {
         if (this.props.timeOption === "today") {
-          sortedItems = today;
+          sortedItemsTime = this.props.result.filter(function(r) {
+            return r[mapTime[day]] !== "Closed";
+          });
         } else if (this.props.timeOption === "tomorrow") {
-          sortedItems = tomorrow;
+          sortedItemsTime = this.props.result.filter(function(r) {
+            return r[mapTime[day + 1]] !== "Closed";
+          });
         } else {
-          sortedItems = later;
+          sortedItemsTime = this.props.result;
         }
-      } else {
       }
     };
 
-    sortByTime();
-    getTimeOptionArr();
+    if (this.props.result) {
+      sortByTime();
+    }
+
+    let advice = [];
+    let food = [];
+
+    const sortByAdvice = () => {
+      if (sortedItemsTime) {
+        food = sortedItemsTime.filter(function(item) {
+          return item.FoodCentre === "true";
+        });
+        advice = sortedItemsTime.filter(function(item) {
+          return item.FoodCentre === "false";
+        });
+      }
+    };
+    sortByAdvice();
 
     let flatten = [];
-    const getLatLong = () => {
-      if (sortedItems) {
-        sortedItems.map((res, i) => {
+    const getLatLong = arr => {
+      if (arr) {
+        arr.map((res, i) => {
           flatten.push({
             key: i,
             position: [+res.Lat, +res.Long],
@@ -106,9 +101,6 @@ class MapWindow extends Component {
         });
       }
     };
-
-    getLatLong();
-
     let centre = [];
 
     if (this.props.lat) {
@@ -128,8 +120,10 @@ class MapWindow extends Component {
             zoom={zoomLevel}
           >
             <TileLayer attribution={false} url={url} id="mapbox.streets" />
-
-            {flatten.length > 0 && <MarkersList flatten={flatten} />}
+            {this.props.adviceCentres === true
+              ? getLatLong(advice)
+              : getLatLong(food)}
+            <MarkersList flatten={flatten} />}
           </Map>
         }
       </div>

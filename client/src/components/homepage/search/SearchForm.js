@@ -119,6 +119,7 @@ const SearchForm = props => {
         />
         <Submit type="submit" onClick={props.checkPostcode}>
           <img
+            alt="magnifying glass"
             src={magnifyingGlass}
             width={40}
             height={40}
@@ -128,7 +129,7 @@ const SearchForm = props => {
       </FlexRow>
       <Question>When do you need food? </Question>
       <FlexRow>
-        {props.timeOption == "today" ? (
+        {props.timeOption === "today" ? (
           <FakeRadioOn htmlFor="today">Today</FakeRadioOn>
         ) : (
           <FakeRadio htmlFor="today">Today</FakeRadio>
@@ -140,7 +141,7 @@ const SearchForm = props => {
           value="today"
           onChange={props.handleTime}
         />
-        {props.timeOption == "tomorrow" ? (
+        {props.timeOption === "tomorrow" ? (
           <FakeRadioOn htmlFor="tomorrow">Tomorrow</FakeRadioOn>
         ) : (
           <FakeRadio htmlFor="tomorrow">Tomorrow</FakeRadio>
@@ -152,7 +153,7 @@ const SearchForm = props => {
           value="tomorrow"
           onChange={props.handleTime}
         />
-        {props.timeOption == "later" ? (
+        {props.timeOption === "later" ? (
           <FakeRadioOn htmlFor="later">Later</FakeRadioOn>
         ) : (
           <FakeRadio htmlFor="later">Later</FakeRadio>
