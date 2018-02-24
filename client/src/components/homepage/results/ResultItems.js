@@ -12,9 +12,10 @@ const ResultItems = props => {
     padding: 0.75em;
     max-width: 500px;
     @media screen and (min-width: 600px) {
-      width: 500px;
+      width: 400px;
       margin-left: 10%;
       padding: 1%;
+  
     }
   `;
   const Item = styled.div`
@@ -68,7 +69,7 @@ const ResultItems = props => {
 
   const d = new Date();
   const day = d.getDay(); // returns the current day as a value between 0-6 where Sunday = 0
-  let hours = d.getHours();
+  const hours = d.getHours();
   const minutes = d.getMinutes();
   if (hours < 10) {
     hours = "0" + hours;
@@ -102,23 +103,19 @@ const ResultItems = props => {
     const latB = parseFloat(lat);
     const longB = parseFloat(long);
     const distance =
-      Math.round(
-        geolib.getDistance(
-          { latitude: latA, longitude: longA },
-          { latitude: latB, longitude: longB }
-        ) /
-          1000 *
-          0.62,
-        2
-      ) + " miles";
-    return distance;
+      geolib.getDistance(
+        { latitude: latA, longitude: longA },
+        { latitude: latB, longitude: longB }
+      ) / 1000;
+    const roundedDist = (distance * 0.62).toFixed(1) + " miles";
+    return roundedDist;
   };
 
   let sortedItemsTime = [];
 
   const sortByTime = () => {
     if (props.result) {
-      if (props.timeOption === "today") {
+      if (props.timeOption === "today" || !props.timeOption) {
         sortedItemsTime = props.result.filter(function(r) {
           return r[mapTime[day]] !== "Closed";
         });
@@ -132,9 +129,7 @@ const ResultItems = props => {
     }
   };
 
-  if (props.timeOption !== "") {
-    sortByTime();
-  }
+  sortByTime();
 
   let advice = [];
   let food = [];
@@ -181,6 +176,17 @@ const ResultItems = props => {
                     ? `Closes today at ${a[mapTime[day + 7]]}`
                     : ""}
                   {props.timeOption === "today" && time > a[mapTime[day + 7]]
+                    ? `Has closed for today`
+                    : ""}
+                  {!props.timeOption && time < a[mapTime[day]]
+                    ? `Opens today at ${a[mapTime[day]]}`
+                    : ""}
+                  {!props.timeOption &&
+                  time > a[mapTime[day]] &&
+                  time < a[mapTime[day + 7]]
+                    ? `Closes today at ${a[mapTime[day + 7]]}`
+                    : ""}
+                  {!props.timeOption && time > a[mapTime[day + 7]]
                     ? `Has closed for today`
                     : ""}
                   {props.timeOption === "tomorrow"

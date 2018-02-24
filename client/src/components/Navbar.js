@@ -8,7 +8,7 @@ margin-left: 5%;
   height:5vh;
   background-color: qhite;
   margin: 0;
-  padding-top: 3%;
+  padding-top: 1%;
   padding-left: 3%;
 
 }

@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { Map, TileLayer } from "react-leaflet";
 import MarkersList from "./MarkersList";
-// import styles from "../../../assets/styles/style.css";
-const mapboxToken = require("../../../config.js");
+// const mapboxToken = require("../../../config.js");
+import styles from "../../../assets/styles/style.css";
+const mapboxToken = process.env.mapboxToken;
+
+
 const zoomLevel = 13;
 const d = new Date();
 const day = d.getDay(); // returns the current day as a value between 0-6 where Sunday = 0
@@ -89,10 +92,36 @@ class MapWindow extends Component {
     };
     sortByAdvice();
 
+
+  //added on Friday 21st//
+    let advice = [];
+    let food = [];
+  
+    const sortByAdvice = () => {
+      if (sortedItems) {
+        food = sortedItems.filter(function(item) {
+          return item.FoodCentre === "true";
+        });
+        advice = sortedItems.filter(function(item) {
+          return item.FoodCentre === "false";
+        });
+      }
+    };
+    sortByAdvice()
+//----------------------------//
     let flatten = [];
-    const getLatLong = arr => {
-      if (arr) {
-        arr.map((res, i) => {
+    const getLatLong = () => {
+      //need to check that sortAdice has completed first?//
+      if (sortedItems && this.props.advice) {
+        advice.map((res, i) => {
+          flatten.push({
+            key: i,
+            position: [+res.Lat, +res.Long],
+            text: res.Name
+          });
+        });
+      } else if(sortedItems && !this.props.advice) {
+        food.map((res, i) => {
           flatten.push({
             key: i,
             position: [+res.Lat, +res.Long],
