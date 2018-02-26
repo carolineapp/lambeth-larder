@@ -89,10 +89,10 @@ const Banner = styled.img`
   }
 `;
 
-const Hours = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
+// const Hours = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+// `;
 
 const Info = styled.div`
   padding: 1.2em;
