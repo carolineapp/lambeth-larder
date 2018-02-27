@@ -86,7 +86,7 @@ const Home = props => {
     @media screen and (min-width: 600px) {
       width: 45vw;
       height: 80vh;
-      overflow: scroll;
+      overflow-y: scroll;
     }
     @media screen and (min-width: 950px) {
       width: 35vw;
