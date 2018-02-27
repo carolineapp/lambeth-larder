@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import clock from "../../../assets/clock1.png";
 import arrow from "../../../assets/arrow.png";
-// import { sortByTime, getTimeOptionArr } from "../../../helpers/getStatus";
 const geolib = require("geolib");
 
 const ResultItems = props => {
@@ -11,12 +10,6 @@ const ResultItems = props => {
     padding-top: 1rem;
     padding: 0.75em;
     max-width: 500px;
-    @media screen and (min-width: 600px) {
-      width: 400px;
-      margin-left: 10%;
-      padding: 1%;
-  
-    }
   `;
   const Item = styled.div`
     background-color: white;
@@ -69,7 +62,7 @@ const ResultItems = props => {
 
   const d = new Date();
   const day = d.getDay(); // returns the current day as a value between 0-6 where Sunday = 0
-  const hours = d.getHours();
+  let hours = d.getHours();
   const minutes = d.getMinutes();
   if (hours < 10) {
     hours = "0" + hours;
@@ -261,7 +254,7 @@ const ResultItems = props => {
     }
   };
   return (
-    <Results className="results">
+    <Results>
       {props.adviceCentres === true
         ? foodAdviceMap(advice)
         : foodAdviceMap(food)}

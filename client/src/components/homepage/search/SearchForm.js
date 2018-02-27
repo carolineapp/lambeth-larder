@@ -11,10 +11,8 @@ const FormStyle = styled.form`
   max-height: 45vh;
   max-width: 500px;
   @media screen and (min-width: 600px) {
-    width: 400px;
-    margin-left: 10%;
-    padding: 1%;
-   
+    width: 100%;
+    ${"" /* padding: 1%;  */};
   }
 `;
 const FlexRow = styled.div`
@@ -37,12 +35,10 @@ const PostcodeSearchBar = styled.input`
   &::placeholder {
     color: white;
   }
-  
 `;
 const Radio = styled.input`
   display: none;
   text-align: center;
-  
 `;
 const FakeRadio = styled.label`
   display: table;
@@ -75,7 +71,8 @@ const Submit = styled.button`
   display: flex;
   color: white;
   background-color: none;
-
+  padding: 0;
+  border: none;
 `;
 const Question = styled.p`
   padding-top: 1em;
