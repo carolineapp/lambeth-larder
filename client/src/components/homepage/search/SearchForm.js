@@ -90,12 +90,12 @@ const Padding = styled.div`
   margin-left: 5%;
 `;
 
-const CheckBox = styled.input`
-  color: #e71242;
-  border: 2px solid white;
-  width: 2rem;
-  z-index: 2;
-`;
+// const CheckBox = styled.input`
+//   color: #e71242;
+//   border: 2px solid white;
+//   width: 2rem;
+//   z-index: 2;
+// `;
 
 //Makes space for error message so that things don't overlap
 
