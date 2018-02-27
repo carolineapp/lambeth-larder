@@ -61,6 +61,10 @@ const ResultItems = props => {
     text-align: center;
   `;
 
+  const Link = styled.a`
+    padding: 50px 10px;
+  `;
+
   const d = new Date();
   const day = d.getDay(); // returns the current day as a value between 0-6 where Sunday = 0
   let hours = d.getHours();
@@ -238,9 +242,9 @@ const ResultItems = props => {
               </Times>
             </Item>
             <NextPage>
-              <a href={"/results/" + a.Name}>
+              <Link href={"/results/" + a.Name}>
                 <img alt="button-arrow" src={arrow} height={20} width={15} />
-              </a>
+              </Link>
             </NextPage>
           </Flex>
         );
