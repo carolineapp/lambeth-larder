@@ -11,7 +11,7 @@ const FormStyle = styled.form`
   max-height: 45vh;
   max-width: 500px;
   @media screen and (min-width: 600px) {
-    width: 100%;
+    width: 96%;
     ${"" /* padding: 1%;  */};
   }
 `;

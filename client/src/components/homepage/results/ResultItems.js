@@ -37,6 +37,7 @@ const ResultItems = props => {
   const Flex = styled.div`
     display: flex;
     margin: auto;
+    width: 100%;
     min-height: 25vh;
     justify-content: space-between;
     margin-bottom: 5%;
