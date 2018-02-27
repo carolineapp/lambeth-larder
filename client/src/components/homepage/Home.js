@@ -84,8 +84,8 @@ const Home = props => {
   `;
   const ListContainer = styled.div`
     @media screen and (min-width: 600px) {
-      width: 45vw;
-      height: 80vh;
+      ${"" /* width: 45vw; */} height: 80vh;
+
       overflow-y: scroll;
     }
     @media screen and (min-width: 950px) {

@@ -4,7 +4,7 @@ import MarkersList from "./MarkersList";
 import styles from "../../../assets/styles/style.css";
 import styled from "styled-components";
 const mapboxToken =
-  "sk.eyJ1IjoiZGV2Z3JycmwiLCJhIjoiY2pkYzdzODFsMDU5djJ4cW02bGk2ODBrNSJ9.Rk18YavdSoe-uJCyJxCFnQ";
+  "pk.eyJ1IjoiZGV2Z3JycmwiLCJhIjoiY2pkYzdpOG81MmMxYTJ3cW9yN2JsZmQzbiJ9.-nZUOF_2ZyQzxmOSLly-SQ";
 
 const zoomLevel = 13;
 const d = new Date();
