@@ -94,6 +94,7 @@ const CheckBox = styled.input`
   color: #e71242;
   border: 2px solid white;
   width: 2rem;
+  z-index: 2;
 `;
 
 //Makes space for error message so that things don't overlap
@@ -116,7 +117,7 @@ const SearchForm = props => {
           name="postcode"
           placeholder="Enter your postcode"
           value={props.postcode}
-          onChange={props.handleChange}
+          onChange={props.handlePostcode}
         />
         <Submit type="submit" onClick={props.checkPostcode}>
           <img
@@ -169,7 +170,7 @@ const SearchForm = props => {
       </FlexRow>
       <Padding>
         <LabelSmall htmlFor="advice-centres">See other support</LabelSmall>
-        <CheckBox
+        <input
           id="advice-centres"
           type="checkbox"
           name="advice-centres"

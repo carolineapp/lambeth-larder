@@ -131,12 +131,14 @@ const Home = props => {
           <ListContainer>
             <SearchForm
               handleClick={props.handleClick}
-              handleChange={props.handleChange}
+              handlePostcode={props.handlePostcode}
               handleTime={props.handleTime}
               toggleAdviceCentres={props.toggleAdviceCentres}
+              adviceCentres={props.adviceCentres}
               checkPostcode={props.checkPostcode}
               postcodeErrorMsg={props.postcodeErrorMsg}
               timeOption={props.timeOption}
+              postcode={props.postcode}
             />
             <ResultItems
               result={props.results}
