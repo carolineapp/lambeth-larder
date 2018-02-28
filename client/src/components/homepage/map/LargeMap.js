@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Map, TileLayer } from "react-leaflet";
 import MarkersList from "./MarkersList";
 import styles from "../../../assets/styles/style.css";
-
-const mapboxToken = process.env.mapboxToken;
+const mapboxToken =
+  "pk.eyJ1IjoiZGV2Z3JycmwiLCJhIjoiY2pkYzdpOG81MmMxYTJ3cW9yN2JsZmQzbiJ9.-nZUOF_2ZyQzxmOSLly-SQ";
 
 const zoomLevel = 13;
 
@@ -36,14 +36,12 @@ class LargeMap extends Component {
   }
 
   render() {
-    const url = `https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=${
-      mapboxToken.key
-    }`;
+    const url = `https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=${mapboxToken}`;
 
     const attr =
       'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>';
-    
-      const mapTime = {
+
+    const mapTime = {
       0: "Sunday_Open",
       1: "Monday_Open",
       2: "Tuesday_Open",
