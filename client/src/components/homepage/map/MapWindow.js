@@ -2,11 +2,10 @@ import React, { Component } from "react";
 import { Map, TileLayer } from "react-leaflet";
 import MarkersList from "./MarkersList";
 import styles from "../../../assets/styles/style.css";
+import styled from "styled-components";
 
 const mapboxToken = "pk.eyJ1IjoiZGV2Z3JycmwiLCJhIjoiY2plNjFyOTVnMmlmdDJ3anJyZWtzYWtlYiJ9.-wfqcqne9aj8roI0gAAz7g"
 
-
-import styled from "styled-components";
 
 
 const zoomLevel = 13;
