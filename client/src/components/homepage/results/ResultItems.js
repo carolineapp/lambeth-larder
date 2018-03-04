@@ -15,7 +15,6 @@ const ResultItems = props => {
       width: 400px;
       margin-left: 10%;
       padding: 1%;
-  
     }
   `;
   const Item = styled.div`
@@ -75,6 +74,10 @@ const ResultItems = props => {
     hours = "0" + hours;
   }
   const time = `${hours}:${minutes}`;
+
+  const Link = styled.a`
+    padding: 50px 10px;
+  `;
 
   // mapTime object gives the current day from getDay as the key and returns the corresponding value. ie. today is Tuesday which = 2 so mapTime[2] returns a.Tuesday_Open which gives either "Closed" or it's opening time.
 
@@ -244,9 +247,9 @@ const ResultItems = props => {
               </Times>
             </Item>
             <NextPage>
-              <a href={"/results/" + a.Name}>
+              <Link href={"/results/" + a.Name}>
                 <img alt="button-arrow" src={arrow} height={20} width={15} />
-              </a>
+              </Link>
             </NextPage>
           </Flex>
         );
@@ -261,7 +264,7 @@ const ResultItems = props => {
     }
   };
   return (
-    <Results >
+    <Results>
       {props.adviceCentres === true
         ? foodAdviceMap(advice)
         : foodAdviceMap(food)}
