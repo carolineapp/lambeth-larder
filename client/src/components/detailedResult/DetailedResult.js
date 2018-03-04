@@ -7,7 +7,7 @@ import jug from "../../assets/jug.png";
 import marker from "../../assets/red_marker.png";
 import banner from "../../assets/EmergencyFood_temp.png";
 
-const Div = styled.div`
+const Container = styled.div`
   min-height: 100vh;
   background: #e71242;
   @media screen and (min-width: 600px) {
@@ -28,6 +28,7 @@ const Wrapper = styled.section`
     border: 5px solid #e71242;
     padding: 4%;
     font-size: 1.125rem;
+    display: flex;
   }
 `;
 
@@ -58,7 +59,24 @@ const Button = styled.button`
   z-index: -1;
   font-size: 1rem;
   @media screen and (min-width: 600px) {
-    margin-left: 1%;
+    width: 10%;
+    margin-bottom: 3%;
+  }
+`;
+const GetDirections = styled.button`
+  min-width: 30%;
+  padding: 1%;
+  margin-top: 3%;
+  margin-left: 6%;
+  margin-bottom: 5%;
+  color: #e71242;
+  background: white;
+  border: 2px solid #e71242;
+  text-align: center;
+  line-height: 250%;
+  z-index: -1;
+  font-size: 1rem;
+  @media screen and (min-width: 600px) {
     min-width: 10%;
     margin-bottom: 3%;
   }
@@ -71,7 +89,7 @@ const OpeningHours = styled.div`
   margin: auto;
   @media screen and (min-width: 600px) {
     width: 50%;
-    margin: 2%;
+    align-self: center;
   }
 `;
 
@@ -110,7 +128,7 @@ const Voucher = styled.div`
 
 const DetailedResult = ({ postcode, match, results }) => {
   return (
-    <Div>
+    <Container>
       {results
         ? results.map(result => {
             if (result.Name === match.params.name) {
@@ -119,36 +137,36 @@ const DetailedResult = ({ postcode, match, results }) => {
                   <Navbar />
                   <Banner src={banner} width={"100%"} />
                   <Wrapper>
-                    <img
-                      src={jug}
-                      height={100}
-                      width={100}
-                      align="left"
-                      vertical-align="top"
-                      alt=""
-                    />
-                    <Header>{result.Name}</Header>
-
-                    <Info>
-                      <p>{result.Description}</p>
-
-                      <div>
-                        {result.Address_Line_2}
-                        <br />
-                        {result.Address_Line_3}
-                        <br />
-                        {result.Postcode}
-                      </div>
-                    </Info>
                     <div>
-                      <Button>
+                      <img
+                        src={jug}
+                        height={100}
+                        width={100}
+                        align="left"
+                        vertical-align="top"
+                        alt=""
+                      />
+                      <Header>{result.Name}</Header>
+
+                      <Info>
+                        <p>{result.Description}</p>
+
+                        <div>
+                          {result.Address_Line_2}
+                          <br />
+                          {result.Address_Line_3}
+                          <br />
+                          {result.Postcode}
+                        </div>
+                      </Info>
+
+                      <GetDirections>
                         <a
                           href={`https://www.google.com/maps/dir/?api=1&origin=${postcode}&destination=${result.Postcode.split(
                             " "
                           ).join("")}&travelmode=transit`}
                         >
-                          Get Directions{" "}
-                          <img
+                          Get Directions<img
                             src={marker}
                             height={30}
                             width={30}
@@ -157,31 +175,34 @@ const DetailedResult = ({ postcode, match, results }) => {
                             alt=""
                           />
                         </a>
-                      </Button>
+                      </GetDirections>
+
+                      <Info>
+                        <Voucher>
+                          {result.Requires_Voucher === "No" ? (
+                            <div>No Voucher Required</div>
+                          ) : (
+                            <a href="/voucher">Voucher Required (click here)</a>
+                          )}
+                        </Voucher>
+                        <div>
+                          <p>{result.Phone}</p>
+
+                          <p>{result.Email}</p>
+
+                          <a href={result.Website}>
+                            <Link>{result.Website}</Link>
+                          </a>
+                        </div>
+                      </Info>
+                      <a href="/">
+                        <Button>Back</Button>
+                      </a>
                     </div>
-                    <Info>
-                      <Voucher>
-                        {result.Requires_Voucher === "No" ? (
-                          <div>No Voucher Required</div>
-                        ) : (
-                          <a href="/voucher">Voucher Required (click here)</a>
-                        )}
-                      </Voucher>
-                      <div>
-                        <p>{result.Phone}</p>
-
-                        <p>{result.Email}</p>
-
-                        <a href={result.Website}>
-                          <Link>{result.Website}</Link>
-                        </a>
-                      </div>
-                    </Info>
-
                     <OpeningHours>
                       <img src={clock} height={30} width={30} alt={"clock"} />
                       <Column>
-                        <p style={{marginTop: "0"}}>Opening Hours:</p>
+                        <p style={{ marginTop: "0" }}>Opening Hours:</p>
                         <p>
                           Monday:{" "}
                           {result.Monday_Open === "Closed"
@@ -232,17 +253,13 @@ const DetailedResult = ({ postcode, match, results }) => {
                         </p>
                       </Column>
                     </OpeningHours>
-
-                    <a href="/">
-                      <Button>Back</Button>
-                    </a>
                   </Wrapper>
                 </div>
               );
             }
           })
         : console.log("there are no matches")}
-    </Div>
+    </Container>
   );
 };
 
