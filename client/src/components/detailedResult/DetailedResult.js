@@ -45,6 +45,27 @@ const Header = styled.h1`
   }
 `;
 
+const ButtonDesktop = styled.button`
+  min-width: 30%;
+  padding: 1%;
+  margin-top: 3%;
+  margin-left: 6%;
+  margin-bottom: 5%;
+  color: #e71242;
+  background: white;
+  border: 2px solid #e71242;
+  text-align: center;
+  line-height: 250%;
+  z-index: -1;
+  font-size: 1rem;
+  display: none;
+  @media screen and (min-width: 600px) {
+    width: 10%;
+    margin-bottom: 3%;
+    display: block;
+  }
+`;
+
 const Button = styled.button`
   min-width: 30%;
   padding: 1%;
@@ -59,10 +80,10 @@ const Button = styled.button`
   z-index: -1;
   font-size: 1rem;
   @media screen and (min-width: 600px) {
-    width: 10%;
-    margin-bottom: 3%;
+    display: none;
   }
 `;
+
 const GetDirections = styled.button`
   min-width: 30%;
   padding: 1%;
@@ -90,6 +111,7 @@ const OpeningHours = styled.div`
   @media screen and (min-width: 600px) {
     width: 50%;
     align-self: center;
+    margin-left: 5%;
   }
 `;
 
@@ -196,7 +218,7 @@ const DetailedResult = ({ postcode, match, results }) => {
                         </div>
                       </Info>
                       <a href="/">
-                        <Button>Back</Button>
+                        <ButtonDesktop>Back</ButtonDesktop>
                       </a>
                     </div>
                     <OpeningHours>
@@ -253,6 +275,9 @@ const DetailedResult = ({ postcode, match, results }) => {
                         </p>
                       </Column>
                     </OpeningHours>
+                    <a href="/">
+                      <Button>Back</Button>
+                    </a>
                   </Wrapper>
                 </div>
               );
