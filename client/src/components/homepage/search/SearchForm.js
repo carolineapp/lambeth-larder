@@ -11,8 +11,10 @@ const FormStyle = styled.form`
   max-height: 45vh;
   max-width: 500px;
   @media screen and (min-width: 600px) {
-    width: 96%;
-    ${"" /* padding: 1%;  */};
+    width: 400px;
+    margin-left: 10%;
+    padding: 1%;
+   
   }
 `;
 const FlexRow = styled.div`
@@ -35,10 +37,12 @@ const PostcodeSearchBar = styled.input`
   &::placeholder {
     color: white;
   }
+  
 `;
 const Radio = styled.input`
   display: none;
   text-align: center;
+  
 `;
 const FakeRadio = styled.label`
   display: table;
@@ -91,14 +95,12 @@ const Padding = styled.div`
   margin-left: 5%;
 `;
 
-
 const CheckBox = styled.input`
   color: #e71242;
   border: 2px solid white;
   width: 2rem;
  
 `;
-
 
 //Makes space for error message so that things don't overlap
 
@@ -173,7 +175,7 @@ const SearchForm = props => {
       </FlexRow>
       <Padding>
         <LabelSmall htmlFor="advice-centres">See other support</LabelSmall>
-        <input
+        <CheckBox
           id="advice-centres"
           type="checkbox"
           name="advice-centres"

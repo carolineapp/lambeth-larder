@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../Navbar";
 import styled from "styled-components";
 import jug from "../../assets/jug.png";
-import banner from "../../assets/EmergencyFood_temp.png";
+import banner from "../../assets/EmergencyFood_temp_sml.jpg";
 
 const Wrapper = styled.section`
   min-height: 85vh;

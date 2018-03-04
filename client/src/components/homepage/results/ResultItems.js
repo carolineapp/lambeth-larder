@@ -80,9 +80,6 @@ const ResultItems = props => {
   }
   const time = `${hours}:${minutes}`;
 
-  const Link = styled.a`
-    padding: 50px 10px;
-  `;
 
   // mapTime object gives the current day from getDay as the key and returns the corresponding value. ie. today is Tuesday which = 2 so mapTime[2] returns a.Tuesday_Open which gives either "Closed" or it's opening time.
 

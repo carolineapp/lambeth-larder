@@ -37,7 +37,7 @@ const Home = props => {
     line-height: 2.5vh;
     @media screen and (min-width: 600px) {
       font-size: 0.8rem;
-      width: 70%;
+      width: 50%;
     }
   `;
 
@@ -46,6 +46,7 @@ const Home = props => {
     border: none;
     border-bottom: 2px solid white;
     color: white;
+
     font-size: 0.875rem;
     width: 30%;
     margin: 0;
@@ -60,7 +61,8 @@ const Home = props => {
     width: 100%;
     background-color: white;
     @media screen and (min-width: 600px) {
-      width: 100%;
+      width: 80%;
+      margin: auto;
       text-align: right;
     }
   `;
@@ -72,30 +74,7 @@ const Home = props => {
     width: 30%;
     margin: 0;
     @media screen and (min-width: 600px) {
-      width: 30%;
-    }
-  `;
-  const AllResultsContainer = styled.div`
-    @media screen and (min-width: 600px) {
-      display: flex;
-      margin-left: 5vw;
-      margin-right: 5vw;
-    }
-  `;
-  const ListContainer = styled.div`
-    @media screen and (min-width: 600px) {
-      ${"" /* width: 45vw; */} height: 80vh;
-
-      overflow-y: scroll;
-    }
-    @media screen and (min-width: 950px) {
-      width: 35vw;
-    }
-  `;
-  const MapContainer = styled.div`
-    @media screen and (min-width: 600px) {
-      display: flex;
-      flex-direction: column;
+      width: 10%;
     }
   `;
 
@@ -106,16 +85,15 @@ const Home = props => {
         <Title>Emergency Food</Title>
       </Header>
       {!props.fullScreen ? (
-        <AllResultsContainer>
-          <MapContainer>
-            <MapWindow
-              result={props.results}
-              lat={props.lat}
-              long={props.long}
-              timeOption={props.timeOption}
-              advice={props.adviceCentres}
-              onClick={props.toggleMap}
-            />
+        <div>
+          <MapWindow
+            result={props.results}
+            lat={props.lat}
+            long={props.long}
+            timeOption={props.timeOption}
+            advice={props.adviceCentres}
+          />
+          <div>
             <MapNavAttribution>
               <MaximiseMap onClick={props.toggleMap}>Map Full</MaximiseMap>
               <Span>
@@ -127,8 +105,7 @@ const Home = props => {
                 </a>, Imagery © <a href="http://mapbox.com">Mapbox</a>
               </Span>
             </MapNavAttribution>
-          </MapContainer>
-          <ListContainer>
+
             <SearchForm
               handleClick={props.handleClick}
               handlePostcode={props.handlePostcode}
@@ -147,8 +124,8 @@ const Home = props => {
               timeOption={props.timeOption}
               adviceCentres={props.adviceCentres}
             />
-          </ListContainer>
-        </AllResultsContainer>
+          </div>
+        </div>
       ) : (
         <div>
           <LargeMap

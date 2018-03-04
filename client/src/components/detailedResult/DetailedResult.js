@@ -5,7 +5,7 @@ import clock from "../../assets/clock.png";
 // import styles from "../../assets/styles/style.css";
 import jug from "../../assets/jug.png";
 import marker from "../../assets/red_marker.png";
-import banner from "../../assets/EmergencyFood_temp.png";
+import banner from "../../assets/EmergencyFood_temp_sml.jpg";
 
 const Container = styled.div`
   min-height: 100vh;
