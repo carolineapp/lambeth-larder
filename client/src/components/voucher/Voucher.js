@@ -2,7 +2,6 @@ import React from "react";
 import Navbar from "../Navbar";
 import styled from "styled-components";
 import jug from "../../assets/jug.png";
-import styles from "../../assets/styles/style.css";
 import banner from "../../assets/EmergencyFood_temp.png";
 
 const Wrapper = styled.section`

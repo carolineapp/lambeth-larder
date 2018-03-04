@@ -2,13 +2,17 @@ import React, { Component } from "react";
 import { Map, TileLayer } from "react-leaflet";
 import MarkersList from "./MarkersList";
 import styles from "../../../assets/styles/style.css";
+
+const mapboxToken = "pk.eyJ1IjoiZGV2Z3JycmwiLCJhIjoiY2plNjFyOTVnMmlmdDJ3anJyZWtzYWtlYiJ9.-wfqcqne9aj8roI0gAAz7g"
+
+
 import styled from "styled-components";
-const mapboxToken =
-  "pk.eyJ1IjoiZGV2Z3JycmwiLCJhIjoiY2pkYzdpOG81MmMxYTJ3cW9yN2JsZmQzbiJ9.-nZUOF_2ZyQzxmOSLly-SQ";
+
 
 const zoomLevel = 13;
 const d = new Date();
 const day = d.getDay(); // returns the current day as a value between 0-6 where Sunday = 0
+
 
 const MapContainer = styled.div`
   @media screen and (min-width: 600px) {
@@ -21,6 +25,8 @@ class MapWindow extends Component {
       currentZoomLevel: zoomLevel
     };
   }
+
+
 
   componentDidMount() {
     const leafletMap = this.leafletMap.leafletElement;
@@ -35,7 +41,9 @@ class MapWindow extends Component {
   }
 
   render() {
-    const url = `https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=${mapboxToken}`;
+
+    const url = 'https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=' + mapboxToken;
+
 
     const mapTime = {
       0: "Sunday_Open",
@@ -89,8 +97,10 @@ class MapWindow extends Component {
         });
       }
     };
-    sortByAdvice();
-    //----------------------------//
+
+    sortByAdvice()
+//----------------------------//
+
     let flatten = [];
     const getLatLong = () => {
       //need to check that sortAdice has completed first?//
@@ -102,7 +112,9 @@ class MapWindow extends Component {
             text: res.Name
           });
         });
-      } else if (sortedItemsTime && !this.props.advice) {
+
+      } else if(sortedItemsTime && !this.props.advice) {
+
         food.map((res, i) => {
           flatten.push({
             key: i,

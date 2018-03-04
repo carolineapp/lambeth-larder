@@ -10,6 +10,12 @@ const ResultItems = props => {
     padding-top: 1rem;
     padding: 0.75em;
     max-width: 500px;
+
+    @media screen and (min-width: 600px) {
+      width: 400px;
+      margin-left: 10%;
+      padding: 1%;
+    }
   `;
   const Item = styled.div`
     background-color: white;
@@ -73,6 +79,10 @@ const ResultItems = props => {
     hours = "0" + hours;
   }
   const time = `${hours}:${minutes}`;
+
+  const Link = styled.a`
+    padding: 50px 10px;
+  `;
 
   // mapTime object gives the current day from getDay as the key and returns the corresponding value. ie. today is Tuesday which = 2 so mapTime[2] returns a.Tuesday_Open which gives either "Closed" or it's opening time.
 
@@ -146,7 +156,7 @@ const ResultItems = props => {
   sortByAdvice();
 
   const foodAdviceMap = array => {
-    if (array.length > 1) {
+    if (array.length > 0) {
       return array.map(a => {
         return (
           <Flex>

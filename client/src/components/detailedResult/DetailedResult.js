@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Navbar from "../Navbar";
 import clock from "../../assets/clock.png";
-import styles from "../../assets/styles/style.css";
+// import styles from "../../assets/styles/style.css";
 import jug from "../../assets/jug.png";
 import marker from "../../assets/red_marker.png";
 import banner from "../../assets/EmergencyFood_temp.png";
@@ -229,48 +229,64 @@ const DetailedResult = ({ postcode, match, results }) => {
                           Monday:{" "}
                           {result.Monday_Open === "Closed"
                             ? "Closed"
-                            : result.Monday_Open + "-" + result.Monday_Close}
+                            : result.Monday_Open === undefined
+                              ? ""
+                              : result.Monday_Open + "-" + result.Monday_Close}
                         </p>
                         <p>
                           Tuesday:{" "}
                           {result.Tuesday_Open === "Closed"
                             ? "Closed"
-                            : result.Tuesday_Open + "-" + result.Tuesday_Close}
+                            : result.Tuesday_Open === undefined
+                              ? ""
+                              : result.Tuesday_Open +
+                                "-" +
+                                result.Tuesday_Close}
                         </p>
                         <p>
                           Wednesday:{" "}
                           {result.Wednesday_Open === "Closed"
                             ? "Closed"
-                            : result.Wednesday_Open +
-                              "-" +
-                              result.Wednesday_Close}
+                            : result.Tuesday_Open === undefined
+                              ? ""
+                              : result.Wednesday_Open +
+                                "-" +
+                                result.Wednesday_Close}
                         </p>
                         <p>
                           Thursday:{" "}
                           {result.Thursday_Open === "Closed"
                             ? "Closed"
-                            : result.Thursday_Open +
-                              "-" +
-                              result.Thursday_Close}
+                            : result.Tuesday_Open === undefined
+                              ? ""
+                              : result.Thursday_Open +
+                                "-" +
+                                result.Thursday_Close}
                         </p>
                         <p>
                           Friday:{" "}
                           {result.Friday_Open === "Closed"
                             ? "Closed"
-                            : result.Friday_Open + "-" + result.Friday_Close}
+                            : result.Tuesday_Open === undefined
+                              ? ""
+                              : result.Friday_Open + "-" + result.Friday_Close}
                         </p>
                         <p>
                           Saturday:{" "}
                           {result.Saturday_Open === "Closed"
                             ? "Closed"
-                            : result.Saturday_Open +
-                              "-" +
-                              result.Saturday_Close}
+                            : result.Tuesday_Open === undefined
+                              ? ""
+                              : result.Saturday_Open +
+                                "-" +
+                                result.Saturday_Close}
                         </p>
                         <p>
                           Sunday:{" "}
                           {result.Sunday_Open === "Closed"
                             ? "Closed"
+                            : result.Tuesday_Open === undefined
+                            ? ""
                             : result.Sunday_Open + "-" + result.Sunday_Close}
                         </p>
                       </Column>

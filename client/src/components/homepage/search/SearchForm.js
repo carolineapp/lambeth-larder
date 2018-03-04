@@ -73,6 +73,7 @@ const Submit = styled.button`
   background-color: none;
   padding: 0;
   border: none;
+
 `;
 const Question = styled.p`
   padding-top: 1em;
@@ -90,12 +91,14 @@ const Padding = styled.div`
   margin-left: 5%;
 `;
 
-// const CheckBox = styled.input`
-//   color: #e71242;
-//   border: 2px solid white;
-//   width: 2rem;
-//   z-index: 2;
-// `;
+
+const CheckBox = styled.input`
+  color: #e71242;
+  border: 2px solid white;
+  width: 2rem;
+ 
+`;
+
 
 //Makes space for error message so that things don't overlap
 
