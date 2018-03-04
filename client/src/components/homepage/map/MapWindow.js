@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { Map, TileLayer } from "react-leaflet";
 import MarkersList from "./MarkersList";
-// const mapboxToken = require("../../../config.js");
 import styles from "../../../assets/styles/style.css";
+
 const mapboxToken = "pk.eyJ1IjoiZGV2Z3JycmwiLCJhIjoiY2plNjFyOTVnMmlmdDJ3anJyZWtzYWtlYiJ9.-wfqcqne9aj8roI0gAAz7g"
+
+
+import styled from "styled-components";
 
 
 const zoomLevel = 13;
@@ -11,6 +14,10 @@ const d = new Date();
 const day = d.getDay(); // returns the current day as a value between 0-6 where Sunday = 0
 
 
+const MapContainer = styled.div`
+  @media screen and (min-width: 600px) {
+  }
+`;
 class MapWindow extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +41,9 @@ class MapWindow extends Component {
   }
 
   render() {
+
     const url = 'https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=' + mapboxToken;
+
 
     const mapTime = {
       0: "Sunday_Open",
@@ -78,12 +87,6 @@ class MapWindow extends Component {
     let advice = [];
     let food = [];
 
-
-
-
-  //added on Friday 21st//
-
-  
     const sortByAdvice = () => {
       if (sortedItemsTime) {
         food = sortedItemsTime.filter(function(item) {
@@ -94,8 +97,10 @@ class MapWindow extends Component {
         });
       }
     };
+
     sortByAdvice()
 //----------------------------//
+
     let flatten = [];
     const getLatLong = () => {
       //need to check that sortAdice has completed first?//
@@ -107,7 +112,9 @@ class MapWindow extends Component {
             text: res.Name
           });
         });
+
       } else if(sortedItemsTime && !this.props.advice) {
+
         food.map((res, i) => {
           flatten.push({
             key: i,
@@ -126,7 +133,7 @@ class MapWindow extends Component {
     }
 
     return (
-      <div>
+      <MapContainer>
         {
           <Map
             ref={m => {
@@ -142,7 +149,7 @@ class MapWindow extends Component {
             <MarkersList flatten={flatten} />}
           </Map>
         }
-      </div>
+      </MapContainer>
     );
   }
 }
