@@ -8,8 +8,9 @@ margin-left: 5%;
   height:5vh;
   background-color: qhite;
   margin: 0;
-  padding-top: 1%;
+  padding-top: 2%;
   padding-left: 3%;
+  padding-bottom: 1.5%;
 
 }
 `;
