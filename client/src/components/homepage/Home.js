@@ -25,10 +25,9 @@ const Home = props => {
   `;
 
   const Header = styled.header`
-  width: 100%;
-  background: white;
- 
-`;
+    width: 100%;
+    background: white;
+  `;
 
   const Span = styled.p`
     font-size: 0.5rem;
@@ -79,7 +78,6 @@ const Home = props => {
     }
   `;
 
- 
   return (
     <div>
       <Header>
@@ -110,12 +108,14 @@ const Home = props => {
 
             <SearchForm
               handleClick={props.handleClick}
-              handleChange={props.handleChange}
+              handlePostcode={props.handlePostcode}
               handleTime={props.handleTime}
               toggleAdviceCentres={props.toggleAdviceCentres}
+              adviceCentres={props.adviceCentres}
               checkPostcode={props.checkPostcode}
               postcodeErrorMsg={props.postcodeErrorMsg}
               timeOption={props.timeOption}
+              postcode={props.postcode}
             />
             <ResultItems
               result={props.results}

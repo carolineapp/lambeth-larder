@@ -39,7 +39,7 @@ class App extends Component {
       });
     });
   }
-  handleChange = event => {
+  handlePostcode = event => {
     this.setState({
       postcode: event.target.value,
       postcodeErrorMsg: ""
@@ -90,13 +90,6 @@ class App extends Component {
     }
   };
 
-  handleChange = event => {
-    this.setState({
-      postcode: event.target.value,
-      postcodeErrorMsg: ""
-    });
-  };
-
   render() {
     return (
       <Router>
@@ -112,10 +105,10 @@ class App extends Component {
                     toggleMap={this.toggleMap}
                     adviceCentres={this.state.adviceCentres}
                     fullScreen={this.state.fullScreen}
-                    handleChange={this.handleChange}
+                    handlePostcode={this.handlePostcode}
                     handleTime={this.handleTime}
                     toggleAdviceCentres={this.toggleAdviceCentres}
-                    Postcode={this.state.Postcode}
+                    postcode={this.state.postcode}
                     checkPostcode={this.checkPostcode}
                     results={this.state.results}
                     lat={this.state.lat}
