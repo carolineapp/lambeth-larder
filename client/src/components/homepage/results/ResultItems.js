@@ -261,7 +261,7 @@ const ResultItems = props => {
     }
   };
   return (
-    <Results className="results">
+    <Results >
       {props.adviceCentres === true
         ? foodAdviceMap(advice)
         : foodAdviceMap(food)}

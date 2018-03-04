@@ -75,6 +75,8 @@ const Submit = styled.button`
   display: flex;
   color: white;
   background-color: none;
+  padding: 0;
+  border: none;
 
 `;
 const Question = styled.p`

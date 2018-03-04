@@ -9,9 +9,7 @@ const mapboxToken = "pk.eyJ1IjoiZGV2Z3JycmwiLCJhIjoiY2plNjFyOTVnMmlmdDJ3anJyZWtz
 const zoomLevel = 13;
 const d = new Date();
 const day = d.getDay(); // returns the current day as a value between 0-6 where Sunday = 0
-// const hours = d.getHours();
-// const minutes = d.getMinutes();
-// const time = `${hours}:${minutes}`;
+
 
 class MapWindow extends Component {
   constructor(props) {
@@ -20,6 +18,8 @@ class MapWindow extends Component {
       currentZoomLevel: zoomLevel
     };
   }
+
+
 
   componentDidMount() {
     const leafletMap = this.leafletMap.leafletElement;
