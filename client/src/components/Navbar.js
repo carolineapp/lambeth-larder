@@ -19,7 +19,7 @@ const Navbar = () => {
     <div>
       <Nav>
         {/* replace this with icon? */}
-        <a href="http://www.lambethlarder.org">HOME</a>
+        <a href="http://www.lambethlarder.org">LAMBETH LARDER</a>
       </Nav>
     </div>
   );
