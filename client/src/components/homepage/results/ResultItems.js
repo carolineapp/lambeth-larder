@@ -69,7 +69,7 @@ const ResultItems = props => {
 
   const d = new Date();
   const day = d.getDay(); // returns the current day as a value between 0-6 where Sunday = 0
-  const hours = d.getHours();
+  let hours = d.getHours();
   const minutes = d.getMinutes();
   if (hours < 10) {
     hours = "0" + hours;
@@ -148,7 +148,7 @@ const ResultItems = props => {
   sortByAdvice();
 
   const foodAdviceMap = array => {
-    if (array.length > 1) {
+    if (array.length > 0) {
       return array.map(a => {
         return (
           <Flex>

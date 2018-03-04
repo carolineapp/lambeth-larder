@@ -3,7 +3,7 @@ import { Map, TileLayer } from "react-leaflet";
 import MarkersList from "./MarkersList";
 // const mapboxToken = require("../../../config.js");
 import styles from "../../../assets/styles/style.css";
-const mapboxToken = process.env.mapboxToken;
+const mapboxToken = "pk.eyJ1IjoiZGV2Z3JycmwiLCJhIjoiY2plNjFyOTVnMmlmdDJ3anJyZWtzYWtlYiJ9.-wfqcqne9aj8roI0gAAz7g"
 
 
 const zoomLevel = 13;
@@ -34,9 +34,7 @@ class MapWindow extends Component {
   }
 
   render() {
-    const url = `https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=${
-      mapboxToken.key
-    }`;
+    const url = 'https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=' + mapboxToken;
 
     const mapTime = {
       0: "Sunday_Open",
@@ -80,6 +78,12 @@ class MapWindow extends Component {
     let advice = [];
     let food = [];
 
+
+
+
+  //added on Friday 21st//
+
+  
     const sortByAdvice = () => {
       if (sortedItemsTime) {
         food = sortedItemsTime.filter(function(item) {
@@ -90,29 +94,12 @@ class MapWindow extends Component {
         });
       }
     };
-    sortByAdvice();
-
-
-  //added on Friday 21st//
-    let advice = [];
-    let food = [];
-  
-    const sortByAdvice = () => {
-      if (sortedItems) {
-        food = sortedItems.filter(function(item) {
-          return item.FoodCentre === "true";
-        });
-        advice = sortedItems.filter(function(item) {
-          return item.FoodCentre === "false";
-        });
-      }
-    };
     sortByAdvice()
 //----------------------------//
     let flatten = [];
     const getLatLong = () => {
       //need to check that sortAdice has completed first?//
-      if (sortedItems && this.props.advice) {
+      if (sortedItemsTime && this.props.advice) {
         advice.map((res, i) => {
           flatten.push({
             key: i,
@@ -120,7 +107,7 @@ class MapWindow extends Component {
             text: res.Name
           });
         });
-      } else if(sortedItems && !this.props.advice) {
+      } else if(sortedItemsTime && !this.props.advice) {
         food.map((res, i) => {
           flatten.push({
             key: i,
